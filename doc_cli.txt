@@ -1,0 +1,6 @@
+ng generate component xyz --module=app.module    // New Component   
+ng add @angular/material      // Angular Material
+ng add @angular/pwa	      // Add PWA Support
+ng add _____		      // Add Dependency
+ng test                       // Run and Watch Tests
+ng build --prod               // Build for Production

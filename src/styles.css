@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+  
+.site-content {
+    flex: 1;
+ }
+.footer {
+    margin-top: 14px;
+    width: 100%;
+    padding: 1.5rem 0 1.5rem 0;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.upper {
+	text-transform: uppercase;
+}
+.nav-row {
+    display: flex;
+    flex-wrap: wrap;
+}
