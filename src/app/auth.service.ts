@@ -21,7 +21,7 @@ export class AuthService {
     document.cookie = name + '=' + encodeURI(value) + ';expires=' + exp.toUTCString();
   }
 
-  getCookie(key: string) {
+  getCookie(key: string): string {
     const name: string = key + '=';
     const ca: string[] = document.cookie.split(';');
     for (let item of ca) {

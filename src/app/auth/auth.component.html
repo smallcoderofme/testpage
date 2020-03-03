@@ -1,1 +1,57 @@
-<p>auth works!</p>
+<div class="nav-row" *ngIf="status.logined">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <div class="p-3 login-bg">
+            <div class="form-group">
+                <label for="username">用户名:</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="form-group">
+                <small id="tips" class="text-danger" style="display: none;">用户或者密码为空或者错误。</small>
+            </div>
+            <button type="button" class="btn btn-success btn-block" onclick="login();">登陆</button>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="nav-row" *ngIf="!status.logined">
+    <div class="col-md-2 mt-3">
+        <ul class="list-group">
+            <li class="list-group-item">Operating</li>
+            <li class="list-group-item list-group-item-primary">
+                <i class="fa fa-tags pull-left pt-1 mr-3" aria-hidden="true"></i>
+                <a href="">tags</a>
+            </li>
+            <li class="list-group-item list-group-item-secondary">
+                <i class="fa fa-file-text pull-left pt-1 mr-3" aria-hidden="true"></i>
+                <a href="">posts</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10 mt-3 text-center">
+        <div class="text-left">
+            <span *ngFor="let tag of tags" class="badge badge-success p-2 mr-3">{{ tag.name }}
+                <a href="javascript:;"><i class="fa fa-times pull-right point-cursor" (click)="delTag(tag.id);"></i></a>
+            </span>
+        </div>
+        <div class="border-bottom p-2"></div>
+        <div class="mt-3">
+            <div class="form-row align-items-center">
+              <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">Name</label>
+                <input type="text"
+                [(ngModel)]="tempTag.name"
+                [ngModelOptions]="{standalone: true}" class="form-control form-control-sm mb-2" id="inlineFormInput" placeholder="new tag name">
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary btn-sm mb-2" (click)="newTag();">Submit</button>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
