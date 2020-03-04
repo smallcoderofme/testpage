@@ -8,14 +8,16 @@ import { BlogComponent } from './blog/blog.component';
 import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
-
+import { BlogCreateComponent } from './blog-create/blog-create.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BlogComponent,
     AboutComponent,
-    AuthComponent
+    AuthComponent,
+    BlogCreateComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -24,7 +26,8 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
     HttpClientXsrfModule.withOptions({
       headerName: 'X-XSRF-TOKEN'
     }),
-    FormsModule
+    FormsModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
