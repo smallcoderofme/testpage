@@ -11,6 +11,7 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { BlogDetailComponent } from './blog-detail/blog-detail.component';
     AuthComponent,
     BlogCreateComponent,
     BlogDetailComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
