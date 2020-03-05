@@ -10,6 +10,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     AboutComponent,
     AuthComponent,
     BlogCreateComponent,
+    BlogDetailComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
