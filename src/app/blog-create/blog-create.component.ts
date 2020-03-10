@@ -17,6 +17,11 @@ export class BlogCreateComponent implements OnInit {
     postTitle: '',
     postContent: ''
   };
+  tags = [
+    { name: 'art', id: 'djs3b423brwe' },
+    { name: 'life', id: 'djs3as423brwe' },
+    { name: 'view', id: 'djs3b42sad3brwe' } ];
+  selectedTags = [];
   constructor() {
     this.Editor = ClassicEditor;
     this.uplpadPlugin = CustomUploadAdapterPlugin;
@@ -76,6 +81,28 @@ export class BlogCreateComponent implements OnInit {
       extraPlugins: [this.uplpadPlugin]
     };
   }
+  selectedTag(tag) {
+    this.selectedTags.push(tag);
+    const count: number = this.tags.length;
+    for (let i = 0; i < count; i++) {
+      if (this.tags[i].id === tag.id) {
+        this.tags.splice(i, 1);
+        break;
+      }
+    }
+  }
+  unSelect(tag) {
+    this.tags.push(tag);
+    const count: number = this.selectedTags.length;
+    for (let i = 0; i < count; i++) {
+      if (this.selectedTags[i].id === tag.id) {
+        this.selectedTags.splice(i, 1);
+        break;
+      }
+    }
+  }
   cancelHandler() {}
-  confirmHandler() {}
+  confirmHandler() {
+    console.log( this.model.postContent );
+  }
 }
