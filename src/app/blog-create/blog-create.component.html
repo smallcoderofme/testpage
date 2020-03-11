@@ -11,10 +11,10 @@
     <div class="col-md-2 mt-2">
         <a href="/auth/manage" class="btn btn-success btn-sm btn-block">create new tag<i class="fa fa-plus-circle ml-2" aria-hidden="true"></i></a>
         <div class="text-left mt-2 mb-2 pb-2 border-bottom">
-            <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="clcik to selecting" *ngFor="let tag of tags" (click) = "selectedTag(tag)"><span class="badge badge-success p-1 mr-3">{{ tag.name }}</span></a>
+            <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="clcik to selecting" *ngFor="let tag of tags" (click) = "selectedTag(tag)"><span class="badge badge-info p-1 mr-3">{{ tag.name }}</span></a>
         </div>
         <div class="text-left mb-2">
-            <span *ngFor="let tag of selectedTags" class="badge badge-success p-1 mr-3">{{ tag.name }}
+            <span *ngFor="let tag of selectedTags" class="badge badge-info p-1 mr-3">{{ tag.name }}
                 <a href="javascript:;" (click) = "unSelect(tag)"><i data-toggle="tooltip" data-placement="bottom" title="clcik to unselect" class="fa fa-times pull-right point-cursor"></i></a>
             </span>
         </div>
