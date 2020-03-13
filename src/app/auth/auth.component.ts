@@ -7,8 +7,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-
   status = { logined: false };
+  user;
+  loginInfo = {uname: '', pword: ''};
   tags = [
     { name: 'art', id: 'djs3b423brwe' },
     { name: 'life', id: 'djs3as423brwe' },
@@ -17,14 +18,30 @@ export class AuthComponent implements OnInit {
   constructor( private authService: AuthService ) { }
 
   ngOnInit(): void {
-    const user = this.authService.getCookie('ironseal_token');
-    if (user && user.length) {
-      this.status.logined = true;
-    } else {
-      this.status.logined = false;
+    const cookie = this.authService.getItem('Authorization');
+    if (cookie.length < 1) {
+      return;
     }
+    const authorization = atob(cookie).split(',');
+    console.log('ngOnInit', authorization);
+    this.user = {username: authorization[0], password: authorization[1]};
   }
 
+  updateLogState() {
+    if (this.authService.removeItem('Authorization', '/', '127.0.0.1') ) {
+      this.user = null;
+      console.log('updateLogState remove success');
+    }
+    console.log('updateLogState', this.user);
+  }
+  login() {
+    // verify
+    this.user = { username: this.loginInfo.uname, password: this.loginInfo.pword };
+    const date: Date = new Date();
+    const msecond: number = 48 * 3600 * 1000;
+    date.setTime(date.getTime() + msecond);
+    this.authService.setItem('Authorization', btoa(this.user.username + ',' + this.user.password), date, '/', '127.0.0.1', false);
+  }
   newTag() {
     const tag = { name: this.tempTag.name, id: (Math.random() * 99999999).toString() };
     this.tags.push( tag );

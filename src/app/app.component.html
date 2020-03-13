@@ -3,7 +3,7 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <nav class="navbar navbar-expand-lg navbar-light pt-4 pb-4 ml-n3 mr-n3">
-        <span class="upper font-weight-bold">IronSeal</span>
+        <span class="upper font-weight-bold h5">IronSeal</span>
         <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
                 data-target="#navbarSupportedContent"
@@ -24,11 +24,8 @@
             <li class="nav-item nav-size">
                 <a class="nav-link text-dark font-weight-bold" routerLink="/about">about</a>
             </li>
-            <!-- <li *ngIf="!user" class="nav-item nav-size">
-              <a class="nav-link btn btn-outline-dark text-dark" routerLink="{{'/administrators'}}">sign in</a>
-            </li> -->
           </ul>
-          <!-- <div *ngIf="user" class="btn-group ml-1" role="group" aria-label="Button group with nested dropdown">
+          <div *ngIf="user" class="btn-group ml-1" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
               <i class="point-cursor fa fa-user-circle-o mr-2" style="padding-top: 0.8rem;" data-toggle="tooltip" data-placement="bottom" title="管理员处于登陆状态"></i>
               <a id="userCenter" class="dropdown-toggle point-cursor mr-2 p-2"
@@ -36,14 +33,12 @@
                 {{user.username}}
               </a>
               <div class="dropdown-menu" aria-labelledby="userCenter">
-                <a class="dropdown-item" href="javascript:;" routerLink="/person">center</a>
-                <a class="dropdown-item" href="javascript:;" routerLink="/blog_manage">blog</a>
-                <a class="dropdown-item" href="javascript:;" routerLink="/article_manage">article</a>
+                <a class="dropdown-item" href="javascript:;" routerLink="/auth/manage">manage</a>
                 <div class="dropdown-divider"></div>
                 <button class="dropdown-item" (click)="logout();">sign out</button>
               </div>
             </div>
-          </div> -->
+          </div>
         </div>
       </nav>
     </div>
