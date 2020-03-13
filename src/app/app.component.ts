@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +14,11 @@ export class AppComponent implements OnInit {
   title = 'testpage';
   user;
 
-  // @ViewChild(AuthComponent)
-  // private auth: AuthComponent;
-
-  constructor(private authService: AuthService) {
-    // const date: Date = new Date();
-    // const msecond: number = 48 * 3600 * 1000;
-    // date.setTime(date.getTime() + msecond);
-    // this.authService.setItem('Authorization', btoa(this.user.username + ',' + this.user.password), date, '/', '127.0.0.1', false);
+  constructor(private auth: AuthComponent , private authService: AuthService, private location: Location, private router: Router) {
   }
 
   ngOnInit(): void {
+    console.log('----------------------------------', this.auth);
     const cookie = this.authService.getItem('Authorization');
     if (cookie.length < 1) {
       return;
@@ -33,6 +30,9 @@ export class AppComponent implements OnInit {
   logout() {
     if (this.authService.removeItem('Authorization', '/', '127.0.0.1') ) {
       this.user = null;
+      if (this.location.path().indexOf('auth') !== -1) {
+        this.router.navigateByUrl('/home');
+      }
       console.log('logout remove success');
     }
   }

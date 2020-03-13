@@ -15,6 +15,7 @@ export class AuthComponent implements OnInit {
     { name: 'life', id: 'djs3as423brwe' },
     { name: 'view', id: 'djs3b42sad3brwe' } ];
   tempTag = {name: ''};
+  authCallBack;
   constructor( private authService: AuthService ) { }
 
   ngOnInit(): void {
@@ -26,14 +27,6 @@ export class AuthComponent implements OnInit {
     console.log('ngOnInit', authorization);
     this.user = {username: authorization[0], password: authorization[1]};
   }
-
-  updateLogState() {
-    if (this.authService.removeItem('Authorization', '/', '127.0.0.1') ) {
-      this.user = null;
-      console.log('updateLogState remove success');
-    }
-    console.log('updateLogState', this.user);
-  }
   login() {
     // verify
     this.user = { username: this.loginInfo.uname, password: this.loginInfo.pword };
@@ -42,6 +35,11 @@ export class AuthComponent implements OnInit {
     date.setTime(date.getTime() + msecond);
     this.authService.setItem('Authorization', btoa(this.user.username + ',' + this.user.password), date, '/', '127.0.0.1', false);
   }
+
+  setCallBack(func) {
+    this.authCallBack = func;
+  }
+
   newTag() {
     const tag = { name: this.tempTag.name, id: (Math.random() * 99999999).toString() };
     this.tags.push( tag );

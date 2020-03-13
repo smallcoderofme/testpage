@@ -33,7 +33,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     CKEditorModule
   ],
-  providers: [],
+  providers: [AuthComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
