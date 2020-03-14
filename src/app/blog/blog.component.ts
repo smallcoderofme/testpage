@@ -25,6 +25,12 @@ export class BlogComponent implements OnInit {
     }
   ];
   status = { loading: true };
+  tags = [
+    { name: 'art', id: 'djs3b423brwe' },
+    { name: 'life', id: 'djs3as423brwe' },
+    { name: 'view', id: 'djs3b42sad3brwe' } ];
+  hots = [{ name: '卡布·加塔自然公园', post_id: '1234564564'},
+    { name: '萨瑟兰瀑布和奎尔湖', post_id: '7987987444'}];
   constructor() { }
 
   ngOnInit(): void {
