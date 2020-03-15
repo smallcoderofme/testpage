@@ -1,6 +1,6 @@
-<div class="nav-row">
+<div class="nav-row content-top">
     <div class="col-md-2"></div>
-    <div class="col-md-6">
+    <div class="col-md-6 pb-2 mb-2 mt-3 shadow-sm">
         <div class="p-3 border-bottom h1 upper text-center">{{post.title}}</div>
         <div class="border-bottom pb-2 pt-2"><small>版权声明：本文为博主原创文章，遵循 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a> 版权协议，转载请附上原文出处链接和本声明。</small></div>
         <div class="ck-content mt-3 pb-3 border-bottom" lang="zh-cn">
@@ -8,5 +8,53 @@
         </div>
         <div class="pull-right mt-2"><span class="info">Post by {{post.author}} at {{post.created_at}}</span></div>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2">
+        <div class="shadow-sm mt-3 p-2">
+            <div class="bg-info p-2">相关推荐</div>
+            <div *ngFor="let reco of recommend" class="border-bottom mt-2 mb-2 pb-2"><span class="h5">·</span><a href="javascript:;" routerLink="/post/{{reco.post_id}}">{{ reco.title }}</a></div>
+          </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-6 shadow-sm mt-2 pt-2">
+        <form>
+            <div class="form-group row">
+              <label for="validationTextarea" class="col-sm-2 col-form-label col-form-label-sm">评论</label>
+              <div class="col-md-10">
+                <textarea class="form-control form-control-sm"
+                          [(ngModel)]="data.content"
+                          [ngModelOptions]="{standalone: true}"
+                          [ngClass]="{'is-invalid': status.isInvalid_content}"
+                          id="validationTextarea" placeholder="请输入您的评论" required></textarea>
+                <small class="text-danger" *ngIf="status.isInvalid_content">内容为空或包含其他内容</small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">邮箱</label>
+              <div class="col-md-10">
+                <input type="email"
+                       [(ngModel)]="data.email"
+                       class="form-control form-control-sm"
+                       [ngModelOptions]="{standalone: true}"
+                       [ngClass]="{'is-invalid': status.isInvalid_email}"
+                       id="colFormLabelSm" placeholder="请输入合法的邮箱（不公开）" required>
+                <small class="text-danger" *ngIf="status.isInvalid_email">邮箱格式不对</small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="forYouName" class="col-sm-2 col-form-label col-form-label-sm">怎么称呼</label>
+                <div class="col-md-10">
+                  <input type="email"
+                         [(ngModel)]="data.username"
+                         [ngModelOptions]="{standalone: true}"
+                         [ngClass]="{'is-invalid': status.isInvalid_username}"
+                         class="form-control form-control-sm" id="forYouName" placeholder="此名将作为您的留言名" required>
+                  <small class="text-danger" *ngIf="status.isInvalid_username">昵称为空或包含其他内容</small>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm mb-3" (click)="onSubmitComment();">提交</button>
+          </form>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
 </div>

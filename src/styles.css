@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 html {
-    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .site {
     display: flex;
@@ -14,7 +15,7 @@ html {
 .footer {
     margin-top: 14px;
     width: 100%;
-    padding: 1.5rem 0 1.5rem 0;
+    padding: 1.2rem 0 1.2rem 0;
     text-align: center;
     color: #FFFFFF;
     background-color: #000000;
@@ -26,4 +27,12 @@ html {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
+}
+.navbar-fixed-top {
+    position: fixed;
+    width: 100%;
+    z-index: 999999;
+}
+.content-top {
+    margin-top: 86px;;
 }

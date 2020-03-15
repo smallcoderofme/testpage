@@ -1,4 +1,4 @@
-<div class="nav-row">
+<div class="nav-row content-top">
     <div class="col-md-2"></div>
     <div class="col-md-6">
         <ul class="list-group mt-3 list-group-flush">
@@ -20,11 +20,11 @@
     </div>
     <div class="col-md-2">
       <div class="shadow-sm mt-3 p-2">
-        <div class="bg-success rounded p-2">浏览最多</div>
+        <div class="bg-success p-2">浏览最多</div>
         <div *ngFor="let hot of hots; let i = index" class="border-bottom mt-2 mb-2 pb-2 h6"><span class="mr-2">{{i+1}}</span><a href="javascript:;" routerLink="/post/{{hot.post_id}}">{{ hot.name }}</a></div>
       </div>
       <div class="shadow-sm mt-3 p-2">
-        <div class="bg-secondary rounded mt-2 mb-1 p-2">内容标签</div>
+        <div class="bg-secondary mt-2 mb-1 p-2">内容标签</div>
         <div class="mt-2 pb-2 border-bottom">
           <span *ngFor="let tag of tags" class="badge badge-info p-1 mr-3">{{ tag.name }}</span>
         </div>
