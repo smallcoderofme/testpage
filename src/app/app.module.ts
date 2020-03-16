@@ -12,6 +12,7 @@ import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from './auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     CKEditorModule
   ],
-  providers: [AuthComponent],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

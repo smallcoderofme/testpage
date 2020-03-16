@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-html {
+body {
     overflow-x: hidden;
     overflow-y: scroll;
 }
+
+/* .body::-webkit-scrollbar { width: 0 !important }
+.body { overflow: -moz-scrollbars-none; }
+.body { -ms-overflow-style: none; } */
+
 .site {
     display: flex;
     min-height: 100vh;

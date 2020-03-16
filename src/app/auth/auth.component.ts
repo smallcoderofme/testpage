@@ -15,7 +15,6 @@ export class AuthComponent implements OnInit {
     { name: 'life', id: 'djs3as423brwe' },
     { name: 'view', id: 'djs3b42sad3brwe' } ];
   tempTag = {name: ''};
-  authCallBack;
   constructor( private authService: AuthService ) { }
 
   ngOnInit(): void {
@@ -31,13 +30,10 @@ export class AuthComponent implements OnInit {
     // verify
     this.user = { username: this.loginInfo.uname, password: this.loginInfo.pword };
     const date: Date = new Date();
-    const msecond: number = 48 * 3600 * 1000;
+    const msecond: number = 1 * 3600 * 1000;
     date.setTime(date.getTime() + msecond);
     this.authService.setItem('Authorization', btoa(this.user.username + ',' + this.user.password), date, '/', '127.0.0.1', false);
-  }
-
-  setCallBack(func) {
-    this.authCallBack = func;
+    this.authService.run();
   }
 
   newTag() {

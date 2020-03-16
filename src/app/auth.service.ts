@@ -14,7 +14,16 @@ const httpOptions = {
 })
 export class AuthService {
 
+  authCallBack;
+  owner;
   constructor( private http: HttpClient ) { }
+  setCallBack(self, func) {
+    this.owner = self;
+    this.authCallBack = func;
+  }
+  run() {
+    this.authCallBack(this.owner);
+  }
  /*\
 |*|
 |*|  :: cookies.js ::
