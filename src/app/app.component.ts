@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth.service';
 import { Location } from '@angular/common';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
   title = 'testpage';
   user;
 
@@ -26,17 +26,8 @@ export class AppComponent implements OnInit, OnChanges {
     this.user = { username: authorization[0], password: authorization[1] };
   }
   onAuthStateChange(self) {
-    console.log('onAuthStateChange', self);
-    const cookie = self.authService.getItem('Authorization');
-    if (!cookie || cookie.length < 1) {
-      return;
-    }
     console.log('onAuthStateChange successfully!');
-    const authorization = atob(cookie).split(',');
-    this.user = { username: authorization[0], password: authorization[1] };
-  }
-  ngOnChanges() {
-    console.log('changed');
+    self.ngOnInit();
   }
   logout() {
     if (this.authService.removeItem('Authorization', '/', '127.0.0.1') ) {

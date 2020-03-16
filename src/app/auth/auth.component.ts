@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     const cookie = this.authService.getItem('Authorization');
-    if (cookie.length < 1) {
+    if (!cookie || cookie.length < 1) {
       return;
     }
     const authorization = atob(cookie).split(',');
