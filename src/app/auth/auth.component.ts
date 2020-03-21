@@ -7,7 +7,10 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  status = { logined: false };
+  /**
+   * selected param: 1 tags, 2 post
+   */
+  status = { logined: false, selected: 1 };
   user;
   loginInfo = {uname: '', pword: ''};
   tags = [
@@ -35,7 +38,9 @@ export class AuthComponent implements OnInit {
     this.authService.setItem('Authorization', btoa(this.user.username + ',' + this.user.password), date, '/', '127.0.0.1', false);
     this.authService.run();
   }
-
+  selectedTopic(topic) {
+    this.status.selected = topic;
+  }
   newTag() {
     const tag = { name: this.tempTag.name, id: (Math.random() * 99999999).toString() };
     this.tags.push( tag );
@@ -50,5 +55,7 @@ export class AuthComponent implements OnInit {
         return;
       }
     }
+  }
+  createPost() {
   }
 }
