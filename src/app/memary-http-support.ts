@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Posts, Post, Tags } from './data';
+import { Posts, Post, Tags, Hots } from './data';
 
+/**
+ * mock http server
+ */
 @Injectable({
 	providedIn: 'root'
 })
@@ -70,6 +73,13 @@ export class MemaryHttpSupport {
 			subscriber.next(Tags);
 			subscriber.complete();
 		}); 
+	}
+
+	getHots(): Observable<any> {
+		return new Observable(subscriber => {
+			subscriber.next(Hots);
+			subscriber.complete();
+		});
 	}
 }
 

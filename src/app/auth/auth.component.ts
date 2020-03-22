@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { MemaryHttpSupport } from '../memary-http-support';
 
 @Component({
   selector: 'app-auth',
@@ -13,20 +14,21 @@ export class AuthComponent implements OnInit {
   status = { logined: false, selected: 1 };
   user;
   loginInfo = {uname: '', pword: ''};
-  tags = [
-    { name: 'art', id: 'djs3b423brwe' },
-    { name: 'life', id: 'djs3as423brwe' },
-    { name: 'view', id: 'djs3b42sad3brwe' } ];
+  tags;
   tempTag = {name: ''};
-  constructor( private authService: AuthService ) { }
+  constructor( private authService: AuthService, private httpServer: MemaryHttpSupport ) { }
 
   ngOnInit(): void {
+
+    this.httpServer.getTags().subscribe(next=>{
+      this.tags = next;
+    });
+
     const cookie = this.authService.getItem('Authorization');
     if (!cookie || cookie.length < 1) {
       return;
     }
     const authorization = atob(cookie).split(',');
-    console.log('ngOnInit', authorization);
     this.user = {username: authorization[0], password: authorization[1]};
   }
   login() {
