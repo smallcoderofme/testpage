@@ -16,13 +16,13 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.status.loading = false;
-    this.httpServer.getPosts().subscribe(next=>{
+    this.httpServer.getPosts().subscribe(next => {
       this.posts = next;
     });
-    this.httpServer.getTags().subscribe(next=>{
+    this.httpServer.getTags().subscribe(next => {
       this.tags = next;
     });
-    this.httpServer.getHots().subscribe(next=>{
+    this.httpServer.getHots().subscribe(next => {
       this.hots = next;
     });
   }

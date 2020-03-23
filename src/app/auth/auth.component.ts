@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.httpServer.getTags().subscribe(next=>{
+    this.httpServer.getTags().subscribe(next => {
       this.tags = next;
     });
 
