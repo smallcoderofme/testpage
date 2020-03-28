@@ -10,40 +10,27 @@ import { Posts, Post, Tags, Hots } from './data';
 })
 
 export class MemaryHttpSupport {
-	
-	constructor() {
-		
-	}
-
-	signIn() {
-
-	}
-
-	signOut() {
-
-	}
-
+	constructor() {}
+	signIn() {}
+	signOut() {}
 	getPosts(): Observable<any> {
 		return new Observable(subscriber => {
-			subscriber.next(Posts);
-			subscriber.complete();
-		});
+		subscriber.next(Posts);
+		subscriber.complete();
+	});
 	}
-
 	getPost(): Observable<any> {
 		return new Observable(subscriber => {
 			subscriber.next(Post);
 			subscriber.complete();
 		});
 	}
-
 	deletePost(postId: string): Observable<any> {
 		return new Observable(subscriber => {
 			subscriber.next(Post);
 			subscriber.complete();
 		});
 	}
-
 	getTags(): Observable<any> {
 		return new Observable(subscriber => {
 			subscriber.next(Tags);
@@ -53,18 +40,15 @@ export class MemaryHttpSupport {
 
 	addTag(tag): Observable<any> {
 		return new Observable(subscriber => {
-			/**
-			* verify repeat tag name
-			**/
+			/**verify repeat tag name **/
 			subscriber.next(Tags.push(tag));
 			subscriber.complete();
-		}); 
+		});
 	}
-
 	removeTag(tagId): Observable<any> {
 		return new Observable(subscriber => {
 			const len = Tags.length - 1;
-			for (var i = len; i >= 0; i--) {
+			for (let i = len; i >= 0; i--) {
 				if(Tags[i].id === tagId) {
 					Tags.splice(i, 1);
 					break;
@@ -72,7 +56,7 @@ export class MemaryHttpSupport {
 			}
 			subscriber.next(Tags);
 			subscriber.complete();
-		}); 
+		});
 	}
 
 	getHots(): Observable<any> {

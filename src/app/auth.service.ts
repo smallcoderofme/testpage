@@ -53,22 +53,22 @@ export class AuthService {
   }
   setItem(sKey, sValue, vEnd, sPath, sDomain, bSecure) {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
-    let sExpires = "";
+    let sExpires = '';
     if (vEnd) {
       switch (vEnd.constructor) {
         case Number:
-          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+          sExpires = vEnd === Infinity ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT' : '; max-age=' + vEnd;
           break;
         case String:
-          sExpires = "; expires=" + vEnd;
+          sExpires = '; expires=' + vEnd;
           break;
         case Date:
-          sExpires = "; expires=" + vEnd.toUTCString();
+          sExpires = '; expires=' + vEnd.toUTCString();
           break;
       }
     }
     // tslint:disable-next-line: max-line-length
-    document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+    document.cookie = encodeURIComponent(sKey) + '=' + encodeURIComponent(sValue) + sExpires + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '') + (bSecure ? '; secure' : '');
     return true;
   }
   removeItem(sKey, sPath, sDomain) {

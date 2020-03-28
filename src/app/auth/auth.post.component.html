@@ -1,0 +1,45 @@
+<div class="nav-row content-top">
+    <div class="col-md-10 mt-3 text-center">
+        <div class="text-left">
+            <a href="/auth/manage/create" class="btn btn-primary btn-sm mb-1" (click)="createPost();">create new post</a>
+        </div>
+        <div class="border-bottom p-2"></div>
+        <div class="mt-3">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Update</th>
+                  <th scope="col">Overt</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let post of posts; let i=index;">
+                  <td class="point-cursor text-success" routerLink="/post/{{post.post_id}}">{{post.title}}</td>
+                  <td>{{post.created_at}}</td>
+                  <td>
+                    <div class="custom-control custom-switch mt-1">
+                      <input type="checkbox"
+                             [(ngModel)]="post.overt"
+                             [ngModelOptions]="{standalone: true}"
+                             [disabled]="post.disable"
+                             (click)="onClick(post, $event);"
+                             (change)="onClick(post, $event);"
+                             class="custom-control-input" id="customSwitch{{i}}">
+                      <label class="custom-control-label" for="customSwitch{{i}}"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <i class="fa fa-edit text-primary ml-4 point-cursor" data-toggle="tooltip" data-placement="bottom" title="编辑此博客"></i>
+                  </td>
+                  <td>
+                    <i class="fa fa-trash-o text-primary ml-4 point-cursor" data-toggle="tooltip" data-placement="bottom" title="删除此博客"></i>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

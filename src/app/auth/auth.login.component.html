@@ -1,0 +1,21 @@
+<div class="nav-row content-top">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <div class="p-3 login-bg">
+            <div class="form-group">
+                <label for="username">用户名:</label>
+                <input type="text" [(ngModel)]="loginInfo.uname" [ngModelOptions]="{standalone: true}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" [(ngModel)]="loginInfo.pword" [ngModelOptions]="{standalone: true}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <small class="text-danger" style="display: none;">用户或者密码为空或者错误。</small>
+            </div>
+            <button type="button" class="btn btn-success btn-block" (click)="login();">登陆</button>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
