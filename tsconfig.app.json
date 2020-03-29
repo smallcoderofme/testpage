@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [] // server side render replace "types": ["node"]
+    "types": []
   },
   "files": [
     "src/main.ts",
@@ -10,6 +10,5 @@
   ],
   "include": [
     "src/**/*.d.ts"
-    // "src/app/UIEditor/upload-adapter.ts"  // frontend render remove
   ]
 }

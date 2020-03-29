@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "testpage": {
+    "sitepage": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/testpage/browser",
+            "outputPath": "dist/sitepage",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,14 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/font-awesome-4.7.0/css/font-awesome.min.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.slim.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -67,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "testpage:build"
+            "browserTarget": "sitepage:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "testpage:build:production"
+              "browserTarget": "sitepage:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "testpage:build"
+            "browserTarget": "sitepage:build"
           }
         },
         "test": {
@@ -93,8 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/app/UIEditor/content-styles.css"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -116,66 +110,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "testpage:serve"
+            "devServerTarget": "sitepage:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "testpage:serve:production"
+              "devServerTarget": "sitepage:serve:production"
             }
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/testpage/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-            "browserTarget": "testpage:build",
-            "serverTarget": "testpage:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "testpage:build:production",
-              "serverTarget": "testpage:server:production"
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "testpage:build:production",
-            "serverTarget": "testpage:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
           }
         }
       }
     }
   },
-  "defaultProject": "testpage",
+  "defaultProject": "sitepage",
   "cli": {
-    "analytics": "2500f5ca-13b6-4d66-99ce-8c9d66e64533"
+    "analytics": "792a6cef-99b5-4dcf-a519-f2eef346371b"
   }
 }

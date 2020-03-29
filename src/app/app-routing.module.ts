@@ -1,33 +1,17 @@
-import { NgModule } from '@angular/core';
+import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { BlogComponent } from './blog/blog.component';
-import { AboutComponent } from './about/about.component';
-import { AuthTagComponent } from './auth/auth.tag.component';
-import { BlogCreateComponent } from './blog-create/blog-create.component';
-import { BlogDetailComponent } from './blog-detail/blog-detail.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AuthLoginComponent } from './auth/auth.login.component';
-import { AuthPostComponent } from './auth/auth.post.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'post', component: BlogComponent },
-  { path: 'post/:postId', component: BlogDetailComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'auth/manage/tags', component: AuthTagComponent },
-  { path: 'auth/manage/posts', component: AuthPostComponent },
-  { path: 'auth/manage/create', component: BlogCreateComponent },
-  { path: 'auth', redirectTo: '/auth/manage' },
-  { path: 'auth/manage', component: AuthLoginComponent },
-  { path: '**', component: PageNotFoundComponent }
+export const routes: Routes = [
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m=> m.HomeModule) },
+  { path: 'post', loadChildren: () => import('./post/post.module').then(m=> m.PostModule) },
+  // { path: '', redirectTo: 'contact', pathMatch: 'full'},
+  // { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m=> m.ContactModule) },
+  { path: 'items', loadChildren: () => import('./items/items.module').then(m => m.ItemsModule) },
+  { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

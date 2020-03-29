@@ -1,43 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
 body {
-    overflow-x: hidden;
-    overflow-y: scroll;
+  margin: 2em;
+}
+body, input[text], button {
+  color: #333;
+  font-family: Cambria, Georgia;
+}
+a {
+  cursor: pointer;
+  cursor: hand;
+}
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
 }
 
-/* .body::-webkit-scrollbar { width: 0 !important }
-.body { overflow: -moz-scrollbars-none; }
-.body { -ms-overflow-style: none; } */
+/* Navigation link styles */
+nav a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+nav a:visited, a:link {
+  color: #607D8B;
+}
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+nav a.active {
+  color: #039be5;
+}
 
-.site {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-  
-.site-content {
-    flex: 1;
- }
-.footer {
-    margin-top: 14px;
-    width: 100%;
-    padding: 1.2rem 0 1.2rem 0;
-    text-align: center;
-    color: #FFFFFF;
-    background-color: #000000;
-}
-.upper {
-	text-transform: uppercase;
-}
-.nav-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-}
-.navbar-fixed-top {
-    position: fixed;
-    width: 100%;
-    z-index: 999999;
-}
-.content-top {
-    margin-top: 86px;;
+/* everywhere else */
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }

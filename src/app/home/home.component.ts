@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    template: `
+    <div>Home</div>
+    <form class="form-group">
+        <label>username</label>
+        <input type="text" [(ngModel)]="pageName" [ngModelOptions]="{standalone: true}" required>
+    </form>
+    <p>{{ pageName }}</p>`
 })
 export class HomeComponent implements OnInit {
-  receive = [{ name: '卡布·加塔自然公园', post_id: '1234564564'},
-  { name: '萨瑟兰瀑布和奎尔湖', post_id: '7987987444'}];
-  constructor() { }
+    pageName = 'home page';
+    constructor() {}
 
-  ngOnInit(): void {
-
-  }
-
+    ngOnInit(){}
 }
