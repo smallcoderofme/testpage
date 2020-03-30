@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 /* Feature Modules */
-import { ContactModule } from './contact/contact.module';
+import { HomeModule } from './home/home.module';
 import { GreetingModule } from './greeting/greeting.module';
 
 /* Routing Module */
@@ -15,8 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   imports: [
     BrowserModule,
-    ContactModule,
-    GreetingModule.forRoot({userName: 'Sun Shuai'}),
+    HomeModule,
+    GreetingModule.forRoot({userName: 'Shuai'}),
     AppRoutingModule
   ],
   declarations: [

@@ -10,7 +10,8 @@ h2, h3 {
   font-weight: lighter;
 }
 body {
-  margin: 2em;
+  margin: 12px;
+  background-color: #eeeeee;
 }
 body, input[text], button {
   color: #333;
@@ -41,6 +42,7 @@ button:disabled {
 /* Navigation link styles */
 nav a {
   padding: 5px 10px;
+  /*color: white;*/
   text-decoration: none;
   margin-right: 10px;
   margin-top: 10px;
@@ -62,4 +64,9 @@ nav a.active {
 /* everywhere else */
 * {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+  list-style: none;
+  padding-left: 0;
 }
