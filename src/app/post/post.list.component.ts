@@ -1,12 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
+    styleUrls: ['./post.list.component.css'],
     template: `
+    <div>
         <ul>
             <li *ngFor="let post of postList">
-                {{ post.title }}
+                <h4>{{ post.title }}</h4>
+                <p>{{ post.preview }}</p>
             </li>
         </ul>
+    </div>
     `
 })
 export class PostListComponent implements OnInit {

@@ -11,16 +11,18 @@ import { GreetingModule } from './greeting/greeting.module';
 
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     HomeModule,
-    GreetingModule.forRoot({userName: 'Shuai'}),
+    GreetingModule.forRoot({userName: 'Jugg'}),
     AppRoutingModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  /*font-size: 250%;*/
 }
 h2, h3 {
   color: #444;
@@ -10,16 +10,12 @@ h2, h3 {
   font-weight: lighter;
 }
 body {
-  margin: 12px;
+/*  margin: 12px;*/
   background-color: #eeeeee;
 }
 body, input[text], button {
   color: #333;
   font-family: Cambria, Georgia;
-}
-a {
-  cursor: pointer;
-  cursor: hand;
 }
 button {
   font-family: Arial;
@@ -38,28 +34,7 @@ button:disabled {
   color: #aaa;
   cursor: auto;
 }
-
 /* Navigation link styles */
-nav a {
-  padding: 5px 10px;
-  /*color: white;*/
-  text-decoration: none;
-  margin-right: 10px;
-  margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 4px;
-}
-nav a:visited, a:link {
-  color: #607D8B;
-}
-nav a:hover {
-  color: #039be5;
-  background-color: #CFD8DC;
-}
-nav a.active {
-  color: #039be5;
-}
 
 /* everywhere else */
 * {
@@ -69,4 +44,34 @@ nav a.active {
 li {
   list-style: none;
   padding-left: 0;
+}
+
+p {
+  margin: 8px 0;
+}
+
+.content-top {
+    margin-top: 14px;;
+}
+
+.primary {
+  background-color: #7266ba;
+}
+.success {
+  background-color: #23ad44;
+}
+.info {
+  background-color: #23b7e5;
+}
+.warning {
+  background-color: #fad733;
+}
+.danger {
+  background-color: #ee3939;
+}
+.dark {
+  background-color: #2f3342;
+}
+.black {
+  background-color: #131e25;
 }

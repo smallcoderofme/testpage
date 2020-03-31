@@ -1,0 +1,16 @@
+ul {
+	padding-left: 0;
+}
+li {
+	background-color: #eeeeee;
+	margin: 14px 0;
+	padding: 14px;
+}
+li > a {
+	text-decoration: none;
+	color: #5547a7;
+}
+h4 {
+	margin: 0;
+	padding: 0;
+}
