@@ -6,11 +6,17 @@ li {
 	margin: 14px 0;
 	padding: 14px;
 }
-li > a {
+a {
 	text-decoration: none;
 	color: #5547a7;
 }
 h4 {
 	margin: 0;
 	padding: 0;
+}
+p {
+	text-indent: 2rem;
+}
+p > span {
+	font-weight: bolder;
 }

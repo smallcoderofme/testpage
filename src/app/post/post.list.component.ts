@@ -7,7 +7,8 @@ import { Component, OnInit } from "@angular/core";
         <ul>
             <li *ngFor="let post of postList">
                 <h4>{{ post.title }}</h4>
-                <p>{{ post.preview }}</p>
+                <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/{{post.post_id}}">ReadMore</a></p>
+                <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_at}}</span>Author: <span>{{post.author}}</span></p>
             </li>
         </ul>
     </div>
@@ -30,7 +31,7 @@ export class PostListComponent implements OnInit {
             {
                 title: '萨瑟兰瀑布和奎尔湖',
                 cover: '',
-                preview: '新西兰的萨瑟兰瀑布和奎尔湖 (© Michael Rathmayr/plainpicture)',
+                preview: '新西兰的萨瑟兰瀑布和奎尔湖 (© Michael Rathmayr/plainpicture)。',
                 created_at: '2019-03-03',
                 author: 'Troll',
                 post_id: '7987987444',

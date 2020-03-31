@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
     template: `
-    <div>Home</div>
+    <div class="content-top">Home</div>
     <form class="form-group">
         <label>username</label>
         <input type="text" [(ngModel)]="pageName" [ngModelOptions]="{standalone: true}" required>

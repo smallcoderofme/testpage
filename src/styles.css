@@ -10,7 +10,7 @@ h2, h3 {
   font-weight: lighter;
 }
 body {
-/*  margin: 12px;*/
+  margin: 0;
   background-color: #eeeeee;
 }
 body, input[text], button {
@@ -47,11 +47,179 @@ li {
 }
 
 p {
-  margin: 8px 0;
+  margin: 8px 0 0 0;
 }
 
 .content-top {
     margin-top: 14px;;
+}
+
+.m {
+  margin: 10px;
+}
+.m-2{
+  margin: 12px;
+}
+
+.m-3 {
+  margin: 14px;
+}
+
+.m-4 {
+  margin: 16px;
+}
+
+.m-5 {
+  margin: 18px;
+}
+
+.m-l {
+  margin-left: 10px;
+}
+.m-l-2 {
+  margin-left: 12px;
+}
+.m-l-3 {
+  margin-left: 14px;
+}
+.m-l-4 {
+  margin-left: 16px;
+}
+.m-l-5 {
+  margin-left: 18px;
+}
+
+.m-r {
+  margin-right: 10px;
+}
+.m-r-2 {
+  margin-right: 12px;
+}
+.m-r-3 {
+  margin-right: 14px;
+}
+.m-r-4 {
+  margin-right: 16px;
+}
+.m-r-5 {
+  margin-right: 18px;
+}
+
+.m-t {
+  margin-top: 10px;
+}
+.m-t-2 {
+  margin-top: 12px;
+}
+.m-t-3 {
+  margin-top: 14px;
+}
+.m-t-4 {
+  margin-top: 16px;
+}
+.m-t-5 {
+  margin-top: 18px;
+}
+
+.m-b {
+  margin-bottom: 10px;
+}
+.m-b-2 {
+  margin-bottom: 12px;
+}
+.m-b-3 {
+  margin-bottom: 14px;
+}
+.m-b-4 {
+  margin-bottom: 16px;
+}
+.m-b-5 {
+  margin-bottom: 18px;
+}
+
+.font-weight {
+  font-weight: bold;
+}
+
+.border {
+  border: 1px solid #aaa;
+}
+
+.border-2 {
+  border: 2px solid #aaa;
+}
+
+.border-left {
+  border-left-color: #aaa;
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+.border-right {
+  border-right-color: #aaa;
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+
+.border-top {
+  border-top-color: #aaa;
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+.border-bottom {
+  border-bottom-color: #aaa;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+.p-t {
+  padding-top: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+.col-1 {
+  width: 8.34%;
+}
+
+.col-2 {
+  width: 16.67%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33%;
+}
+
+.col-5 {
+  width: 41.67%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.33%;
+}
+.col-8 {
+  width: 66%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.34%;
+}
+.col-11 {
+  width: 91.67%;
+}
+.col-12 {
+  width: 100%;
 }
 
 .primary {
