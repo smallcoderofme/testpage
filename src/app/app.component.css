@@ -1,6 +1,9 @@
-nav {
+.nav-bg {
     background-color: #7266ba;
     color: black;
+}
+nav {
+  background-color: #7258ba;
 }
 /*nav {
   background-color: #6051b5;

@@ -3,14 +3,18 @@ import { Component, OnInit } from "@angular/core";
 @Component({
     styleUrls: ['./post.list.component.css'],
     template: `
-    <div>
-        <ul>
-            <li *ngFor="let post of postList">
-                <h4>{{ post.title }}</h4>
-                <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/{{post.post_id}}">ReadMore</a></p>
-                <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_at}}</span>Author: <span>{{post.author}}</span></p>
-            </li>
-        </ul>
+    <div class="">
+        <div class=""></div>
+        <div class="">
+            <ul>
+                <li *ngFor="let post of postList">
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/{{post.post_id}}">ReadMore</a></p>
+                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_at}}</span>Author: <span>{{post.author}}</span></p>
+                </li>
+            </ul>
+        <div>
+        <div class=""></div>
     </div>
     `
 })

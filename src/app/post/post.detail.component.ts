@@ -4,13 +4,12 @@ import { Component, OnInit } from "@angular/core";
     styleUrls:['./post.list.component.css'],
     template: `
         <div class="content-top">
-            <div class="col-8">
+            <div class=""></div>
+            <div class="">
                 <h4 class="text-center">{{postDetail.title}}</h4>
                 <p>{{postDetail.content}}</p>
             </div>
-            <div class="col-4">
-
-            </div>
+            <div class=""></div>
         </div>
     `
 })

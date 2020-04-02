@@ -6,14 +6,18 @@ import { Component } from '@angular/core';
   template: `
   <div class="main-container site">
     <app-greeting></app-greeting>
-    <nav>
-      <a routerLink="home" routerLinkActive="active">Home</a>
-      <a routerLink="post" routerLinkActive="active">Post</a>
-      <a routerLink="contact" routerLinkActive="active">Contact</a>
-      <a routerLink="items" routerLinkActive="active">Items</a>
-      <a routerLink="customers" routerLinkActive="active">Customers</a>
-      <a routerLink="about" routerLinkActive="active">About</a>
-    </nav>
+    <div class="nav-bg">
+      <div class=""></div>
+      <nav class="">
+        <a routerLink="home" routerLinkActive="active">Home</a>
+        <a routerLink="post" routerLinkActive="active">Post</a>
+        <a routerLink="contact" routerLinkActive="active">Contact</a>
+        <a routerLink="items" routerLinkActive="active">Items</a>
+        <a routerLink="customers" routerLinkActive="active">Customers</a>
+        <a routerLink="about" routerLinkActive="active">About</a>
+      </nav>
+      <div class=""></div>
+    </div>
     <div class="site-content">
       <router-outlet></router-outlet>
     </div>
