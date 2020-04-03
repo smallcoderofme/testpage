@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   <div class="site container-sm container-lg">
     <app-greeting></app-greeting>
     <div class="nav-bg row">
-      <nav class="col-sm-8 col-lg-8 offset-sm-2 offset-lg-2">
+      <nav class="col-sm-8 col-lg-8">
         <a routerLink="home" routerLinkActive="active">Home</a>
         <a routerLink="post" routerLinkActive="active">Post</a>
         <a routerLink="contact" routerLinkActive="active">Contact</a>

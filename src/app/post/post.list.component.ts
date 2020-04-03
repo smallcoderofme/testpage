@@ -1,11 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     styleUrls: ['./post.list.component.css'],
     template: `
     <div class="row">
-        <div class="col-sm-2 col-lg-2"></div>
-        <div class="col-sm-8 col-lg-8">
+        <div class="col-sm-9 col-lg-9">
             <ul>
                 <li *ngFor="let post of postList">
                     <h4>{{ post.title }}</h4>
@@ -14,7 +13,6 @@ import { Component, OnInit } from "@angular/core";
                 </li>
             </ul>
         <div>
-        <div class="col-sm-2 col-lg-2"></div>
     </div>
     `
 })
