@@ -20,3 +20,8 @@ p {
 p > span {
 	font-weight: bolder;
 }
+.side {
+	background-color: #eeeeee;
+	margin: 14px 0;
+	padding: 14px;
+}

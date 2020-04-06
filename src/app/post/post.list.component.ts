@@ -12,7 +12,13 @@ import { Component, OnInit } from '@angular/core';
                     <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_at}}</span>Author: <span>{{post.author}}</span></p>
                 </li>
             </ul>
-        <div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+            <div class="side">
+                <div class="primary p-1">热门文章</div>
+                <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
+            </div>
+        </div>
     </div>
     `
 })
