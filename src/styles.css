@@ -1,4 +1,7 @@
 /* Global Styles */
+a {
+  text-decoration: none;
+}
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -174,6 +177,13 @@ p {
 }
 .p-t {
   padding-top: 10px;
+}
+
+.pt-3 {
+  padding-top: 20px;
+}
+.pb-3 {
+  padding-bottom: 20px;
 }
 
 .text-center {
