@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    styleUrls:['./post.list.component.css'],
+    styleUrls: ['./post.list.component.css'],
     template: `
-        <div class="content-top row">
+        <div class="row">
             <div class="col-sm-9 col-lg-9">
-                <h4 class="text-center">{{postDetail.title}}</h4>
-                <p>{{postDetail.content}}</p>
+                <div class="content">
+                    <h4 class="text-center">{{postDetail.title}}</h4>
+                    <p>{{postDetail.content}}</p>
+                </div>
             </div>
         </div>
     `

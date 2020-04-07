@@ -180,24 +180,46 @@ p {
   text-align: center;
 }
 
-.primary {
+.bg-primary {
   background-color: #7266ba;
 }
-.success {
+.bg-success {
   background-color: #23ad44;
 }
-.info {
+.bg-info {
   background-color: #23b7e5;
 }
-.warning {
+.bg-warning {
   background-color: #fad733;
 }
-.danger {
+.bg-danger {
   background-color: #ee3939;
 }
-.dark {
+.bg-dark {
   background-color: #2f3342;
 }
-.black {
+.bg-black {
   background-color: #131e25;
+}
+
+.text-primary {
+  color: #7266ba;
+}
+.text-success {
+  color: #23ad44;
+}
+.text-info {
+  color: #23b7e5;
+}
+.text-warning {
+  color: #fad733;
+}
+.text-danger {
+  color: #ee3939;
+}
+.text-dark {
+  color: #2f3342;
+}
+.text-black {
+  color: #131e25;
 }

@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { UserService }      from '../greeting/user.service';
+import { Component } from '@angular/core';
+import { UserService } from '../greeting/user.service';
 
 @Component({
   selector: 'app-greeting',
+  styleUrls: ['./greeting.component.css'],
   templateUrl: './greeting.component.html',
 })
 export class GreetingComponent {
@@ -10,6 +11,8 @@ export class GreetingComponent {
   user = '';
 
   constructor(userService: UserService) {
-    this.user = userService.userName;
+    userService.loginUser.subscribe( value => {
+      this.user = value.userName;
+    });
   }
 }

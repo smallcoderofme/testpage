@@ -7,22 +7,24 @@ import { AppComponent } from './app.component';
 
 /* Feature Modules */
 import { HomeModule } from './home/home.module';
-import { GreetingModule } from './greeting/greeting.module';
+// import { GreetingModule } from './greeting/greeting.module';
 
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
+import { GreetingComponent } from './greeting/greeting.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     HomeModule,
-    GreetingModule.forRoot({userName: 'Jugg'}),
+    // GreetingModule.forRoot({userName: 'Jugg'}),
     AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    GreetingComponent
   ],
   bootstrap: [AppComponent]
 })
