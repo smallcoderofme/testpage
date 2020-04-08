@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
         <div class="col-sm-3 col-lg-3">
             <div class="side">
-                <div class="bg-primary p-1">热门文章</div>
+                <div class="bg-primary p-2 mb-2">热门文章</div>
                 <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
             </div>
         </div>

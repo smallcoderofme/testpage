@@ -24,10 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/bootstrap-grid.min.css"
+              "src/assets/bootstrap.min.css",
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/jquery.slim.min.js",
+              "src/assets/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

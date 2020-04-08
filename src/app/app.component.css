@@ -5,6 +5,7 @@
 nav {
   background-color: #7266ba;
 }
+
 nav a {
   background-color: #6058b5;
   padding: 1.2rem 1.0rem;
@@ -22,13 +23,12 @@ nav a:hover {
 }
 nav a.active {
   color: #ffffff;
-  /* font-weight: bold; */
   background-color: #6051b5;
 }
 a {
   cursor: pointer;
   cursor: hand;
-}
+} 
 .site {
   background-color: white;
   display: flex;
