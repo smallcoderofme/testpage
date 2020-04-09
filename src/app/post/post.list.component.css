@@ -22,11 +22,6 @@ p {
 p > span {
 	font-weight: bolder;
 }
-.side {
-	background-color: #f6f5f5;
-	margin: 14px 0;
-	padding: 14px;
-}
 .light {
 	/* background-color: #f6f5f5; */
 	margin: 14px 0 0 0;

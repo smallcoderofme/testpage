@@ -233,3 +233,9 @@ p {
 .text-black {
   color: #131e25 !important;
 }
+
+.side {
+	background-color: #f6f5f5;
+	margin: 14px 0;
+	padding: 14px;
+}

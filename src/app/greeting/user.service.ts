@@ -23,7 +23,8 @@ export class UserService {
     if (cookieUserName !== '') {
       this.userInfo =  JSON.parse(cookieUserName);
       console.log('get cookie:', this.userInfo);
-      this.cookieVerify = true;
+      if (this.userInfo.userName !== 'Traveler') this.cookieVerify = true;
+      else this.cookieVerify = false;
     }
     this.loginUser = new BehaviorSubject<UserServiceConfig>(this.userInfo);
     this.loginUser.subscribe(value => {
@@ -47,6 +48,7 @@ export class UserService {
 
   removeUserInfo() {
     this.cookieVerify = false;
+    this.delCookie(defaultCName, this.getCookie(defaultCName));
     this.loginUser.next({ userName: 'Traveler', verify: false, userId: null });
   }
 
@@ -60,7 +62,7 @@ export class UserService {
   private setCookie(cName: string, cValue: string, days: number) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
-    document.cookie = cName + '=' + CryptoJS.AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString();
+    document.cookie = cName + '=' + CryptoJS.AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
   }
   private getCookie(cName: string): string {
     const name = cName + '=';
