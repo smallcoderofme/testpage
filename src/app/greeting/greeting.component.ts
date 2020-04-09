@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../greeting/user.service';
+import { UserService, UserServiceConfig } from '../greeting/user.service';
 
 @Component({
   selector: 'app-greeting',
@@ -8,11 +8,19 @@ import { UserService } from '../greeting/user.service';
 })
 export class GreetingComponent {
   title = 'S6I \' Site';
-  user = '';
-
-  constructor(userService: UserService) {
-    userService.loginUser.subscribe( value => {
-      this.user = value.userName;
+  user: UserServiceConfig;
+  constructor(private userService: UserService) {
+    this.userService.loginUser.subscribe( value => {
+      this.user = value;
+      console.log('greeting: ', value);
     });
+  }
+
+  signout() {
+    console.log('logout');
+    this.userService.removeUserInfo();
+    // if () {
+
+    // }
   }
 }

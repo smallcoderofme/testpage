@@ -1,33 +1,83 @@
 import { Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import * as CryptoJS from 'crypto-js';
 
-const strogeUser = 'S6I';
-
+const storageUser = 'S6I';
+const defaultCName = 'Authorization_s6i';
 export class UserServiceConfig {
-  userName = 'Philip Marlowe';
+  userName = 'Traveler';
+  verify = false;
+  userId = null;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  // tslint:disable-next-line: variable-name
-  private m_UserName = 'Abadon';
-  public loginUser: BehaviorSubject<UserServiceConfig> = new BehaviorSubject<UserServiceConfig>({userName: this.m_UserName});
+  private userInfo = new UserServiceConfig();
+  public loginUser: BehaviorSubject<UserServiceConfig>;
+  private cookieVerify = false;
   constructor(@Optional() config?: UserServiceConfig) {
-    if (config) { this.m_UserName = config.userName; }
+    if (config) { this.userInfo.userName = config.userName; }
+    const cookieUserName = this.getCookie(defaultCName);
+    if (cookieUserName !== '') {
+      this.userInfo =  JSON.parse(cookieUserName);
+      console.log('get cookie:', this.userInfo);
+      this.cookieVerify = true;
+    }
+    this.loginUser = new BehaviorSubject<UserServiceConfig>(this.userInfo);
     this.loginUser.subscribe(value => {
-      this.userName = value.userName;
+      this.setUserInfo(value, !this.cookieVerify);
     });
   }
 
-  get userName() {
-    this.m_UserName = localStorage.getItem(strogeUser);
-    return this.m_UserName;
+  getUserInfo() {
+    // this.m_UserName = localStorage.getItem(strogeUser);
+    return this.userInfo;
   }
 
-  set userName(username: string) {
-    this.m_UserName = username;
-    localStorage.setItem(strogeUser, username);
+  setUserInfo(user: UserServiceConfig, storage = false) {
+    console.log('setUserInfo:', user, storage);
+    this.userInfo = user;
+    if ( storage ) {
+      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify}), 0.1);
+    }
+    // localStorage.setItem(strogeUser, username);
+  }
+
+  removeUserInfo() {
+    this.cookieVerify = false;
+    this.loginUser.next({ userName: 'Traveler', verify: false, userId: null });
+  }
+
+  verifyCookie(): boolean {
+    const cookie = JSON.parse(this.getCookie(defaultCName));
+    if (cookie.userName !== 'Traveler') {
+      return true;
+    }
+    return false;
+  }
+  private setCookie(cName: string, cValue: string, days: number) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
+    document.cookie = cName + '=' + CryptoJS.AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString();
+  }
+  private getCookie(cName: string): string {
+    const name = cName + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for ( let c of ca ) {
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+          const bytes  = CryptoJS.AES.decrypt(c.substring(name.length, c.length), storageUser);
+          return bytes.toString(CryptoJS.enc.Utf8);
+        }
+      }
+    return '';
+  }
+  private delCookie(cName: string, cValue: string) {
+    this.setCookie(cName, cValue, -1);
   }
 }

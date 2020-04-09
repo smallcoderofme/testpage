@@ -1,11 +1,14 @@
 <h1 class="pt-3">{{title}}</h1>
 <nav *ngIf="user" class="m-b-2">
   <ul>
-    <li><i style="cursor: pointer;">Welcome, <span class="text-success">{{user}}</span></i>
-      <ul>
+    <li><i style="cursor: pointer;">Welcome, <span class="text-success">{{user.userName}}</span></i>
+      <ul *ngIf="user.verify">
         <li><a routerLink = "/auth">manage</a></li>
-        <li><a href="#">logout</a></li>
-      </ul>     
+        <li><a href="javascript:;" (click)="signout();">logout</a></li>
+      </ul>   
+      <ul *ngIf="!user.verify">
+        <li><a routerLink = "/auth/login">login</a></li>
+      </ul>   
     </li>
   </ul>
 </nav>

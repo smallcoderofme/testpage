@@ -6,12 +6,4 @@ import { UserService } from './greeting/user.service';
   styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
 })
-export class AppComponent {
-  constructor(private userSerivce: UserService){}
-  getUsername() {
-    console.log(this.userSerivce.userName);
-  }
-  setUsername() {
-    this.userSerivce.loginUser.next({userName: 'sunshuai'});
-  }
-}
+export class AppComponent {}

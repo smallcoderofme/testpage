@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
         <div class="col-sm-9 col-lg-9">
             <ul>
                 <li *ngFor="let post of postList" class="content">
-                    <h4>{{ post.title }}</h4>
+                    <h4 class="font-weight-bold">{{ post.title }}</h4>
                     <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/{{post.post_id}}">ReadMore</a></p>
                     <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_at}}</span>Author: <span>{{post.author}}</span></p>
                 </li>
@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
         </div>
         <div class="col-sm-3 col-lg-3">
             <div class="side">
-                <div class="bg-primary p-2 mb-2">热门文章</div>
+                <div class="bg-primary font-weight-bold p-2 mb-2">热门文章</div>
                 <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
             </div>
         </div>

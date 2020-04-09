@@ -14,23 +14,29 @@ import { Component, OnInit } from '@angular/core';
             </div>
             <div class="col-sm-3 col-lg-3">
                 <div class="side">
-                    <div class="bg-primary p-2 mb-2">相关推荐</div>
+                    <div class="bg-primary font-weight-bold p-2 mb-2">相关推荐</div>
                     <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
                 </div>
             </div>
             <div class="col-sm-9 col-lg-9">
                 <form class="light mb-3">
-                    <div class="form-group">
-                        <label for="comment" class="col-form-label col-form-label-sm">Comment:</label>
-                        <textarea type="email" id="comment" class="form-control form-control-sm"></textarea>
+                    <div class="form-group row">
+                        <label for="comment" class="col-sm-3 col-form-label col-form-label-sm">Comment:</label>
+                        <div class="col-sm-9">
+                            <textarea type="email" id="comment" class="form-control form-control-sm"></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="username" class="col-form-label col-form-label-sm">User Name:</label>
-                        <input type="text" id="username" class="form-control form-control-sm">
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label col-form-label-sm">User Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="username" class="form-control form-control-sm">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email" class="col-form-label col-form-label-sm">Email:</label>
-                        <input type="email" id="email" class="form-control form-control-sm">
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="email" id="email" class="form-control form-control-sm">
+                        </div>
                     </div>
                     <input type="submit" class="btn btn-outline-primary btn-sm mb-2 mt-1" value="Submit">
                 </form>
