@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthorizeComponent } from './authorize.component';
 import { AuthorizeLoginComponent } from './authorize.login.component';
 const routes: Routes = [
-    // { path: '', redirectTo: 'home', pathMatch: 'full'},
-    { path: '',    component: AuthorizeComponent },
+    { path: '', redirectTo: 'manage', pathMatch: 'full'},
+    { path: 'manage',    component: AuthorizeComponent },
     { path: 'login',    component: AuthorizeLoginComponent }
   ];
 @NgModule({

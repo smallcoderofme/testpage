@@ -38,7 +38,7 @@ import { Component, OnInit } from '@angular/core';
                             <input type="email" id="email" class="form-control form-control-sm">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-outline-primary btn-sm mb-2 mt-1" value="Submit">
+                    <input type="submit" class="btn btn-success btn-sm mb-2 mt-1" value="Submit">
                 </form>
             </div>
         </div>

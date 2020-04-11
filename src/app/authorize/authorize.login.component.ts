@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
     template: `
     <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4 mt-5 text-left">
-            <form>
+        <div class="col-md-4 mt-3 text-left">
+            <form class="side">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="pull-left col-form-label">username</label>
                     <input type="text" [(ngModel)]="loginForm.username" [ngModelOptions]="{standalone: true}" id="exampleInputEmail1" class="form-control" required>
