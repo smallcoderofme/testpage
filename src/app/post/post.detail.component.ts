@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
             <div class="col-sm-9 col-lg-9">
                 <div class="content">
                     <h3 class="text-center font-weight-bold border-bottom pb-2">{{postDetail.title}}</h3>
-                    <div class="border-bottom pb-2 pt-2"><i><small>版权声明：本文为博主原创文章，遵循 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a> 版权协议，转载请附上原文出处链接和本声明。</small></i></div>
+                    <div class="border-bottom pb-2"><i><small>版权声明：本文为博主原创文章，遵循 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a> 版权协议，转载请附上原文出处链接和本声明。</small></i></div>
                     <p>{{postDetail.content}}</p>
                     <div class="text-right mt-2 border-top pt-2"><span class="info">Post by {{postDetail.author}} at {{postDetail.created_at}}</span></div>
                 </div>
