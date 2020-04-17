@@ -1,4 +1,4 @@
-class Post {
+interface Post {
     title: string;
     cover: boolean;
     preview: string;
@@ -6,10 +6,10 @@ class Post {
     updated_at: string;
     author: string;
     post_id: string;
-    overt: boolean
+    overt: boolean;
 }
 
-class Tag {
+interface Tag {
     name: string;
     tag_id: string;
 }
