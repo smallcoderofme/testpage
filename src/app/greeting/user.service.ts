@@ -23,8 +23,8 @@ export class UserService {
     if (cookieUserName !== '') {
       this.userInfo =  JSON.parse(cookieUserName);
       console.log('get cookie:', this.userInfo);
-      if (this.userInfo.userName !== 'Traveler') this.cookieVerify = true;
-      else this.cookieVerify = false;
+      if (this.userInfo.userName !== 'Traveler') { this.cookieVerify = true; }
+      else { this.cookieVerify = false; }
     }
     this.loginUser = new BehaviorSubject<UserServiceConfig>(this.userInfo);
     this.loginUser.subscribe(value => {

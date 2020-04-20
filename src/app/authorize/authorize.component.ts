@@ -8,11 +8,11 @@ enum TOPIC {
     TAG = 1,
     POST = 2,
     DRAW = 3
-};
+}
 
 class Topic {
-    status: boolean = false;
-    currTopic: number = 1;
+    status = false;
+    currTopic = 1;
 }
 
 @Component({

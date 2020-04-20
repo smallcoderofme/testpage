@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sitepage": {
+    "testpage": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sitepage",
+            "outputPath": "dist/testpage",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,8 +28,9 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/jquery.slim.min.js",
-              "src/assets/bootstrap.min.js"
+              "./node_modules/crypto-js/crypto-js.js",
+              "./src/assets/jquery.slim.min.js",
+              "./src/assets/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -66,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sitepage:build"
+            "browserTarget": "testpage:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sitepage:build:production"
+              "browserTarget": "testpage:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sitepage:build"
+            "browserTarget": "testpage:build"
           }
         },
         "test": {
@@ -114,18 +115,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sitepage:serve"
+            "devServerTarget": "testpage:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sitepage:serve:production"
+              "devServerTarget": "testpage:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "sitepage",
+  "defaultProject": "testpage",
   "cli": {
     "analytics": "792a6cef-99b5-4dcf-a519-f2eef346371b"
   }

@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 
 
@@ -46,13 +46,15 @@ const TAG_LIST = [
 export class MockServerSupport {
     constructor(){}
     getPosts(): Observable<any> {
-        return Observable.create(function(observer: Observer<any>) {
+        // tslint:disable-next-line: deprecation
+        return Observable.create((observer: Observer<any>) => {
             observer.next(POST_LIST);
             observer.complete();
         });
     }
     getTags(): Observable<any> {
-        return Observable.create(function(observer: Observer<any>) {
+        // tslint:disable-next-line: deprecation
+        return Observable.create( (observer: Observer<any>) => {
             observer.next(TAG_LIST);
             observer.complete();
         });
