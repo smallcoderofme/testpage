@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'post', pathMatch: 'full'},
   { path: 'post', loadChildren: () => import('./post/post.module').then(m => m.PostModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: 'items', loadChildren: () => import('./items/items.module').then(m => m.ItemsModule) },

@@ -1,6 +1,6 @@
 import { Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import * as CryptoJS from 'crypto-js';
+import { AES, enc } from 'crypto-js';
 
 const storageUser = 'S6I';
 const defaultCName = 'Authorization_s6i';
@@ -62,7 +62,7 @@ export class UserService {
   private setCookie(cName: string, cValue: string, days: number) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
-    document.cookie = cName + '=' + CryptoJS.AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
+    document.cookie = cName + '=' + AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
   }
   private getCookie(cName: string): string {
     const name = cName + '=';
@@ -73,8 +73,8 @@ export class UserService {
             c = c.substring(1);
         }
         if (c.indexOf(name) === 0) {
-          const bytes  = CryptoJS.AES.decrypt(c.substring(name.length, c.length), storageUser);
-          return bytes.toString(CryptoJS.enc.Utf8);
+          const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
+          return bytes.toString(enc.Utf8);
         }
       }
     return '';

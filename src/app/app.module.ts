@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 /* Feature Modules */
-import { HomeModule } from './home/home.module';
+// import { HomeModule } from './home/home.module';
 // import { GreetingModule } from './greeting/greeting.module';
 
 /* Routing Module */
@@ -17,7 +17,7 @@ import { GreetingComponent } from './greeting/greeting.component';
 @NgModule({
   imports: [
     BrowserModule,
-    HomeModule,
+    // HomeModule,
     // GreetingModule.forRoot({userName: 'Jugg'}),
     AppRoutingModule
   ],

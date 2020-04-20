@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
                         class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">remember me</label>
                 </div>
-                <input type="submit" class="btn-sm btn-success btn-block mt-4" value="login" (click)="signin();">
+                <input type="submit" class="btn btn-sm btn-success btn-block mt-4" value="login" (click)="signin();">
             </form>
         </div>
         <div class="col-md-4"></div>
