@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
+import { Post, Series, Tag } from './type.struct';
 
 
-const POST_LIST = [
+const POST_LIST: Post[] = [
     {
         title: '卡布·加塔自然公园',
         cover: '',
@@ -24,7 +25,26 @@ const POST_LIST = [
         overt: true
     }
 ];
-
+const SERIES_LIST: Series[] = [
+    {
+        name: 'blender'
+    },
+    {
+        name: 'godot'
+    },
+    {
+        name: 'nodejs'
+    },
+    {
+        name: 'angular'
+    },
+    {
+        name: 'egret'
+    },
+    {
+        name: 'layabox'
+    }
+];
 const TAG_LIST = [
     {
         name: 'art',
@@ -45,18 +65,24 @@ const TAG_LIST = [
 })
 export class MockServerSupport {
     constructor(){}
-    getPosts(): Observable<any> {
+    getPosts(): Observable<Post[]> {
         // tslint:disable-next-line: deprecation
         return Observable.create((observer: Observer<any>) => {
             observer.next(POST_LIST);
             observer.complete();
         });
     }
-    getTags(): Observable<any> {
+    getTags(): Observable<Tag[]> {
         // tslint:disable-next-line: deprecation
         return Observable.create( (observer: Observer<any>) => {
             observer.next(TAG_LIST);
             observer.complete();
+        });
+    }
+    getSeries(): Observable<Series[]> {
+        return new Observable( subscriber => {
+            subscriber.next(SERIES_LIST);
+            subscriber.complete();
         });
     }
 }

@@ -17,6 +17,10 @@ import { Component, OnInit } from '@angular/core';
                     <div class="bg-primary font-weight-bold p-2 mb-2">相关推荐</div>
                     <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
                 </div>
+                <div class="side">
+                    <div class="bg-primary font-weight-bold p-2 mb-2">热门文章</div>
+                    <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
+                </div>
             </div>
             <div class="col-sm-9 col-lg-9">
                 <form class="light mb-3">

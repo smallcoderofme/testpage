@@ -1,6 +1,6 @@
 interface Post {
     title: string;
-    cover: boolean;
+    cover: string;
     preview: string;
     created_at: string;
     updated_at: string;
@@ -14,4 +14,8 @@ interface Tag {
     tag_id: string;
 }
 
-export { Post, Tag };
+interface Series {
+    name: string;
+}
+
+export { Post, Tag, Series };
