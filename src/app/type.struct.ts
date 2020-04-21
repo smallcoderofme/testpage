@@ -16,6 +16,8 @@ interface Tag {
 
 interface Series {
     name: string;
+    id: string;
+    open: boolean;
 }
 
 export { Post, Tag, Series };

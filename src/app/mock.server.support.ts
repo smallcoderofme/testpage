@@ -27,22 +27,34 @@ const POST_LIST: Post[] = [
 ];
 const SERIES_LIST: Series[] = [
     {
-        name: 'blender'
+        name: 'blender',
+        id: '1234567',
+        open: false
     },
     {
-        name: 'godot'
+        name: 'godot',
+        id: '1357911',
+        open: false
     },
     {
-        name: 'nodejs'
+        name: 'nodejs',
+        id: '246810',
+        open: false
     },
     {
-        name: 'angular'
+        name: 'angular',
+        id: '235711',
+        open: false
     },
     {
-        name: 'egret'
+        name: 'egret',
+        id: '1468910',
+        open: false
     },
     {
-        name: 'layabox'
+        name: 'layabox',
+        id: 'abcdefg',
+        open: false
     }
 ];
 const TAG_LIST = [
