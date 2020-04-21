@@ -26,8 +26,10 @@ export class AuthorizeComponent implements OnInit {
     topic: Topic;
     postList: Post[];
     tagList: Tag[];
+    tagName: string;
     constructor(private userService: UserService, private router: Router, private mockServer: MockServerSupport) {}
     ngOnInit() {
+        this.tagName = '';
         const verifyCookie = this.userService.verifyCookie();
         console.log('AuthorizeComponent: ', verifyCookie);
         if ( !verifyCookie ) {
@@ -66,5 +68,18 @@ export class AuthorizeComponent implements OnInit {
                 break;
         }
         this.topic.currTopic = topicId;
+    }
+    addNewTag() {
+        this.tagList.push({name: this.tagName, tag_id: (9999999 * Math.random()).toString()});
+        this.tagName = '';
+    }
+    removeTag(tagId: string) {
+        const len: number = this.tagList.length;
+        for (let index = 0; index < len; index++) {
+            const tag = this.tagList[index];
+            if ( tag.tag_id === tagId ) {
+                this.tagList.splice(index, 1);
+            }
+        }
     }
 }
