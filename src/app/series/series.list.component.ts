@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Series } from '../type.struct';
 import { MockServerSupport } from '../mock.server.support';
-import { reduce } from 'rxjs/operators';
 
 @Component({
     templateUrl: './series.list.component.html'
