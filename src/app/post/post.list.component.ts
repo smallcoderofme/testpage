@@ -16,11 +16,11 @@ import { Component, OnInit } from '@angular/core';
         <div class="col-sm-3 col-lg-3">
             <div class="side">
                 <div class="bg-primary font-weight-bold p-2 mb-2">最近更新</div>
-                <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
+                <div class="p-1" *ngFor="let post of postList; let i =  index;"><a href="javascript:;">{{i+1}} {{ post.title }}</a></div>
             </div>
             <div class="side">
                 <div class="bg-primary font-weight-bold p-2 mb-2">热门文章</div>
-                <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
+                <div class="p-1" *ngFor="let post of postList; let i =  index;"><a href="javascript:;">{{i+1}} {{ post.title }}</a></div>
             </div>
         </div>
     </div>

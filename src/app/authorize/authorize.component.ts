@@ -10,9 +10,9 @@ enum TOPIC {
     SERIES = 3
 }
 
-class Topic {
-    status = false;
-    currTopic = 1;
+interface Topic {
+    status :boolean;
+    currTopic :number;
 }
 
 @Component({
