@@ -41,7 +41,7 @@ export class UserService {
     console.log('setUserInfo:', user, storage);
     this.userInfo = user;
     if ( storage ) {
-      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify}), 0.1);
+      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify}), 1);
     }
     // localStorage.setItem(strogeUser, username);
   }

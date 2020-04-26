@@ -20,7 +20,7 @@ import { MockServerSupport } from '../mock.server.support';
                     <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
                 </div>
                 <div class="side">
-                    <div class="bg-primary font-weight-bold p-2 mb-2">热门文章</div>
+                    <div class="bg-primary font-weight-bold p-2 mb-2">标签</div>
                     <div class="p-1">
                         <a href="javascript:;" *ngFor="let tag of tagList" class="badge badge-success p-1 mr-3">{{ tag.name }}</a>
                     </div>
