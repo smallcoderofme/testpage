@@ -46,6 +46,6 @@ export class AuthorizeLoginComponent implements OnInit {
             return;
         }
         this.userService.loginUser.next({ userName: this.loginForm.username, verify: true, userId: null });
-        this.router.navigateByUrl('auth');
+        // this.router.navigateByUrl('auth');
     }
 }

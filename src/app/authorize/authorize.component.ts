@@ -31,11 +31,6 @@ export class AuthorizeComponent implements OnInit {
     constructor(private userService: UserService, private router: Router, private mockServer: MockServerSupport) {}
     ngOnInit() {
         this.tagName = '';
-        const verifyCookie = this.userService.verifyCookie();
-        console.log('AuthorizeComponent: ', verifyCookie);
-        if ( !verifyCookie ) {
-            this.router.navigateByUrl('/auth/login');
-        }
         this.topic = { status: true, currTopic: TOPIC.TAG };
         if (!this.tagList) {
             this.topic.status = false;

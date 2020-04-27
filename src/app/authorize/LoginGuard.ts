@@ -1,4 +1,4 @@
-import { CanActivate } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserService } from '../greeting/user.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
@@ -8,15 +8,17 @@ export class LoginGuard implements CanActivate {
     constructor(private userService: UserService) {
 
     }
-    canActivate(): Observable<boolean>{
-        // const loggedIn: boolean = this.userService.verifyCookie();
-        // if (!loggedIn){
-        //     console.log('not login');
-        // }
-        // return loggedIn;
-        return new Observable( subscriber => {
-            subscriber.next(this.userService.verifyCookie());
-            subscriber.complete();
-        })
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+            return new Observable((observer) => {
+                if (this.userService.verifyCookie()) {
+                    observer.next(true);
+                    observer.complete();
+                    return;
+                }
+                observer.next(false);
+                observer.complete();
+            });
     }
 }

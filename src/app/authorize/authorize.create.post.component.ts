@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomUploadAdapterPlugin } from '../my-upload-adapter';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 @Component({
+    styleUrls: ['./authorize.component.css'],
     template: `
         <div class="row">
             <div class="col-sm-10 mt-3">
-                <ckeditor [editor]="Editor" [config]="config" data="<p>Hello, world!</p>"></ckeditor>
+                <ckeditor [editor]="Editor" [config]="config" data="<p>Hello, world!</p>" (change)="onChange($event)"></ckeditor>
+            </div>
+            <div class="col-sm-10 mt-3">
+                <button class="btn btn-primary btn-sm">Submit</button>
             </div>
         </div>
     `
@@ -59,6 +64,10 @@ export class AuthorizeCreatePostComponent {
             },
             licenseKey: '',
         };
+    }
+    public onChange( { editor }: ChangeEvent ) {
+        const data = editor.getData();
+        console.log( data );
     }
     private uploadContent() {}
 }

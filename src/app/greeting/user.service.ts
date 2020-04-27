@@ -1,6 +1,7 @@
 import { Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AES, enc } from 'crypto-js';
+import { Router } from '@angular/router';
 
 const storageUser = 'S6I';
 const defaultCName = 'Authorization_s6i';
@@ -17,7 +18,7 @@ export class UserService {
   private userInfo = new UserServiceConfig();
   public loginUser: BehaviorSubject<UserServiceConfig>;
   private cookieVerify = false;
-  constructor(@Optional() config?: UserServiceConfig) {
+  constructor( @Optional() config?: UserServiceConfig) {
     if (config) { this.userInfo.userName = config.userName; }
     const cookieUserName = this.getCookie(defaultCName);
     if (cookieUserName !== '') {
