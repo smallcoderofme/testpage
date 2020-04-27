@@ -11,8 +11,8 @@ enum TOPIC {
 }
 
 interface Topic {
-    status :boolean;
-    currTopic :number;
+    status: boolean;
+    currTopic: number;
 }
 
 @Component({
