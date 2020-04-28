@@ -28,7 +28,7 @@ export class AuthorizeComponent implements OnInit {
     tagList: Tag[];
     series: Series[];
     tagName: string;
-    constructor(private userService: UserService, private router: Router, private mockServer: MockServerSupport) {}
+    constructor( private mockServer: MockServerSupport ) {}
     ngOnInit() {
         this.tagName = '';
         this.topic = { status: true, currTopic: TOPIC.TAG };
