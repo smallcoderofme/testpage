@@ -8,21 +8,23 @@ import { MockServerSupport } from '../mock.server.support';
 
 export class SeriesListComponent implements OnInit {
     series: Series[];
+    currSeries: Series;
     constructor( private mockServer: MockServerSupport) {}
     ngOnInit() {
         this.mockServer.getSeries().subscribe(data => {
             this.series = data;
+            this.currSeries = data[0];
         }, complete => {
             console.log('Get series complete!');
         });
     }
-    selectedSeries(id: string) {
+    selectedSeries(selected: Series) {
         for (const series of this.series) {
-            if ( id === series.id ) {
-                series.open = true;
-            } else {
-                series.open = false;
+            if (series.id === selected.id) {
+                selected.open = !selected.open;
+                continue;
             }
+            series.open = false;
         }
     }
 }
