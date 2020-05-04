@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PostRoutingModule } from './post-routing.module';
 import { PostListComponent } from './post.list.component';
 import { PostDetailComponent } from './post.detail.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,7 @@ import { PostDetailComponent } from './post.detail.component';
     PostDetailComponent ],
   imports: [
     CommonModule,
+    FormsModule,
     PostRoutingModule
   ]
 })

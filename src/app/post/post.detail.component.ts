@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Post, Tag } from '../type.struct';
+import { Post, Tag, PostComment } from '../type.struct';
 import { MockServerSupport } from '../mock.server.support';
+
+const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
 @Component({
     styleUrls: ['./post.list.component.css'],
@@ -17,7 +19,7 @@ import { MockServerSupport } from '../mock.server.support';
             <div class="col-sm-3 col-lg-3">
                 <div class="side">
                     <div class="bg-primary font-weight-bold p-2 mb-2">相关推荐</div>
-                    <div class="p-1" *ngFor="let post of postList; let i =  index;">{{i+1}} {{ post.title }}</div>
+                    <div class="p-1" *ngFor="let post of postList; let i =  index;"><a href="javascript:;">{{i+1}} {{ post.title }}</a></div>
                 </div>
                 <div class="side">
                     <div class="bg-primary font-weight-bold p-2 mb-2">标签</div>
@@ -31,32 +33,58 @@ import { MockServerSupport } from '../mock.server.support';
                     <div class="form-group row">
                         <label for="comment" class="col-sm-3 col-form-label col-form-label-sm">Comment:</label>
                         <div class="col-sm-9">
-                            <textarea type="email" id="comment" class="form-control form-control-sm"></textarea>
+                            <textarea type="email" id="comment" class="form-control form-control-sm"
+                            [(ngModel)]="comment.content"
+                            [ngModelOptions]="{standalone: true}"
+                            [ngClass]="{'is-invalid': status.isInvalid_content}"
+                            placeholder="请输入您的评论" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="username" class="col-sm-3 col-form-label col-form-label-sm">User Name:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control form-control-sm">
+                            <input type="text" id="username" class="form-control form-control-sm" 
+                            [(ngModel)]="comment.username"
+                            [ngModelOptions]="{standalone: true}"
+                            [ngClass]="{'is-invalid': status.isInvalid_username}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email:</label>
                         <div class="col-sm-9">
-                            <input type="email" id="email" class="form-control form-control-sm">
+                            <input type="email" id="email" class="form-control form-control-sm"
+                            [(ngModel)]="comment.email"
+                            class="form-control form-control-sm"
+                            [ngModelOptions]="{standalone: true}"
+                            [ngClass]="{'is-invalid': status.isInvalid_email}">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success btn-sm mb-2 mt-1" value="Submit">
+                    <input type="submit" class="btn btn-success btn-sm mb-2 mt-1" value="Submit" (click)="submitComment()">
                 </form>
             </div>
         </div>
     `
 })
+
 export class PostDetailComponent implements OnInit {
+    
     postDetail;
     postList: Post[];
     tagList: Tag[];
-    constructor(private mockHttp: MockServerSupport){}
+    comment: PostComment;
+    status = { 
+        isInvalid_content: false, 
+        isInvalid_email: false, 
+        isInvalid_username: false 
+    };
+
+    constructor(private mockHttp: MockServerSupport){
+        this.comment = {
+            username: '',
+            content: '',
+            email: ''
+        };
+    }
     ngOnInit(){
         this.postDetail = {
             title: '卡布·加塔自然公园',
@@ -74,6 +102,25 @@ export class PostDetailComponent implements OnInit {
         this.mockHttp.getTags().subscribe(next => {
             this.tagList = next;
         });
-        
+    }
+
+    submitComment() {
+        if (!EMAIL_REG.test(this.comment.email)) {
+            this.status.isInvalid_email = true;
+            return;
+        }
+        if (this.comment.username.replace(/ /g, '').length === 0 ||
+            this.comment.username.indexOf('.js') !== -1 ||
+            this.comment.username.indexOf('iframe') !== -1) {
+            this.status.isInvalid_username = true;
+            return;
+        }
+        if (this.comment.content.replace(/ /g, '').length === 0 ||
+            this.comment.content.indexOf('.js') !== -1 ||
+            this.comment.content.indexOf('iframe') !== -1) {
+            this.status.isInvalid_content = true;
+            return;
+        }
+        console.log(this.comment);
     }
 }

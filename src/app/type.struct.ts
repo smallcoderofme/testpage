@@ -20,4 +20,9 @@ interface Series {
     open: boolean;
 }
 
-export { Post, Tag, Series };
+interface PostComment {
+    username: string;
+    email: string;
+    content: string;
+}
+export { Post, Tag, Series, PostComment };
