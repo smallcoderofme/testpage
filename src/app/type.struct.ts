@@ -24,5 +24,6 @@ interface PostComment {
     username: string;
     email: string;
     content: string;
+    createAt: string;
 }
 export { Post, Tag, Series, PostComment };

@@ -29,12 +29,12 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                 </div>
             </div>
             <div class="col-sm-9 col-lg-9">
-                <form class="light mb-3">
+                <form class="side">
                     <div class="form-group row">
                         <label for="comment" class="col-sm-3 col-form-label col-form-label-sm">Comment:</label>
                         <div class="col-sm-9">
                             <textarea type="email" id="comment" class="form-control form-control-sm"
-                            [(ngModel)]="comment.content"
+                            [(ngModel)]="commentModel.content"
                             [ngModelOptions]="{standalone: true}"
                             [ngClass]="{'is-invalid': status.isInvalid_content}"
                             placeholder="请输入您的评论" required></textarea>
@@ -43,47 +43,69 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                     <div class="form-group row">
                         <label for="username" class="col-sm-3 col-form-label col-form-label-sm">User Name:</label>
                         <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control form-control-sm" 
-                            [(ngModel)]="comment.username"
+                            <input type="text" id="username" class="form-control form-control-sm"
+                            [(ngModel)]="commentModel.username"
                             [ngModelOptions]="{standalone: true}"
-                            [ngClass]="{'is-invalid': status.isInvalid_username}">
+                            [ngClass]="{'is-invalid': status.isInvalid_username}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email:</label>
                         <div class="col-sm-9">
                             <input type="email" id="email" class="form-control form-control-sm"
-                            [(ngModel)]="comment.email"
+                            [(ngModel)]="commentModel.email"
                             class="form-control form-control-sm"
                             [ngModelOptions]="{standalone: true}"
-                            [ngClass]="{'is-invalid': status.isInvalid_email}">
+                            [ngClass]="{'is-invalid': status.isInvalid_email}" required>
                         </div>
                     </div>
                     <input type="submit" class="btn btn-success btn-sm mb-2 mt-1" value="Submit" (click)="submitComment()">
                 </form>
+            </div>
+            <div class="col-sm-9 col-lg-9">
+                <div class="side border-top">
+                    <div *ngFor="let comment of commentList; let i =  index;" class="border-bottom pb-1 mb-2">
+                        <span class="text-muted">#{{i+1}}</span><span class="font-weight-bold"> {{ comment.username }}</span><span class="mr-3 font-weight-bold">:</span>
+                        <span>{{ comment.content }}</span>
+                        <p class="text-right comment-p">Date:{{ comment.createAt }}</p>
+                    </div>
+                <div>
             </div>
         </div>
     `
 })
 
 export class PostDetailComponent implements OnInit {
-    
     postDetail;
     postList: Post[];
     tagList: Tag[];
-    comment: PostComment;
-    status = { 
-        isInvalid_content: false, 
-        isInvalid_email: false, 
-        isInvalid_username: false 
+    commentModel: PostComment;
+    status = {
+        isInvalid_content: false,
+        isInvalid_email: false,
+        isInvalid_username: false
     };
 
+    commentList: PostComment[];
+
     constructor(private mockHttp: MockServerSupport){
-        this.comment = {
+        this.commentModel = {
             username: '',
             content: '',
-            email: ''
+            email: '',
+            createAt: ''
         };
+        this.commentList = [{
+            username: 'Juggernaut',
+            content: 'Hey guy!',
+            email: 'jugg@gmail.com',
+            createAt: '2020-02-02'
+        }, {
+            username: 'Troll',
+            content: 'For routing guards with such control authority, if there is no authority to enter a route, where to automatically jump to a route address.',
+            email: 'jugg@gmail.com',
+            createAt: '2020-02-04'
+        }];
     }
     ngOnInit(){
         this.postDetail = {
@@ -98,29 +120,28 @@ export class PostDetailComponent implements OnInit {
         this.mockHttp.getPosts().subscribe(next => {
             this.postList = next;
         });
-        
         this.mockHttp.getTags().subscribe(next => {
             this.tagList = next;
         });
     }
 
     submitComment() {
-        if (!EMAIL_REG.test(this.comment.email)) {
+        if (!EMAIL_REG.test(this.commentModel.email)) {
             this.status.isInvalid_email = true;
             return;
         }
-        if (this.comment.username.replace(/ /g, '').length === 0 ||
-            this.comment.username.indexOf('.js') !== -1 ||
-            this.comment.username.indexOf('iframe') !== -1) {
+        if (this.commentModel.username.replace(/ /g, '').length === 0 ||
+            this.commentModel.username.indexOf('.js') !== -1 ||
+            this.commentModel.username.indexOf('iframe') !== -1) {
             this.status.isInvalid_username = true;
             return;
         }
-        if (this.comment.content.replace(/ /g, '').length === 0 ||
-            this.comment.content.indexOf('.js') !== -1 ||
-            this.comment.content.indexOf('iframe') !== -1) {
+        if (this.commentModel.content.replace(/ /g, '').length === 0 ||
+            this.commentModel.content.indexOf('.js') !== -1 ||
+            this.commentModel.content.indexOf('iframe') !== -1) {
             this.status.isInvalid_content = true;
             return;
         }
-        console.log(this.comment);
+        console.log(this.commentModel);
     }
 }
