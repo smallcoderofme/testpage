@@ -55,6 +55,11 @@ const SERIES_LIST: Series[] = [
         name: 'layabox',
         id: 'abcdefg',
         open: false
+    },
+    {
+        name: 'postgresql',
+        id: 'sf73j0',
+        open: false
     }
 ];
 const TAG_LIST = [
