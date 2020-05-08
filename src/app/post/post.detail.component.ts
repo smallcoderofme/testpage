@@ -31,7 +31,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
             <div class="col-sm-9 col-lg-9">
                 <form class="side">
                     <div class="form-group row">
-                        <label for="comment" class="col-sm-3 col-form-label col-form-label-sm">Comment:</label>
+                        <label for="comment" class="col-sm-3 col-form-label col-form-label-sm">Comment: *</label>
                         <div class="col-sm-9">
                             <textarea type="email" id="comment" class="form-control form-control-sm"
                             [(ngModel)]="commentModel.content"
@@ -41,7 +41,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="username" class="col-sm-3 col-form-label col-form-label-sm">User Name:</label>
+                        <label for="username" class="col-sm-3 col-form-label col-form-label-sm">User Name: *</label>
                         <div class="col-sm-9">
                             <input type="text" id="username" class="form-control form-control-sm"
                             [(ngModel)]="commentModel.username"
@@ -50,7 +50,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email:</label>
+                        <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email: *</label>
                         <div class="col-sm-9">
                             <input type="email" id="email" class="form-control form-control-sm"
                             [(ngModel)]="commentModel.email"
@@ -126,7 +126,8 @@ export class PostDetailComponent implements OnInit {
     }
 
     submitComment() {
-        if (!EMAIL_REG.test(this.commentModel.email)) {
+        if (this.commentModel.email.replace(/ /g, '').length === 0 || 
+            !EMAIL_REG.test(this.commentModel.email)) {
             this.status.isInvalid_email = true;
             return;
         }
