@@ -18,6 +18,7 @@ interface Series {
     name: string;
     id: string;
     open: boolean;
+    list: any[]
 }
 
 interface PostComment {
