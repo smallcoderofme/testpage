@@ -13,10 +13,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { GreetingComponent } from './greeting/greeting.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     // HomeModule,
     // GreetingModule.forRoot({userName: 'Jugg'}),
     AppRoutingModule

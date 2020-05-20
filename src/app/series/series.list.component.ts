@@ -43,7 +43,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
     getDetail() {
         return {
-            name: 'Vi Ediotr',
+            name: 'Vi Editor',
             content: `如果不是在云服务器上配置文件要用它，我是不太可能主动去学习这种上古时期的编辑器的，纵使其功能强大。
                 顺便提一下:在FreeBSD上还自带了一个ee编辑器，号称容易上手。编辑器快捷键会显示在编辑器上面，对新手友好。但我第一次用的时候也很不顺，没办法，习惯图形界面了。
                 已经没办法了，开始看下vim的使用。下面是记录的最基本的使用，能满足日常配置文件需要。</p>

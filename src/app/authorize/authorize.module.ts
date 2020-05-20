@@ -8,7 +8,6 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AuthorizeCreatePostComponent } from './authorize.create.post.component';
 import { LoginGuard } from './LoginGuard';
 
-
 @NgModule({
   declarations: [ AuthorizeComponent, AuthorizeLoginComponent, AuthorizeCreatePostComponent ],
   imports: [

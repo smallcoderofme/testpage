@@ -1,7 +1,14 @@
 import { Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AES, enc } from 'crypto-js';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 const storageUser = 'S6I';
 const defaultCName = 'Authorization_s6i';
@@ -18,7 +25,7 @@ export class UserService {
   private userInfo = new UserServiceConfig();
   public loginUser: BehaviorSubject<UserServiceConfig>;
   private cookieVerify = false;
-  constructor( @Optional() config?: UserServiceConfig) {
+  constructor( private http: HttpClient, @Optional() config?: UserServiceConfig) { //
     if (config) { this.userInfo.userName = config.userName; }
     const cookieUserName = this.getCookie(defaultCName);
     if (cookieUserName !== '') {
@@ -82,5 +89,14 @@ export class UserService {
   }
   private delCookie(cName: string, cValue: string) {
     this.setCookie(cName, cValue, -1);
+  }
+
+  public login(username: string, password: string): Observable<HttpResponse<any>> {
+    return this.http.post<any>('http://127.0.0.1:8000' + '/login', { username: username, password: password }, httpOptions);
+  }
+
+  public register(username: string, password: string): Observable<HttpResponse<any>> {
+    httpOptions['observe'] = 'response';
+    return this.http.post<any>('http://127.0.0.1:8000' + '/register', { username: username, password: password }, httpOptions);
   }
 }

@@ -3,10 +3,10 @@ import { UserService, UserServiceConfig } from '../greeting/user.service';
 import { Router } from '@angular/router';
 
 const RANDOM_WORDS: string[] = [
-  '你若要喜爱你自己的价值，你就得给世界创造价值。——歌德',
-  '君子赠人以言，庶人赠人以财。——荀况',
-  '对人不尊敬，首先就是对自己的不尊敬。——惠特曼',
-  '自我控制是最强者的本能。——萧伯纳'
+  '"你若要喜爱你自己的价值，你就得给世界创造价值。“ ——歌德',
+  '“君子赠人以言，庶人赠人以财。“ ——荀况',
+  '“对人不尊敬，首先就是对自己的不尊敬。“ ——惠特曼',
+  '“自我控制是最强者的本能。“ ——萧伯纳'
 ];
 
 @Component({

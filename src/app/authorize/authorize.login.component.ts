@@ -40,12 +40,25 @@ export class AuthorizeLoginComponent implements OnInit {
         this.loginForm.remember = true;
     }
 
+    signup() {
+        this.userService.register(this.loginForm.username, this.loginForm.password).subscribe(res => {
+            console.log("-------- success", res);
+        }, error => {
+            console.log("--------", error);
+        });
+    }
+
     signin() {
-        console.log(this.loginForm);
-        if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
-            return;
-        }
-        this.userService.loginUser.next({ userName: this.loginForm.username, verify: true, userId: null });
-        this.router.navigateByUrl('auth');
+        // console.log(this.loginForm);
+        // if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
+        //     return;
+        // }
+        // this.userService.loginUser.next({ userName: this.loginForm.username, verify: true, userId: null });
+        // this.router.navigateByUrl('auth');
+        this.userService.login(this.loginForm.username, this.loginForm.password).subscribe(res => {
+            console.log("-------- success", res);
+        }, error => {
+            console.log("--------", error);
+        });
     }
 }
