@@ -12,9 +12,11 @@ const httpOptions = {
 
 const storageUser = 'S6I';
 const defaultCName = 'Authorization_s6i';
+const defultTName = 'token_id';
 export class UserServiceConfig {
   userName = 'Traveler';
   verify = false;
+  authorization = '';
   userId = null;
 }
 
@@ -49,7 +51,8 @@ export class UserService {
     console.log('setUserInfo:', user, storage);
     this.userInfo = user;
     if ( storage ) {
-      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify}), 1);
+      this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
+      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 1);
     }
     // localStorage.setItem(strogeUser, username);
   }
@@ -57,7 +60,7 @@ export class UserService {
   removeUserInfo() {
     this.cookieVerify = false;
     this.delCookie(defaultCName, this.getCookie(defaultCName));
-    this.loginUser.next({ userName: 'Traveler', verify: false, userId: null });
+    this.loginUser.next({ userName: 'Traveler', authorization: '', verify: false, userId: null });
   }
 
   verifyCookie(): boolean {
@@ -92,11 +95,28 @@ export class UserService {
   }
 
   public login(username: string, password: string): Observable<HttpResponse<any>> {
+    httpOptions['observe'] = 'response';
     return this.http.post<any>('http://127.0.0.1:8000' + '/login', { username: username, password: password }, httpOptions);
   }
 
   public register(username: string, password: string): Observable<HttpResponse<any>> {
     httpOptions['observe'] = 'response';
     return this.http.post<any>('http://127.0.0.1:8000' + '/register', { username: username, password: password }, httpOptions);
+  }
+
+  public get_user_id(): string {
+    const name = defultTName + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for ( let c of ca ) {
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+          const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
+          return bytes.toString(enc.Utf8)['token'];
+        }
+      }
+    return null;
   }
 }
