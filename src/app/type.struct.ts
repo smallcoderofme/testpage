@@ -18,13 +18,13 @@ interface Series {
     name: string;
     id: string;
     open: boolean;
-    list: any[]
+    list: any[];
 }
 
 interface PostComment {
     username: string;
     email: string;
     content: string;
-    createAt: string;
+    // createAt: string;
 }
 export { Post, Tag, Series, PostComment };

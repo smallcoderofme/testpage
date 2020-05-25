@@ -18,7 +18,6 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     constructor( private mockServer: MockServerSupport ) {
         this.subscription = new Subscription();
     }
-    
     ngOnInit() {
         const observe = this.mockServer.getSeries();
         const sub1 = observe.subscribe(data => {

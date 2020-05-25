@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AES, enc } from 'crypto-js';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -30,7 +31,7 @@ export class UserService {
   constructor( private http: HttpClient, @Optional() config?: UserServiceConfig) { //
     if (config) { this.userInfo.userName = config.userName; }
     const cookieUserName = this.getCookie(defaultCName);
-    if (cookieUserName !== '') {
+    if (cookieUserName !== null) {
       this.userInfo =  JSON.parse(cookieUserName);
       console.log('get cookie:', this.userInfo);
       if (this.userInfo.userName !== 'Traveler') { this.cookieVerify = true; }
@@ -88,7 +89,14 @@ export class UserService {
           return bytes.toString(enc.Utf8);
         }
       }
-    return '';
+    return null;
+  }
+  public get_token(): string {
+    const result: any = this.getCookie(defaultCName);
+    if (result) {
+      return JSON.parse(result).authorization;
+    }
+    return null;
   }
   private delCookie(cName: string, cValue: string) {
     this.setCookie(cName, cValue, -1);
@@ -96,12 +104,13 @@ export class UserService {
 
   public login(username: string, password: string): Observable<HttpResponse<any>> {
     httpOptions['observe'] = 'response';
-    return this.http.post<any>('http://127.0.0.1:8000' + '/login', { username: username, password: password }, httpOptions);
+    return this.http.post<any>(environment.host + '/login', { username: username, password: password }, httpOptions);
   }
 
   public register(username: string, password: string): Observable<HttpResponse<any>> {
     httpOptions['observe'] = 'response';
-    return this.http.post<any>('http://127.0.0.1:8000' + '/register', { username: username, password: password }, httpOptions);
+    // tslint:disable-next-line: object-literal-shorthand
+    return this.http.post<any>(environment.host + '/register', { username: username, password: password }, httpOptions);
   }
 
   public get_user_id(): string {
@@ -114,7 +123,7 @@ export class UserService {
         }
         if (c.indexOf(name) === 0) {
           const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
-          return bytes.toString(enc.Utf8)['token'];
+          return JSON.parse(bytes.toString(enc.Utf8)).token;
         }
       }
     return null;

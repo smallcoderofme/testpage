@@ -31,13 +31,13 @@ const SERIES_LIST: Series[] = [
         id: '1234567',
         list: [
             {
-                name:'blender models',
+                name: 'blender models',
                 id: 'b123121'
-            },{
-                name:'blender UV',
+            }, {
+                name: 'blender UV',
                 id: 'b123122'
-            },{
-                name:'blender Texture',
+            }, {
+                name: 'blender Texture',
                 id: 'b123123'
             }],
         open: false
@@ -47,13 +47,13 @@ const SERIES_LIST: Series[] = [
         id: '1357911',
         list: [
             {
-                name:'godot import models',
+                name: 'godot import models',
                 id: 'b123121'
-            },{
-                name:'godot startup',
+            }, {
+                name: 'godot startup',
                 id: 'b123122'
-            },{
-                name:'godot for android',
+            }, {
+                name: 'godot for android',
                 id: 'b123123'
             }],
         open: false
@@ -63,13 +63,13 @@ const SERIES_LIST: Series[] = [
         id: '246810',
         list: [
             {
-                name:'nodejs get start',
+                name: 'nodejs get start',
                 id: 'b123121'
-            },{
-                name:'nodejs web development',
+            }, {
+                name: 'nodejs web development',
                 id: 'b123122'
-            },{
-                name:'nodejs express framework',
+            }, {
+                name: 'nodejs express framework',
                 id: 'b123123'
             }],
         open: false
@@ -79,13 +79,13 @@ const SERIES_LIST: Series[] = [
         id: '235711',
         list: [
             {
-                name:'angular get start',
+                name: 'angular get start',
                 id: 'b123121'
-            },{
-                name:'angularjs version 1.x',
+            }, {
+                name: 'angularjs version 1.x',
                 id: 'b123122'
-            },{
-                name:'Angular CLI',
+            }, {
+                name: 'Angular CLI',
                 id: 'b123123'
             }],
         open: false
@@ -95,10 +95,10 @@ const SERIES_LIST: Series[] = [
         id: '1468910',
         list: [
             {
-                name:'egret for flash developer',
+                name: 'egret for flash developer',
                 id: 'b123121'
-            },{
-                name:'egret display list',
+            }, {
+                name: 'egret display list',
                 id: 'b123122'
             }],
         open: false
@@ -108,13 +108,13 @@ const SERIES_LIST: Series[] = [
         id: 'abcdefg',
         list: [
             {
-                name:'layabox 2d',
+                name: 'layabox 2d',
                 id: 'b123121'
-            },{
-                name:'layabox 3d',
+            }, {
+                name: 'layabox 3d',
                 id: 'b123122'
-            },{
-                name:'layabox difference between version 1.x and 2.x',
+            }, {
+                name: 'layabox difference between version 1.x and 2.x',
                 id: 'b123123'
             }],
         open: false
@@ -124,13 +124,13 @@ const SERIES_LIST: Series[] = [
         id: 'sf73j0',
         list: [
             {
-                name:'SQL Language',
+                name: 'SQL Language',
                 id: 'b123121'
-            },{
-                name:'PL/Python',
+            }, {
+                name: 'PL/Python',
                 id: 'b123122'
-            },{
-                name:'Create database and Drop database',
+            }, {
+                name: 'Create database and Drop database',
                 id: 'b123123'
             }],
         open: false

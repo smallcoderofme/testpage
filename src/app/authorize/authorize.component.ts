@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../greeting/user.service';
-import { Router } from '@angular/router';
 import { MockServerSupport } from '../mock.server.support';
 import { Post, Tag, Series } from '../type.struct';
 
