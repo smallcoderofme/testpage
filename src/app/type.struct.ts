@@ -6,7 +6,7 @@ interface Post {
     updated_at: string;
     author: string;
     post_id: string;
-    overt: boolean;
+    public: boolean;
 }
 
 interface Tag {

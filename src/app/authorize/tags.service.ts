@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UserService } from '../greeting/user.service';
+import { NotAuthorization } from '../app-error';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,11 +20,9 @@ export class TagsService {
 
   createTag(name: string): Observable<any> {
     const token: string = this.userService.get_token();
-    if (!token) {
-      return new Observable(subscriber => {
-        subscriber.next({ status : 'error', msg: 'No Authorization.'});
-        subscriber.complete();
-      });
+    const userId: string = this.userService.get_user_id();
+    if ( !token || !userId ) {
+      return NotAuthorization.getInstance();
     }
     httpOptions.headers = httpOptions.headers.set('x-xsrf-token', token);
     return this.http.post<any>(environment.host + '/post_tag/' + name, {}, httpOptions);
@@ -33,12 +32,19 @@ export class TagsService {
     const token: string = this.userService.get_token();
     const userId: string = this.userService.get_user_id();
     if ( !token || !userId ) {
-      return new Observable(subscriber => {
-        subscriber.next({ status : 'error', msg: 'No Authorization. Require user id and token.'});
-        subscriber.complete();
-      });
+      return NotAuthorization.getInstance();
     }
     httpOptions.headers = httpOptions.headers.set('x-xsrf-token', token);
     return this.http.post<any>(environment.host + '/get_tags/' + name, {user_id: userId}, httpOptions);
+  }
+
+  delete_tag() {
+    const token: string = this.userService.get_token();
+    const userId: string = this.userService.get_user_id();
+    if ( !token || !userId ) {
+      return NotAuthorization.getInstance();
+    }
+    httpOptions.headers = httpOptions.headers.set('x-xsrf-token', token);
+    return this.http.post<any>(environment.host + '/delete_tag/' + name, {}, httpOptions);
   }
 }
