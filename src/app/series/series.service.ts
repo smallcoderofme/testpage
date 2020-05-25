@@ -11,19 +11,17 @@ export class SeriesService {
 
   get_admin_series() {} // content artile title, public (true, false)
 
-  get_article() {}
+  get_article(artileId: string) {}
 
-  get_admin_article() {}
+  update_series_name(seriesId: string, name: string) {}
 
-  update_series_name() {}
+  delete_series(seriesId: string) {}
 
-  delete_series() {}
+  set_series_publish(seriesId: string, publish: boolean) {}
 
-  set_series_publish() {}
+  update_article(articleId: string, article: any) {}
 
-  set_artile_publish(){}
+  delete_article(artileId: string) {}
 
-  update_article() {}
-
-  delete_article() {}
+  set_artile_publish(articleId: string, publish: boolean){}
 }

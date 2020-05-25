@@ -93,18 +93,18 @@ export class PostDetailComponent implements OnInit {
             username: '',
             content: '',
             email: '',
-            createAt: ''
+            created_on: ''
         };
         this.commentList = [{
             username: 'Juggernaut',
             content: 'Hey guy!',
             email: 'jugg@gmail.com',
-            createAt: '2020-02-02'
+            created_on: '2020-02-02'
         }, {
             username: 'Troll',
             content: 'For routing guards with such control authority, if there is no authority to enter a route, where to automatically jump to a route address.',
             email: 'jugg@gmail.com',
-            createAt: '2020-02-04'
+            created_on: '2020-02-04'
         }];
     }
     ngOnInit(){

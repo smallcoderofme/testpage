@@ -29,7 +29,9 @@
               "src/app/content-style.css"
             ],
             "scripts": [
-              "./node_modules/crypto-js/crypto-js.js"
+              "./node_modules/crypto-js/crypto-js.js",
+              "src/assets/bootstrap.min.js",
+              "src/assets/jquery.slim.min.js"
             ]
           },
           "configurations": {

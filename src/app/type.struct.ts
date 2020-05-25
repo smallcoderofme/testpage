@@ -2,8 +2,8 @@ interface Post {
     title: string;
     cover: string;
     preview: string;
-    created_at: string;
-    updated_at: string;
+    created_on: string;
+    updated_on: string;
     author: string;
     post_id: string;
     public: boolean;
@@ -25,6 +25,6 @@ interface PostComment {
     username: string;
     email: string;
     content: string;
-    // createAt: string;
+    created_on: string;
 }
 export { Post, Tag, Series, PostComment };
