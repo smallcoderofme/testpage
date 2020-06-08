@@ -42,9 +42,9 @@ export class AuthorizeLoginComponent implements OnInit {
 
     signup() {
         this.userService.register(this.loginForm.username, this.loginForm.password).subscribe(res => {
-            console.log("-------- success", res);
+            console.log('-------- success', res);
         }, error => {
-            console.log("--------", error);
+            console.log('--------', error);
         });
     }
 
@@ -56,12 +56,13 @@ export class AuthorizeLoginComponent implements OnInit {
         // this.userService.loginUser.next({ userName: this.loginForm.username, verify: true, userId: null });
         // this.router.navigateByUrl('auth');
         this.userService.login(this.loginForm.username, this.loginForm.password).subscribe(res => {
-            const token: string = res.headers.get("x-xsrf-token");
-            console.log("--------------login", res, res.headers, "\n",res.body,"\n", res.headers.get("x-xsrf-token"));
-            // this.userService.loginUser.next({ userName: res.body['uname'], authorization: token, verify: true, userId: res.body['user_id'] });
-            // this.router.navigateByUrl('auth');
+            const token: string = res.headers.get('x-xsrf-token');
+            // console.log("--------------login", res, res.headers, "\n",res.body,"\n", res.headers.get("x-xsrf-token"));
+            this.userService.loginUser.next({ userName: res.body['uname'], authorization: token, verify: true, userId: res.body['user_id'] });
+            this.router.navigateByUrl('auth');
+            // this.userService
         }, error => {
-            console.log("--------", error);
+            console.log('--------', error);
         });
     }
 }

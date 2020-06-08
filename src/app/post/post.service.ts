@@ -57,4 +57,14 @@ export class PostService {
   get_comments(postId: string): Observable<any> {
     return this.http.get<any>(environment.host + '/get_comments/' + postId);
   }
+
+  create_post(post: Post): Observable<any> {
+    const userId: string = this.userService.get_user_id();
+    const token: string = this.userService.get_token();
+    if (!userId || !token) {
+      return NotAuthorization.getInstance();
+    }
+    httpOptions.headers['x-xsrf-token'] = token;
+    return this.http.post<any>(environment.host + '/create_post/', post);
+  }
 }

@@ -12,7 +12,7 @@ const httpOptions = {
 };
 
 const storageUser = 'S6I';
-const defaultCName = 'Authorization_s6i';
+const defaultCName = 'Authorizeation_s6i';
 const defultTName = 'token_id';
 export class UserServiceConfig {
   userName = 'Traveler';
@@ -127,5 +127,10 @@ export class UserService {
         }
       }
     return null;
+  }
+
+  public set_token(token:string) {
+    delete httpOptions['observe'];
+
   }
 }

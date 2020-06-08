@@ -1,4 +1,4 @@
-ng generate component xyz --module=app.module    // New Component   
+ng generate component xyz --module=app.module    // New Component
 ng add @angular/material      // Angular Material
 ng add @angular/pwa          // Add PWA Support
 ng add _____              // Add Dependency
@@ -9,3 +9,5 @@ ng generate module xyz
 ng generate component authorization --module=author/author.module
 
 ng g component author/authorization
+
+ng g service authorize/posts

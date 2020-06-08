@@ -2,8 +2,8 @@
 // Exact copy of contact/highlight.directive except for color and message
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
-@Directive({ 
-    selector: '[modal]' 
+@Directive({
+    selector: '[modal]'
 })
 /** Highlight the attached element or an InputElement in gray */
 export class ModalTipDirective {
@@ -20,15 +20,15 @@ export class ModalTipDirective {
     }
 
     private toggle() {
-        if (this.modalTpl == null) {
-            console.error('Required modal template param.');
-            return;
-        }
-        const tilte: string = this.modalTitle || 'Tips';
-        if (this.open) {
-            $(this.modalTpl).modal('show');
-        } else {
-            $(this.modalTpl).modal('hide');
-        }
+        // if (this.modalTpl == null) {
+        //     console.error('Required modal template param.');
+        //     return;
+        // }
+        // const tilte: string = this.modalTitle || 'Tips';
+        // if (this.open) {
+        //     $(this.modalTpl).modal('show');
+        // } else {
+        //     $(this.modalTpl).modal('hide');
+        // }
     }
 }

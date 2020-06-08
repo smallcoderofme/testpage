@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service';
-// import { take } from 'rxjs/operators';
 
 @Component({
     styleUrls: ['./post.list.component.css'],
