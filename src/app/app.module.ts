@@ -29,7 +29,7 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     AboutComponent,
-    GreetingComponent
+    GreetingComponent,
   ],
   bootstrap: [AppComponent]
 })

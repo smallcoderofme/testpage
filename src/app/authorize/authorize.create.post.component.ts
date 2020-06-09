@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomUploadAdapterPlugin } from '../my-upload-adapter';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
-import { Post } from '../type.struct';
 
 @Component({
     styleUrls: ['./authorize.component.css'],
     template: `
         <div class="row">
             <div class="col-sm-10 mt-3">
+                <input type="text" class="form-control mb-2"
+                [(ngModel)]="post.title"
+                [ngModelOptions]="{standalone: true}">
                 <ckeditor [editor]="Editor" [config]="config" data="<p>Hello, world!</p>" (change)="onChange($event)"></ckeditor>
             </div>
             <div class="col-sm-10 mt-3">
@@ -18,8 +20,8 @@ import { Post } from '../type.struct';
                        [(ngModel)]="post.overt"
                        [ngModelOptions]="{standalone: true}"
                        [disabled]="post.disable"
-                       (click)="onClick(post, $event);"
-                       (change)="onClick(post, $event);"
+                       (click)="onClick($event);"
+                       (change)="onClick($event);"
                        class="custom-control-input" id="publicSwitch">
                 <label class="custom-control-label" for="publicSwitch"></label>
               </div>
@@ -31,7 +33,7 @@ import { Post } from '../type.struct';
 export class AuthorizeCreatePostComponent {
     public Editor = ClassicEditor;
     public config;
-    public post = { overt: false, disable: false };
+    public post = { title: '', content: '', overt: false, disable: false };
     constructor() {
         this.config = {
             toolbar: {
@@ -78,24 +80,42 @@ export class AuthorizeCreatePostComponent {
         };
     }
     public onChange( { editor }: ChangeEvent ) {
-        const data = editor.getData();
-        console.log( data );
+        this.post.content = editor.getData();
+        // console.log( data );
+
     }
     private uploadContent() {}
 
-    public onClick(post, evt) {
+    public onClick(evt) {
     }
 
     public createPost() {
-      const p: Post = {
-        title: '',
-        cover: '',
-        preview: '',
-        created_on: '',
-        updated_on: '',
-        author: '',
-        post_id: '',
-        public: this.post.overt
-      };
+        const review = this.post.content.substr(0, 256).replace(/<.*?>/g, '').replace(/&nbsp;/g, '')  + '... ...';
+        const avar = this.post.content.match('(src)=(\")(.*?)(\")');
+        // console.log(avar);
+        const reg = new RegExp('<img', 'g');
+        // const detail = this.post.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
+        const cover = avar ? avar[3] : '';
+        const paramData = {
+            title: this.post.title,
+            content: this.post.content,
+            public: this.post.overt,
+            author: 'sven', // get user name
+            preview: review,
+            avatar: cover
+        };
+
+        //   const p: Post = {
+        //     title: '',
+        //     cover: '',
+        //     preview: '',
+        //     created_on: '',
+        //     updated_on: '',
+        //     author: '',
+        //     post_id: '',
+        //     public: this.post.overt
+        //   };
+
+        console.log(  this.post.content, paramData );
     }
 }

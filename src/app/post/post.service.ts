@@ -19,6 +19,9 @@ export class PostService {
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
+  get_post_by_id(postId: string): Observable<any> {
+    return this.http.get<any>(environment.host + '/posts/' + '?post_id=' + postId);
+  }
   get_posts(): Observable<any> {
     return this.http.get<any>(environment.host + '/posts_preview/');
   }

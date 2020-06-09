@@ -49,20 +49,21 @@ export class AuthorizeLoginComponent implements OnInit {
     }
 
     signin() {
-        // console.log(this.loginForm);
-        // if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
-        //     return;
-        // }
-        // this.userService.loginUser.next({ userName: this.loginForm.username, verify: true, userId: null });
-        // this.router.navigateByUrl('auth');
-        this.userService.login(this.loginForm.username, this.loginForm.password).subscribe(res => {
-            const token: string = res.headers.get('x-xsrf-token');
-            // console.log("--------------login", res, res.headers, "\n",res.body,"\n", res.headers.get("x-xsrf-token"));
-            this.userService.loginUser.next({ userName: res.body['uname'], authorization: token, verify: true, userId: res.body['user_id'] });
-            this.router.navigateByUrl('auth');
-            // this.userService
-        }, error => {
-            console.log('--------', error);
-        });
+        console.log(this.loginForm);
+        if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
+            return;
+        }
+        this.userService.loginUser.next({ userName: this.loginForm.username, authorization: 'admjjadasjd', verify: true, userId: null });
+        this.router.navigateByUrl('auth');
+        // this.userService.login(this.loginForm.username, this.loginForm.password).subscribe(res => {
+        //     const token: string = res.headers.get('x-xsrf-token');
+        //     // console.log("--------------login", res, res.headers, "\n",res.body,"\n", res.headers.get("x-xsrf-token"));
+        //     // tslint:disable-next-line: max-line-length
+        //     this.userService.loginUser.next({ userName: res.body['uname'], authorization: token, verify: true, userId: res.body['user_id'] });
+        //     this.router.navigateByUrl('auth');
+        //     // this.userService
+        // }, error => {
+        //     console.log('--------', error);
+        // });
     }
 }

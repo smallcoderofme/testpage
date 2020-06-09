@@ -46,6 +46,10 @@ export class AuthorizeComponent implements OnInit {
 
     }
 
+    editPost(post_id: string) {
+        
+    }
+
     onChangeTopic(topicId: number) {
         switch (topicId) {
             case this.STATIC_TOPIC.POST:
