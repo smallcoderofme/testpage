@@ -15,12 +15,14 @@ import { AboutComponent } from './about/about.component';
 import { GreetingComponent } from './greeting/greeting.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
+    MatMenuModule,
     HttpClientXsrfModule.withOptions({
       headerName: 'x-xsrf-token'
     }),

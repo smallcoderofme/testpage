@@ -6,5 +6,29 @@
             <h4 class="m-t-2 font-weight">版权协议</h4>
             <p class="m-l-5">本站采用<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">「CC 4.0 BY-SA」</a>创作共享协议。</p>
         </div>
+      <button mat-button [matMenuTriggerFor]="aboveMenu">Above</button>
+      <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+
+
+      <button mat-button [matMenuTriggerFor]="afterMenu">After</button>
+      <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
     </div>
 </div>
