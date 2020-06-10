@@ -70,4 +70,14 @@ export class PostService {
     httpOptions.headers['x-xsrf-token'] = token;
     return this.http.post<any>(environment.host + '/create_post/', post);
   }
+
+  request_change_public_status(postId: string, overt: boolean): Observable<any> {
+    const userId: string = this.userService.get_user_id();
+    const token: string = this.userService.get_token();
+    if (!userId || !token) {
+      return NotAuthorization.getInstance();
+    }
+    httpOptions.headers['x-xsrf-token'] = token;
+    return this.http.post<any>(environment.host + '/request_change_public/', { publish : overt } );
+  }
 }

@@ -96,7 +96,7 @@
         </div>
         <div *ngIf="topic.currTopic === STATIC_TOPIC.SERIES">
             <div class="side">
-                <button class="btn btn-sm btn-primary mb-2">create new</button>
+                <button class="btn btn-sm btn-primary mb-2" (click)="newSeries();">create new</button>
                 <ul class="list-group">
                     <li *ngFor="let sery of series; let i=index;" class="mb-2 list-group-item">
                         <a href="javascript:;">{{ sery.name }}</a>

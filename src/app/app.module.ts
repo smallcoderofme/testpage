@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { GreetingComponent } from './greeting/greeting.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   imports: [
@@ -24,7 +26,8 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
     }),
     // HomeModule,
     // GreetingModule.forRoot({userName: 'Jugg'}),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,

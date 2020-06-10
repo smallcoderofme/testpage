@@ -99,7 +99,7 @@ export class AuthorizeCreatePostComponent {
         const paramData = {
             title: this.post.title,
             content: this.post.content,
-            public: this.post.overt,
+            publish: this.post.overt,
             author: 'sven', // get user name
             preview: review,
             avatar: cover
@@ -116,6 +116,6 @@ export class AuthorizeCreatePostComponent {
         //     public: this.post.overt
         //   };
 
-        console.log(  this.post.content, paramData );
+        console.log( paramData );
     }
 }
