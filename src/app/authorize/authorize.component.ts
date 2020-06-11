@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MockServerSupport } from '../mock.server.support';
 import { Post, Tag, Series } from '../type.struct';
-// import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 enum TOPIC {
     TAG = 1,
@@ -28,10 +28,16 @@ export class AuthorizeComponent implements OnInit {
     series: Series[];
     tagName: string;
 
-    // createNewSeries: BsModalRef;
+    serie = {
+        name: '',
+        publish: true
+    };
 
-    constructor( private mockServer: MockServerSupport) {}//, private modalService: BsModalService
-  ngOnInit() {
+    constructor( private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
+        config.backdrop = 'static';
+        config.keyboard = false;
+    }
+    ngOnInit() {
         this.tagName = '';
         this.topic = { status: true, currTopic: TOPIC.TAG };
         if (!this.tagList) {
@@ -91,55 +97,22 @@ export class AuthorizeComponent implements OnInit {
             }
         }
     }
+    toggleSer(ser: Series) {
+        ser.open = !ser.open;
+        console.log(ser.name, ser.open);
+    }
+    saveNew() {
+        console.log('------------- save', this.serie.name, this.serie.publish);
+        this.modalService.dismissAll();
+        this.serie.name = '';
+        this.serie.publish = true;
+    }
 
+    newSeries(content) {
+        this.modalService.open(content);
+    }
 
-    newSeries() {
-        // const initialState = {
-        //     series: {
-        //         name: '',
-        //         publish: true
-        //     },
-        //     title: 'Create New'
-        //   };
-        // this.createNewSeries = this.modalService.show(ModalContentComponent, {initialState});
-        // this.createNewSeries.content.closeBtnName = 'Close';
+    onClickChange(e) {
+        console.log('change', e);
     }
 }
-
-// @Component({
-//     selector: 'app-modal-content',
-//     template: `
-//         <div class="modal-header">
-//             <h4 class="modal-title pull-left">{{title}}</h4>
-//                 <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-//                     <span aria-hidden="true">&times;</span>
-//                 </button>
-//             </div>
-//             <div class="modal-body">
-//                 <form>
-//                     <div class="form-group">
-//                         <label for="seriesName" class="pull-left col-form-label">Name</label>
-//                         <input type="text" [(ngModel)]="series.name" name="name" id="seriesName" class="form-control" required>
-//                     </div>
-//                 </form>
-//             </div>
-//             <div class="modal-footer">
-//             <button type="button" class="btn btn-outline-primary" (click)="bsModalRef.hide()">Confirm</button>
-//             <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
-//         </div>
-//     `
-// })
-// export class ModalContentComponent implements OnInit {
-//     title: string;
-//     closeBtnName: string;
-//     series = {
-//         name: '',
-//         publish: true
-//     };
-//
-//     constructor(public bsModalRef: BsModalRef) {}
-//
-//     ngOnInit() {
-//         this.series.name = 'hello';
-//     }
-// }

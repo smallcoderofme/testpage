@@ -7,13 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AuthorizeCreatePostComponent } from './authorize.create.post.component';
 import { LoginGuard } from './LoginGuard';
-// import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [ AuthorizeComponent, AuthorizeLoginComponent, AuthorizeCreatePostComponent ],
   imports: [
-    CommonModule, AuthorizeRoutingModule, FormsModule,  CKEditorModule
-  ],//ModalModule.forRoot(),
+    CommonModule, AuthorizeRoutingModule, FormsModule,  CKEditorModule, NgbModule
+  ],
   providers: [ LoginGuard ]
 })
 export class AuthorizeModule { }

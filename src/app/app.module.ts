@@ -16,20 +16,20 @@ import { GreetingComponent } from './greeting/greeting.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatMenuModule } from '@angular/material/menu';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
-    MatMenuModule,
     HttpClientXsrfModule.withOptions({
       headerName: 'x-xsrf-token'
     }),
     // HomeModule,
     // GreetingModule.forRoot({userName: 'Jugg'}),
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   declarations: [
     AppComponent,
