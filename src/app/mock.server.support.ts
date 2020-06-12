@@ -40,7 +40,8 @@ const SERIES_LIST: Series[] = [
                 name: 'blender Texture',
                 id: 'b123123'
             }],
-        open: false
+        open: false,
+        publish: true
     },
     {
         name: 'godot',
@@ -56,7 +57,8 @@ const SERIES_LIST: Series[] = [
                 name: 'godot for android',
                 id: 'b123123'
             }],
-        open: false
+        open: false,
+        publish: true
     },
     {
         name: 'nodejs',
@@ -72,7 +74,8 @@ const SERIES_LIST: Series[] = [
                 name: 'nodejs express framework',
                 id: 'b123123'
             }],
-        open: false
+        open: false,
+        publish: true
     },
     {
         name: 'angular',
@@ -88,7 +91,8 @@ const SERIES_LIST: Series[] = [
                 name: 'Angular CLI',
                 id: 'b123123'
             }],
-        open: false
+        open: false,
+        publish: true
     },
     {
         name: 'egret',
@@ -101,7 +105,8 @@ const SERIES_LIST: Series[] = [
                 name: 'egret display list',
                 id: 'b123122'
             }],
-        open: false
+        open: false,
+        publish: true
     },
     {
         name: 'layabox',
@@ -117,7 +122,8 @@ const SERIES_LIST: Series[] = [
                 name: 'layabox difference between version 1.x and 2.x',
                 id: 'b123123'
             }],
-        open: false
+        open: false,
+        publish: true
     },
     {
         name: 'postgresql',
@@ -133,7 +139,8 @@ const SERIES_LIST: Series[] = [
                 name: 'Create database and Drop database',
                 id: 'b123123'
             }],
-        open: false
+        open: false,
+        publish: true
     }
 ];
 const TAG_LIST = [

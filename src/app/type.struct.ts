@@ -19,6 +19,7 @@ interface Series {
     id: string;
     open: boolean;
     list: any[];
+    publish: boolean;
 }
 
 interface PostComment {

@@ -27,7 +27,8 @@ export class AuthorizeComponent implements OnInit {
     tagList: Tag[];
     series: Series[];
     tagName: string;
-
+    createModalTitle = 'Create New';
+    currentSeries: Series;
     serie = {
         name: '',
         publish: true
@@ -103,16 +104,35 @@ export class AuthorizeComponent implements OnInit {
     }
     saveNew() {
         console.log('------------- save', this.serie.name, this.serie.publish);
+        if (this.createModalTitle === 'Create New') { // create
+
+        } else { // edit
+            this.currentSeries.name = this.serie.name;
+            this.currentSeries.publish = this.serie.publish;
+        }
         this.modalService.dismissAll();
         this.serie.name = '';
         this.serie.publish = true;
     }
 
     newSeries(content) {
+        this.createModalTitle = 'Create New';
         this.modalService.open(content);
     }
 
     onClickChange(e) {
         console.log('change', e);
+    }
+    promot(deleteTpl) {
+        this.modalService.open(deleteTpl);
+    }
+    confirmDelete() {}
+    cancelDelete() {}
+    editSeries(tpl, ser: Series) {
+        this.createModalTitle = 'Edit Series';
+        this.modalService.open(tpl);
+        this.currentSeries = ser;
+        this.serie.name = ser.name;
+        this.serie.publish = ser.publish;
     }
 }
