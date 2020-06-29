@@ -24,7 +24,7 @@ export class TagsService {
     if ( !token || !userId ) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers = httpOptions.headers.set('x-xsrf-token', token);
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
     return this.http.post<any>(environment.host + '/post_tag/' + name, {}, httpOptions);
   }
 
@@ -34,7 +34,7 @@ export class TagsService {
     if ( !token || !userId ) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers = httpOptions.headers.set('x-xsrf-token', token);
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
     return this.http.post<any>(environment.host + '/get_tags/' + name, {user_id: userId}, httpOptions);
   }
 
@@ -44,7 +44,7 @@ export class TagsService {
     if ( !token || !userId ) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers = httpOptions.headers.set('x-xsrf-token', token);
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
     return this.http.post<any>(environment.host + '/delete_tag/' + name, {}, httpOptions);
   }
 }

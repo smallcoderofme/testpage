@@ -23,7 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
-      headerName: 'x-xsrf-token'
+      headerName: 'Authorization'
     }),
     // HomeModule,
     // GreetingModule.forRoot({userName: 'Jugg'}),

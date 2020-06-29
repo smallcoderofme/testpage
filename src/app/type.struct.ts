@@ -28,4 +28,11 @@ interface PostComment {
     content: string;
     created_on: string;
 }
-export { Post, Tag, Series, PostComment };
+
+interface LoginResponse {
+  userName: string;
+  userId: string;
+  jwt: string;
+}
+
+export { Post, Tag, Series, PostComment , LoginResponse};

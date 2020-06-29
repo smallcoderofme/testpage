@@ -67,7 +67,7 @@ export class PostService {
     if (!userId || !token) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers['x-xsrf-token'] = token;
+    httpOptions.headers['Authorization'] = token;
     return this.http.post<any>(environment.host + '/create_post/', post);
   }
 
@@ -77,7 +77,7 @@ export class PostService {
     if (!userId || !token) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers['x-xsrf-token'] = token;
+    httpOptions.headers['Authorization'] = token;
     return this.http.post<any>(environment.host + '/request_change_public/', { publish : overt } );
   }
 }

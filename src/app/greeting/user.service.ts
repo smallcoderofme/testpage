@@ -39,6 +39,7 @@ export class UserService {
     }
     this.loginUser = new BehaviorSubject<UserServiceConfig>(this.userInfo);
     this.loginUser.subscribe(value => {
+      // console.log('login:', value);
       this.setUserInfo(value, !this.cookieVerify);
     });
   }
@@ -49,7 +50,7 @@ export class UserService {
   }
 
   setUserInfo(user: UserServiceConfig, storage = false) {
-    console.log('setUserInfo:', user, storage);
+    // console.log('setUserInfo:', user, storage);
     this.userInfo = user;
     if ( storage ) {
       this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
@@ -103,12 +104,12 @@ export class UserService {
   }
 
   public login(username: string, password: string): Observable<HttpResponse<any>> {
-    httpOptions['observe'] = 'response';
-    return this.http.post<any>(environment.host + '/login', { username: username, password: password }, httpOptions);
+    // httpOptions['observe'] = 'response';
+    return this.http.post<any>(environment.host + '/authorization/login', JSON.stringify({ username: username, password: password }), httpOptions);
   }
 
   public register(username: string, password: string): Observable<HttpResponse<any>> {
-    httpOptions['observe'] = 'response';
+    // httpOptions['observe'] = 'response';
     // tslint:disable-next-line: object-literal-shorthand
     return this.http.post<any>(environment.host + '/register', { username: username, password: password }, httpOptions);
   }
