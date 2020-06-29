@@ -95,7 +95,7 @@ export class UserService {
   public get_token(): string {
     const result: any = this.getCookie(defaultCName);
     if (result) {
-      return JSON.parse(result).authorization;
+      return 'Bearer ' + JSON.parse(result).authorization;
     }
     return null;
   }
@@ -132,6 +132,5 @@ export class UserService {
 
   public set_token(token:string) {
     delete httpOptions['observe'];
-
   }
 }
