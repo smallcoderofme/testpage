@@ -104,7 +104,6 @@ export class UserService {
   }
 
   public login(username: string, password: string): Observable<HttpResponse<any>> {
-    // httpOptions['observe'] = 'response';
     return this.http.post<any>(environment.host + '/authorization/login', JSON.stringify({ username: username, password: password }), httpOptions);
   }
 

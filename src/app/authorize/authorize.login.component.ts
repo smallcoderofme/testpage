@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../greeting/user.service';
 import { Router } from '@angular/router';
-import {LoginResponse} from '../type.struct';
+
 @Component({
     selector: 'app-login',
     styleUrls: [],
@@ -25,7 +25,7 @@ import {LoginResponse} from '../type.struct';
                         class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">remember me</label>
                 </div>
-                <input type="submit" class="btn btn-sm btn-success btn-block mt-4" value="login" (click)="signin();">
+                <input type="submit" class="btn btn-sm btn-success btn-block mt-4" value="login" (click)="signIn();">
             </form>
         </div>
         <div class="col-md-4"></div>
@@ -41,7 +41,7 @@ export class AuthorizeLoginComponent implements OnInit {
         // this.loginForm.remember = true;
     }
 
-    signup() {
+    signUp() {
         this.userService.register(this.loginForm.username, this.loginForm.password).subscribe(res => {
             console.log('-------- success', res);
         }, error => {
@@ -49,22 +49,23 @@ export class AuthorizeLoginComponent implements OnInit {
         });
     }
 
-    signin() {
+    signIn() {
         console.log(this.loginForm);
         // if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
         //     return;
         // }
-        // this.userService.loginUser.next({ userName: this.loginForm.username, authorization: 'admjjadasjd', verify: true, userId: null });
-        // this.router.navigateByUrl('auth');
-        this.userService.login(this.loginForm.username, this.loginForm.password).subscribe((res) => {
-            // const token: string = res.headers.get('Authorization');
-            // console.log('--------------login', res., res.);
-            // tslint:disable-next-line: max-line-length
-            this.userService.loginUser.next({ userName: res['userName'], authorization: res['jwt'], verify: true, userId: res['userId'] });
-            // this.router.navigateByUrl('auth');
-            // this.userService
-        }, error => {
-            console.log('--------', error);
-        });
+        this.userService.loginUser.next({ userName: this.loginForm.username, authorization: 'admjjadasjd', verify: true, userId: null });
+        this.router.navigateByUrl('auth');
+
+        // this.userService.login(this.loginForm.username, this.loginForm.password).subscribe((res) => {
+        //     // const token: string = res.headers.get('Authorization');
+        //     // console.log('--------------login', res., res.);
+        //     // tslint:disable-next-line: max-line-length
+        //     this.userService.loginUser.next({ userName: res['userName'], authorization: res['jwt'], verify: true, userId: res['userId'] });
+        //     // this.router.navigateByUrl('auth');
+        //     // this.userService
+        // }, error => {
+        //     console.log('--------', error);
+        // });
     }
 }

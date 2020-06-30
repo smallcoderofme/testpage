@@ -36,10 +36,10 @@ export class GreetingComponent {
 
   randomWords(immediately: boolean) {
     if (immediately) {
-      this.words = RANDOM_WORDS[Math.floor(Math.random()*RANDOM_WORDS.length)];
+      this.words = RANDOM_WORDS[Math.floor(Math.random() * RANDOM_WORDS.length)];
     }
     setInterval(() => {
-      this.words = RANDOM_WORDS[Math.floor(Math.random()*RANDOM_WORDS.length)];
+      this.words = RANDOM_WORDS[Math.floor(Math.random() * RANDOM_WORDS.length)];
     }, 30000);
   }
 }
