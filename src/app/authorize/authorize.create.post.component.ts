@@ -93,14 +93,13 @@ export class AuthorizeCreatePostComponent {
         const review = this.post.content.substr(0, 256).replace(/<.*?>/g, '').replace(/&nbsp;/g, '')  + '... ...';
         const avar = this.post.content.match('(src)=(\")(.*?)(\")');
         // console.log(avar);
-        const reg = new RegExp('<img', 'g');
+        // const reg = new RegExp('<img', 'g');
         // const detail = this.post.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
         const cover = avar ? avar[3] : '';
         const paramData = {
             title: this.post.title,
             content: this.post.content,
             publish: this.post.overt,
-            author: 'sven', // get user name
             preview: review,
             avatar: cover
         };

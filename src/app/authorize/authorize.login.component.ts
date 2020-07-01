@@ -54,18 +54,18 @@ export class AuthorizeLoginComponent implements OnInit {
         // if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
         //     return;
         // }
-        this.userService.loginUser.next({ userName: this.loginForm.username, authorization: 'admjjadasjd', verify: true, userId: null });
-        this.router.navigateByUrl('auth');
+        // this.userService.loginUser.next({ userName: this.loginForm.username, authorization: 'admjjadasjd', verify: true, userId: null });
+        // this.router.navigateByUrl('auth');
 
-        // this.userService.login(this.loginForm.username, this.loginForm.password).subscribe((res) => {
-        //     // const token: string = res.headers.get('Authorization');
-        //     // console.log('--------------login', res., res.);
-        //     // tslint:disable-next-line: max-line-length
-        //     this.userService.loginUser.next({ userName: res['userName'], authorization: res['jwt'], verify: true, userId: res['userId'] });
-        //     // this.router.navigateByUrl('auth');
-        //     // this.userService
-        // }, error => {
-        //     console.log('--------', error);
-        // });
+        this.userService.login(this.loginForm.username, this.loginForm.password).subscribe((res) => {
+            // const token: string = res.headers.get('Authorization');
+            // console.log('--------------login', res., res.);
+            // tslint:disable-next-line: max-line-length
+            this.userService.loginUser.next({ userName: res['userName'], authorization: res['jwt'], verify: true, userId: res['userId'] });
+            this.router.navigateByUrl('auth');
+            // this.userService
+        }, error => {
+            console.log('--------', error);
+        });
     }
 }

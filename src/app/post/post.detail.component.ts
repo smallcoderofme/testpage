@@ -126,7 +126,7 @@ export class PostDetailComponent implements OnInit {
     }
 
     submitComment() {
-        if (this.commentModel.email.replace(/ /g, '').length === 0 || 
+        if (this.commentModel.email.replace(/ /g, '').length === 0 ||
             !EMAIL_REG.test(this.commentModel.email)) {
             this.status.isInvalid_email = true;
             return;
