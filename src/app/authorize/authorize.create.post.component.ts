@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomUploadAdapterPlugin } from '../my-upload-adapter';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+// import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+import { PostService } from '../post/post.service';
+import {Post} from '../type.struct';
 
 @Component({
     styleUrls: ['./authorize.component.css'],
@@ -34,7 +36,7 @@ export class AuthorizeCreatePostComponent {
     public Editor = ClassicEditor;
     public config;
     public post = { title: '', content: '', overt: false, disable: false };
-    constructor() {
+    constructor(private postService: PostService) {
         this.config = {
             toolbar: {
                 items: [
@@ -96,8 +98,8 @@ export class AuthorizeCreatePostComponent {
         // const reg = new RegExp('<img', 'g');
         // const detail = this.post.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
         const cover = avar ? avar[3] : '';
-        const paramData = {
-            title: this.post.title,
+        const paramData: Post = {
+            name: this.post.title,
             content: this.post.content,
             publish: this.post.overt,
             preview: review,
@@ -116,5 +118,12 @@ export class AuthorizeCreatePostComponent {
         //   };
 
         console.log( paramData );
+        this.postService.create_post(paramData).subscribe(res => {
+          console.log('success: ', res);
+        }, error => {
+          console.log('failed: ', error);
+        }, () => {
+          console.log('complete! ');
+        });
     }
 }

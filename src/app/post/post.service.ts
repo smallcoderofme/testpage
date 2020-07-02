@@ -23,7 +23,7 @@ export class PostService {
     return this.http.get<any>(environment.host + '/posts/' + '?post_id=' + postId);
   }
   get_posts(): Observable<any> {
-    return this.http.get<any>(environment.host + '/posts_preview/');
+    return this.http.get<any>(environment.host + '/posts/list');
   }
   get_admin_posts(): Observable<any> {
     const userId: string = this.userService.get_user_id();
@@ -62,13 +62,14 @@ export class PostService {
   }
 
   create_post(post: Post): Observable<any> {
-    const userId: string = this.userService.get_user_id();
+    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
-    if (!userId || !token) {
+    if (!token) {
+      console.log('Error: Not authorization.');
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers['Authorization'] = token;
-    return this.http.post<any>(environment.host + '/create_post/', post);
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
+    return this.http.post<any>(environment.host + '/authorization/create_post', post, httpOptions).pipe();
   }
 
   request_change_public_status(postId: string, overt: boolean): Observable<any> {

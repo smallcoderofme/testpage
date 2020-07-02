@@ -1,12 +1,13 @@
 interface Post {
-    title: string;
-    cover: string;
+    name: string;
+    avatar: string;
     preview: string;
-    created_on: string;
-    updated_on: string;
-    author: string;
-    post_id: string;
-    public: boolean;
+    content: string;
+    created_on?: string;
+    updated_on?: string;
+    author?: string;
+    post_id?: string;
+    publish?: boolean;
 }
 
 interface Tag {

@@ -104,7 +104,7 @@ export class UserService {
   }
 
   public login(username: string, password: string): Observable<HttpResponse<any>> {
-    return this.http.post<any>(environment.host + '/authorization/login', JSON.stringify({ username: username, password: password }), httpOptions);
+    return this.http.post<any>(environment.host + '/authorization/login', JSON.stringify({ username: username, password: password }), httpOptions).pipe();
   }
 
   public register(username: string, password: string): Observable<HttpResponse<any>> {

@@ -8,9 +8,9 @@ import { PostService } from './post.service';
         <div class="col-sm-9 col-lg-9">
             <ul>
                 <li *ngFor="let post of postList" class="content">
-                    <h4 class="font-weight-bold">{{ post.title }}</h4>
+                    <h4 class="font-weight-bold">{{ post.name }}</h4>
                     <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/{{post.post_id}}">ReadMore</a></p>
-                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_at}}</span>Author: <span>{{post.author}}</span></p>
+                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.created_on}}</span>Author: <span>{{post.author}}</span></p>
                 </li>
             </ul>
         </div>
@@ -51,6 +51,12 @@ export class PostListComponent implements OnInit {
                 overt: true
             }
         ];
-        // this.postService.get_posts().pipe(take(1)).subscribe();
+        this.postService.get_posts().subscribe(res => {
+          console.log('success: ', res);
+        }, error => {
+          console.log('failed: ', error);
+        }, () => {
+          console.log('complete! ');
+        });
     }
 }
