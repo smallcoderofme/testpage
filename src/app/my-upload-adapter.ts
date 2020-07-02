@@ -1,6 +1,6 @@
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const host = 'http://127.0.0.1';
+const host = 'http://127.0.0.1:3000';
 
 export class MyUploadAdapter {
   loader;

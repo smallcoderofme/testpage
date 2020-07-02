@@ -11,7 +11,7 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
                 <input type="text" class="form-control mb-2"
                 [(ngModel)]="post.title"
                 [ngModelOptions]="{standalone: true}">
-                <ckeditor [editor]="Editor" [config]="config" data="<p>Hello, world!</p>" (change)="onChange($event)"></ckeditor>
+                <ckeditor [editor]="Editor" [(ngModel)]="post.content" [config]="config" data="<p>Hello, world!</p>"></ckeditor>
             </div>
             <div class="col-sm-10 mt-3">
               public:
@@ -79,11 +79,11 @@ export class AuthorizeCreatePostComponent {
             licenseKey: '',
         };
     }
-    public onChange( { editor }: ChangeEvent ) {
-        this.post.content = editor.getData();
-        // console.log( data );
-
-    }
+    // public onChange( { editor }: ChangeEvent ) {
+    //     this.post.content = editor.getData();
+    //     // console.log( data );
+    //
+    // }
     private uploadContent() {}
 
     public onClick(evt) {
