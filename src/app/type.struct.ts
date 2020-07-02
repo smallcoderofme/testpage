@@ -2,11 +2,11 @@ interface Post {
     title: string;
     cover: string;
     preview: string;
-    created_at: string;
-    updated_at: string;
+    created_on: string;
+    updated_on: string;
     author: string;
     post_id: string;
-    overt: boolean;
+    public: boolean;
 }
 
 interface Tag {
@@ -18,6 +18,21 @@ interface Series {
     name: string;
     id: string;
     open: boolean;
+    list: any[];
+    publish: boolean;
 }
 
-export { Post, Tag, Series };
+interface PostComment {
+    username: string;
+    email: string;
+    content: string;
+    created_on: string;
+}
+
+interface LoginResponse {
+  userName: string;
+  userId: string;
+  jwt: string;
+}
+
+export { Post, Tag, Series, PostComment , LoginResponse};

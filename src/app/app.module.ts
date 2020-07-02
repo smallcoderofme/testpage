@@ -13,18 +13,28 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { GreetingComponent } from './greeting/greeting.component';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      headerName: 'Authorization'
+    }),
     // HomeModule,
     // GreetingModule.forRoot({userName: 'Jugg'}),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgbModule
   ],
   declarations: [
     AppComponent,
     AboutComponent,
-    GreetingComponent
+    GreetingComponent,
   ],
   bootstrap: [AppComponent]
 })

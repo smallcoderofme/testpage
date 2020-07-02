@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from './post.service';
 
 @Component({
     styleUrls: ['./post.list.component.css'],
@@ -28,7 +29,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListComponent implements OnInit {
     postList;
-    constructor(){}
+    constructor(private postService: PostService){}
     ngOnInit() {
         this.postList = [
             {
@@ -50,5 +51,6 @@ export class PostListComponent implements OnInit {
                 overt: true
             }
         ];
+        // this.postService.get_posts().pipe(take(1)).subscribe();
     }
 }

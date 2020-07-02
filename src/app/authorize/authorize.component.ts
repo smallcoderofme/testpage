@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../greeting/user.service';
-import { Router } from '@angular/router';
 import { MockServerSupport } from '../mock.server.support';
 import { Post, Tag, Series } from '../type.struct';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 enum TOPIC {
     TAG = 1,
@@ -11,8 +10,8 @@ enum TOPIC {
 }
 
 interface Topic {
-    status :boolean;
-    currTopic :number;
+    status: boolean;
+    currTopic: number;
 }
 
 @Component({
@@ -28,14 +27,19 @@ export class AuthorizeComponent implements OnInit {
     tagList: Tag[];
     series: Series[];
     tagName: string;
-    constructor(private userService: UserService, private router: Router, private mockServer: MockServerSupport) {}
+    createModalTitle = 'Create New';
+    currentSeries: Series;
+    serie = {
+        name: '',
+        publish: true
+    };
+
+    constructor( private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
+        config.backdrop = 'static';
+        config.keyboard = false;
+    }
     ngOnInit() {
         this.tagName = '';
-        const verifyCookie = this.userService.verifyCookie();
-        console.log('AuthorizeComponent: ', verifyCookie);
-        if ( !verifyCookie ) {
-            this.router.navigateByUrl('/auth/login');
-        }
         this.topic = { status: true, currTopic: TOPIC.TAG };
         if (!this.tagList) {
             this.topic.status = false;
@@ -51,6 +55,9 @@ export class AuthorizeComponent implements OnInit {
     }
     customSwitch(index: number) {
 
+    }
+
+    editPost(postId: string) {
     }
 
     onChangeTopic(topicId: number) {
@@ -90,5 +97,42 @@ export class AuthorizeComponent implements OnInit {
                 this.tagList.splice(index, 1);
             }
         }
+    }
+    toggleSer(ser: Series) {
+        ser.open = !ser.open;
+        console.log(ser.name, ser.open);
+    }
+    saveNew() {
+        console.log('------------- save', this.serie.name, this.serie.publish);
+        if (this.createModalTitle === 'Create New') { // create
+
+        } else { // edit
+            this.currentSeries.name = this.serie.name;
+            this.currentSeries.publish = this.serie.publish;
+        }
+        this.modalService.dismissAll();
+        this.serie.name = '';
+        this.serie.publish = true;
+    }
+
+    newSeries(content) {
+        this.createModalTitle = 'Create New';
+        this.modalService.open(content);
+    }
+
+    onClickChange(e) {
+        console.log('change', e);
+    }
+    promot(deleteTpl) {
+        this.modalService.open(deleteTpl);
+    }
+    confirmDelete() {}
+    cancelDelete() {}
+    editSeries(tpl, ser: Series) {
+        this.createModalTitle = 'Edit Series';
+        this.modalService.open(tpl);
+        this.currentSeries = ser;
+        this.serie.name = ser.name;
+        this.serie.publish = ser.publish;
     }
 }

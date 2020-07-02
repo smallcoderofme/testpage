@@ -1,5 +1,7 @@
-<h1 class="pt-3">{{title}}</h1>
-<nav *ngIf="user" class="m-b-2">
+<div class="pt-3">
+  <span class="h1 greeting">{{title}}</span>
+</div>
+<nav *ngIf="user" class="mb-2 mt-2">
   <ul>
     <li><i style="cursor: pointer;">Welcome, <span class="text-success">{{user.userName}}</span></i>
       <ul *ngIf="user.verify">
@@ -12,3 +14,6 @@
     </li>
   </ul>
 </nav>
+<span>
+  <small><i class="ml-3">{{ words }}</i></small>
+</span>
