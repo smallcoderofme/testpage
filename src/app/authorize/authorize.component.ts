@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MockServerSupport } from '../mock.server.support';
 import { Post, Tag, Series } from '../type.struct';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PostService } from '../post/post.service';
 
 enum TOPIC {
     TAG = 1,
@@ -34,7 +35,7 @@ export class AuthorizeComponent implements OnInit {
         publish: true
     };
 
-    constructor( private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
+    constructor(private postService: PostService, private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
         config.backdrop = 'static';
         config.keyboard = false;
     }
@@ -65,11 +66,11 @@ export class AuthorizeComponent implements OnInit {
             case this.STATIC_TOPIC.POST:
                 if (!this.postList) {
                     this.topic.status = false;
-                    this.mockServer.getPosts().subscribe(next => {
-                        this.postList = next;
-                    }, complete => {
-                        this.topic.status = true;
-                    });
+                    // this.mockServer.getPosts().subscribe(next => {
+                    //     this.postList = next;
+                    // }, complete => {
+                    //     this.topic.status = true;
+                    // });
                 }
                 break;
             case this.STATIC_TOPIC.SERIES:

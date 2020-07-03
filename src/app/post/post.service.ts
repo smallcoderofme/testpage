@@ -67,7 +67,7 @@ export class PostService {
     return this.http.post<any>(environment.host + '/authorization/create_post', post, httpOptions).pipe();
   }
 
-  request_change_public_status(postId: string, overt: boolean): Observable<any> {
+  request_change_publish_status(postId: string, overt: boolean): Observable<any> {
     // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
     if (!token) {
