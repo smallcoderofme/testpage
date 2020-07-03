@@ -6,7 +6,7 @@ import { PostDetailComponent } from './post.detail.component';
 const routes: Routes = [
     // { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: '',    component: PostListComponent },
-    { path: ':id',    component: PostDetailComponent }
+    { path: 'list/:id',    component: PostDetailComponent }
   ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

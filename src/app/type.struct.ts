@@ -3,10 +3,10 @@ interface Post {
     avatar: string;
     preview: string;
     content: string;
-    created_on?: string;
-    updated_on?: string;
+    createdAt?: string;
+    updatedAt?: string;
     author?: string;
-    post_id?: string;
+    _id?: string;
     publish?: boolean;
 }
 

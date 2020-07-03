@@ -20,7 +20,7 @@ export class PostService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   get_post_by_id(postId: string): Observable<any> {
-    return this.http.get<any>(environment.host + '/posts/' + '?post_id=' + postId);
+    return this.http.get<any>(environment.host + '/posts/list/' + postId);
   }
   get_posts(): Observable<any> {
     return this.http.get<any>(environment.host + '/posts/list');
@@ -43,7 +43,7 @@ export class PostService {
     if (!userId || !token) {
       return NotAuthorization.getInstance();
     }
-    return this.http.post<any>(environment.host + '/update_post/' + post.post_id, post);
+    return this.http.post<any>(environment.host + '/update_post/' + post._id, post);
   }
   delete_post(postId: string): Observable<any> {
     const userId: string = this.userService.get_user_id();

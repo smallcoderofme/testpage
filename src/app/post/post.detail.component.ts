@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post, Tag, PostComment } from '../type.struct';
 import { MockServerSupport } from '../mock.server.support';
+import { PostService } from './post.service';
+import { ActivatedRoute } from '@angular/router';
 
 const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
@@ -10,16 +12,16 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
         <div class="row">
             <div class="col-sm-9 col-lg-9">
                 <div class="content">
-                    <h3 class="text-center font-weight-bold border-bottom pb-2">{{postDetail.title}}</h3>
+                    <h3 class="text-center font-weight-bold border-bottom pb-2">{{postDetail.name}}</h3>
                     <div class="border-bottom pb-2"><i><small>版权声明：本文为博主原创文章，遵循 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a> 版权协议，转载请附上原文出处链接和本声明。</small></i></div>
-                    <p>{{postDetail.content}}</p>
-                    <div class="text-right mt-2 border-top pt-2"><span class="info">Post by {{postDetail.author}} at {{postDetail.created_at}}</span></div>
+                    <p [innerHTML]="postDetail.content"></p>
+                    <div class="text-right mt-2 border-top pt-2"><span class="info">Post by {{postDetail.author}} at {{postDetail.createdAt | date:'yyyy-MM-dd H:mm:ss'}}</span></div>
                 </div>
             </div>
             <div class="col-sm-3 col-lg-3">
                 <div class="side">
                     <div class="bg-primary font-weight-bold p-2 mb-2">相关推荐</div>
-                    <div class="p-1" *ngFor="let post of postList; let i =  index;"><a href="javascript:;">{{i+1}} {{ post.title }}</a></div>
+                    <div class="p-1" *ngFor="let post of postList; let i =  index;"><a href="javascript:;">{{i+1}} {{ post.name }}</a></div>
                 </div>
                 <div class="side">
                     <div class="bg-primary font-weight-bold p-2 mb-2">标签</div>
@@ -88,7 +90,7 @@ export class PostDetailComponent implements OnInit {
 
     commentList: PostComment[];
 
-    constructor(private mockHttp: MockServerSupport){
+    constructor(private mockHttp: MockServerSupport, private postService: PostService, private route: ActivatedRoute){
         this.commentModel = {
             username: '',
             content: '',
@@ -117,8 +119,16 @@ export class PostDetailComponent implements OnInit {
             post_id: '1234564564',
             overt: true
         };
-        this.mockHttp.getPosts().subscribe(next => {
-            this.postList = next;
+        const id: string = this.route.snapshot.paramMap.get('id');
+        this.postService.get_post_by_id(id).subscribe(res => {
+            console.log('--------------: res.data: ', res);
+            const reg = new RegExp('<img', 'g');
+            res.data.content = res.data.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
+            this.postDetail = res.data;
+        }, error => {
+
+        }, () => {
+
         });
         this.mockHttp.getTags().subscribe(next => {
             this.tagList = next;
