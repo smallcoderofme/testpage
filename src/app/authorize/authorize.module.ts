@@ -9,9 +9,14 @@ import { AuthorizeCreatePostComponent } from './authorize.create.post.component'
 import { LoginGuard } from './LoginGuard';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthorizeEditPostComponent } from './authorize.edit.post.component';
 
 @NgModule({
-  declarations: [ AuthorizeComponent, AuthorizeLoginComponent, AuthorizeCreatePostComponent ],
+  declarations: [
+    AuthorizeComponent,
+    AuthorizeLoginComponent,
+    AuthorizeCreatePostComponent,
+    AuthorizeEditPostComponent ],
   imports: [
     CommonModule, AuthorizeRoutingModule, FormsModule,  CKEditorModule, NgbModule
   ],

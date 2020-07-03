@@ -20,45 +20,40 @@ export class PostService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   get_post_by_id(postId: string): Observable<any> {
-    return this.http.get<any>(environment.host + '/posts/list/' + postId);
+    return this.http.get<any>(environment.host + '/posts/list/' + postId).pipe();
   }
   get_posts(): Observable<any> {
-    return this.http.get<any>(environment.host + '/posts/list');
+    return this.http.get<any>(environment.host + '/posts/list').pipe();
   }
   get_admin_posts(): Observable<any> {
-    const userId: string = this.userService.get_user_id();
+    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
-    if (!userId || !token) {
+    if (!token) {
       return NotAuthorization.getInstance();
     }
-    return this.http.get<any>(environment.host + '/posts_preview/' + userId);
-  }
-  get_post_detail(postId: string): Observable<any> {
-    return this.http.get<any>(environment.host + '/post_detail/' + postId);
+    this.setJwt(token);
+    return this.http.get<any>(environment.host + '/posts_preview/').pipe();
   }
 
   update_post(post: Post): Observable<any> {
-    const userId: string = this.userService.get_user_id();
+    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
-    if (!userId || !token) {
+    if (!token) {
       return NotAuthorization.getInstance();
     }
-    return this.http.post<any>(environment.host + '/update_post/' + post._id, post);
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/update_post/' + post._id, post).pipe();
   }
   delete_post(postId: string): Observable<any> {
-    const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
-    if (!userId || !token) {
+    if (!token) {
       return NotAuthorization.getInstance();
     }
-    return this.http.post<any>(environment.host + '/delete_post/' + postId, null);
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/delete_post/' + postId, null).pipe();
   }
   commit_comment(postId: string, comment: any): Observable < any > {
-    return this.http.post<any>(environment.host + '/post_comment/' + postId, comment, httpOptions);
-  }
-
-  get_comments(postId: string): Observable<any> {
-    return this.http.get<any>(environment.host + '/get_comments/' + postId);
+    return this.http.post<any>(environment.host + '/post_comment/' + postId, comment, httpOptions).pipe();
   }
 
   create_post(post: Post): Observable<any> {
@@ -68,17 +63,21 @@ export class PostService {
       console.log('Error: Not authorization.');
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers = httpOptions.headers.set('Authorization', token);
+    this.setJwt(token);
     return this.http.post<any>(environment.host + '/authorization/create_post', post, httpOptions).pipe();
   }
 
   request_change_public_status(postId: string, overt: boolean): Observable<any> {
-    const userId: string = this.userService.get_user_id();
+    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
-    if (!userId || !token) {
+    if (!token) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers['Authorization'] = token;
-    return this.http.post<any>(environment.host + '/request_change_public/', { publish : overt } );
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/request_change_public/', { publish : overt } ).pipe();
+  }
+
+  setJwt(token) {
+    httpOptions.headers = httpOptions.headers.set('Authorization', token);
   }
 }

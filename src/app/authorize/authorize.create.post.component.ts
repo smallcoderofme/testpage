@@ -16,10 +16,10 @@ import {Post} from '../type.struct';
                 <ckeditor [editor]="Editor" [(ngModel)]="post.content" [config]="config" data="<p>Hello, world!</p>"></ckeditor>
             </div>
             <div class="col-sm-10 mt-3">
-              public:
+              publish:
               <div class="custom-control custom-switch mt-1 mb-2">
                 <input type="checkbox"
-                       [(ngModel)]="post.overt"
+                       [(ngModel)]="post.publish"
                        [ngModelOptions]="{standalone: true}"
                        [disabled]="post.disable"
                        (click)="onClick($event);"
@@ -35,7 +35,7 @@ import {Post} from '../type.struct';
 export class AuthorizeCreatePostComponent {
     public Editor = ClassicEditor;
     public config;
-    public post = { title: '', content: '', overt: false, disable: false };
+    public post = { title: '', content: '', publish: true, disable: false };
     constructor(private postService: PostService) {
         this.config = {
             toolbar: {
@@ -101,7 +101,7 @@ export class AuthorizeCreatePostComponent {
         const paramData: Post = {
             name: this.post.title,
             content: this.post.content,
-            publish: this.post.overt,
+            publish: this.post.publish,
             preview: review,
             avatar: cover
         };
@@ -117,13 +117,21 @@ export class AuthorizeCreatePostComponent {
         //     public: this.post.overt
         //   };
 
-        console.log( paramData );
+        // console.log( paramData );
         this.postService.create_post(paramData).subscribe(res => {
-          console.log('success: ', res);
+          // console.log('success: ', res);
+          this.resetPostModel();
         }, error => {
           console.log('failed: ', error);
         }, () => {
           console.log('complete! ');
         });
+    }
+
+    resetPostModel() {
+      this.post.title = '';
+      this.post.content = '';
+      this.post.publish = true;
+      this.post.disable = false;
     }
 }
