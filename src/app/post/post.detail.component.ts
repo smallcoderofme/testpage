@@ -65,11 +65,11 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                 </form>
             </div>
             <div class="col-sm-9 col-lg-9">
-                <div class="side border-top">
+                <div class="side">
                     <div *ngFor="let comment of commentList; let i =  index;" class="border-bottom pb-1 mb-2">
                         <span class="text-muted">#{{i+1}}</span><span class="font-weight-bold"> {{ comment.username }}</span><span class="mr-3 font-weight-bold">:</span>
                         <span>{{ comment.content }}</span>
-                        <p class="text-right comment-p">Date:{{ comment.createAt }}</p>
+                        <p class="text-right comment-p">Date:{{ comment.createdAt }}</p>
                     </div>
                 <div>
             </div>
@@ -78,7 +78,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
 })
 
 export class PostDetailComponent implements OnInit {
-    postDetail;
+    postDetail: Post;
     postList: Post[];
     tagList: Tag[];
     commentModel: PostComment;
@@ -95,35 +95,36 @@ export class PostDetailComponent implements OnInit {
             username: '',
             content: '',
             email: '',
-            created_on: ''
+            createdAt: ''
         };
         this.commentList = [{
             username: 'Juggernaut',
             content: 'Hey guy!',
             email: 'jugg@gmail.com',
-            created_on: '2020-02-02'
+            createdAt: '2020-02-02'
         }, {
             username: 'Troll',
             content: 'For routing guards with such control authority, if there is no authority to enter a route, where to automatically jump to a route address.',
             email: 'jugg@gmail.com',
-            created_on: '2020-02-04'
+            createdAt: '2020-02-04'
         }];
     }
     ngOnInit(){
         this.postDetail = {
-            title: '卡布·加塔自然公园',
-            cover: '',
+            name: '卡布·加塔自然公园',
+            avatar: '',
+            preview: '',
             content: '位于西班牙南部的卡布·加塔自然公园拥有神秘的湿地、浪漫的海滩、壮观的火山和令人赞叹的高山悬崖。走过柔软沙滩，在湛蓝的大海中尽情游泳，人生最大的享受莫过于此。位于西班牙南部的卡布·加塔自然公园拥有神秘的湿地、浪漫的海滩、壮观的火山和令人赞叹的高山悬崖。走过柔软沙滩，在湛蓝的大海中尽情游泳，人生最大的享受莫过于此。位于西班牙南部的卡布·加塔自然公园拥有神秘的湿地、浪漫的海滩、壮观的火山和令人赞叹的高山悬崖。走过柔软沙滩，在湛蓝的大海中尽情游泳，人生最大的享受莫过于此。位于西班牙南部的卡布·加塔自然公园拥有神秘的湿地、浪漫的海滩、壮观的火山和令人赞叹的高山悬崖。走过柔软沙滩，在湛蓝的大海中尽情游泳，人生最大的享受莫过于此。',
-            created_at: '2019-03-02',
+            createdAt: '2019-03-02',
             author: 'Jugg',
-            post_id: '1234564564',
-            overt: true
+            _id: '1234564564',
+            publish: true
         };
         const id: string = this.route.snapshot.paramMap.get('id');
         this.postService.get_post_by_id(id).subscribe(res => {
             console.log('--------------: res.data: ', res);
             const reg = new RegExp('<img', 'g');
-            res.data.content = res.data.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
+            res.data.content = res.data.content.replace(reg, '<img class = "img-fluid img-thumbnail"');
             this.postDetail = res.data;
         }, error => {
 

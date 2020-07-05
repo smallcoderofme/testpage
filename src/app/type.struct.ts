@@ -27,7 +27,7 @@ interface PostComment {
     username: string;
     email: string;
     content: string;
-    created_on: string;
+    createdAt: string;
 }
 
 interface LoginResponse {

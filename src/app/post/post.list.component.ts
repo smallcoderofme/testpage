@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service';
+import { Post } from '../type.struct';
 
 @Component({
     styleUrls: ['./post.list.component.css'],
@@ -9,7 +10,7 @@ import { PostService } from './post.service';
             <ul>
                 <li *ngFor="let post of postList" class="content">
                     <h4 class="font-weight-bold mb-2">{{ post.name }}</h4>
-                    <img src="{{post.avatar}}" class="img-fluid">
+                    <img src="{{post.avatar}}" class="img-fluid img-thumbnail">
                     <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/list/{{post._id}}">ReadMore</a></p>
                     <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt}}</span>Author: <span>{{post.author}}</span></p>
                 </li>
@@ -29,7 +30,7 @@ import { PostService } from './post.service';
     `
 })
 export class PostListComponent implements OnInit {
-    postList;
+    postList: Post[];
     constructor(private postService: PostService){}
     ngOnInit() {
         // this.postList = [
