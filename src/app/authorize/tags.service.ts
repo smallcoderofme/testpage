@@ -18,33 +18,40 @@ export class TagsService {
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
-  createTag(name: string): Observable<any> {
+  createTag(tagName: string): Observable<any> {
     const token: string = this.userService.get_token();
-    const userId: string = this.userService.get_user_id();
-    if ( !token || !userId ) {
+    if ( !token ) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers = httpOptions.headers.set('Authorization', token);
-    return this.http.post<any>(environment.host + '/post_tag/' + name, {}, httpOptions);
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/authorization/create_tag', {name: tagName}, httpOptions);
   }
 
   get_tags(): Observable<any> {
-    const token: string = this.userService.get_token();
-    const userId: string = this.userService.get_user_id();
-    if ( !token || !userId ) {
-      return NotAuthorization.getInstance();
-    }
-    httpOptions.headers = httpOptions.headers.set('Authorization', token);
-    return this.http.post<any>(environment.host + '/get_tags/' + name, {user_id: userId}, httpOptions);
+    return this.http.get<any>(environment.host + '/tags/');
   }
 
-  delete_tag() {
+  get_tags_by_userId() {
     const token: string = this.userService.get_token();
-    const userId: string = this.userService.get_user_id();
-    if ( !token || !userId ) {
+    if ( !token ) {
       return NotAuthorization.getInstance();
     }
-    httpOptions.headers = httpOptions.headers.set('Authorization', token);
-    return this.http.post<any>(environment.host + '/delete_tag/' + name, {}, httpOptions);
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/authorization/tag/', {}, httpOptions).pipe();
+  }
+
+  delete_tag(tagId: string) {
+    const token: string = this.userService.get_token();
+    if ( !token ) {
+      return NotAuthorization.getInstance();
+    }
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/authorization/delete_tag/' + tagId, {}, httpOptions);
+  }
+  setJwt(token) {
+    if (!httpOptions.headers.has('Authorization')) {
+      httpOptions.headers = httpOptions.headers.append('Authorization', token);
+      // httpOptions.headers = httpOptions.headers.set('Authorization', token);
+    }
   }
 }

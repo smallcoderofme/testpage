@@ -7,12 +7,13 @@ interface Post {
     updatedAt?: string;
     author?: string;
     _id?: string;
+    disable?: boolean;
     publish?: boolean;
 }
 
 interface Tag {
     name: string;
-    tag_id: string;
+    _id: string;
 }
 
 interface Series {

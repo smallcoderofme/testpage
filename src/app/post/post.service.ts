@@ -50,7 +50,7 @@ export class PostService {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/delete_post/' + postId, null).pipe();
+    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, null).pipe();
   }
   commit_comment(postId: string, comment: any): Observable < any > {
     return this.http.post<any>(environment.host + '/post_comment/' + postId, comment, httpOptions).pipe();
@@ -78,6 +78,9 @@ export class PostService {
   }
 
   setJwt(token) {
-    httpOptions.headers = httpOptions.headers.set('Authorization', token);
+    if (!httpOptions.headers.has('Authorization')) {
+      // httpOptions.headers.append('Authorization', token);
+      httpOptions.headers = httpOptions.headers.set('Authorization', token);
+    }
   }
 }
