@@ -4,6 +4,7 @@ import { Post, Tag, Series } from '../type.struct';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PostService } from '../post/post.service';
 import { TagsService } from './tags.service';
+import { GlobalConfig } from '../GlobalConfig';
 
 enum TOPIC {
     TAG = 1,
@@ -18,6 +19,7 @@ interface Topic {
 
 @Component({
     selector: 'app-authorize',
+    providers: [ GlobalConfig ],
     styleUrls: ['./authorize.component.css'],
     templateUrl: './authorize.component.html'
 })
@@ -35,7 +37,7 @@ export class AuthorizeComponent implements OnInit {
         name: '',
         publish: true
     };
-    constructor(private tagService: TagsService, private postService: PostService, private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
+    constructor(public global: GlobalConfig, private tagService: TagsService, private postService: PostService, private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
         config.backdrop = 'static';
         config.keyboard = false;
     }
@@ -73,11 +75,13 @@ export class AuthorizeComponent implements OnInit {
             case this.STATIC_TOPIC.POST:
                 if (!this.postList) {
                     this.topic.status = false;
-                    // this.mockServer.getPosts().subscribe(next => {
-                    //     this.postList = next;
-                    // }, complete => {
-                    //     this.topic.status = true;
-                    // });
+                    this.postService.get_posts_snapshots().subscribe(next => {
+                        this.postList = next.list;
+                    }, error => {
+
+                    }, () => {
+
+                    });
                 }
                 break;
             case this.STATIC_TOPIC.SERIES:

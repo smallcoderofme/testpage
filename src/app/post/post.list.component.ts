@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service';
 import { Post } from '../type.struct';
+import { GlobalConfig } from '../GlobalConfig';
 
 @Component({
     styleUrls: ['./post.list.component.css'],
+    providers: [GlobalConfig],
     template: `
     <div class="row">
         <div class="col-sm-9 col-lg-9">
             <ul>
                 <li *ngFor="let post of postList" class="content">
                     <h4 class="font-weight-bold mb-2">{{ post.name }}</h4>
-                    <img src="{{post.avatar}}" class="img-fluid img-thumbnail">
+                    <img src="{{post.avatar}}" class="img-fluid">
                     <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/list/{{post._id}}">ReadMore</a></p>
-                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt}}</span>Author: <span>{{post.author}}</span></p>
+                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt | date: global.POST_DATE_FORMAT}}</span>Author: <span>{{post.author}}</span></p>
                 </li>
             </ul>
         </div>
@@ -31,7 +33,7 @@ import { Post } from '../type.struct';
 })
 export class PostListComponent implements OnInit {
     postList: Post[];
-    constructor(private postService: PostService){}
+    constructor(private postService: PostService, public global: GlobalConfig){}
     ngOnInit() {
         // this.postList = [
         //     {

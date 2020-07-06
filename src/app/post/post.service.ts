@@ -25,6 +25,14 @@ export class PostService {
   get_posts(): Observable<any> {
     return this.http.get<any>(environment.host + '/posts/list').pipe();
   }
+  get_posts_snapshots(): Observable<any> {
+    const token: string = this.userService.get_token();
+    if (!token) {
+      return NotAuthorization.getInstance();
+    }
+    this.setJwt(token);
+    return this.http.post<any>(environment.host + '/authorization/posts/snapshot_list', {}, httpOptions).pipe();
+  }
   get_admin_posts(): Observable<any> {
     // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();

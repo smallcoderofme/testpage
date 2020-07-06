@@ -3,11 +3,13 @@ import { Post, Tag, PostComment } from '../type.struct';
 import { MockServerSupport } from '../mock.server.support';
 import { PostService } from './post.service';
 import { ActivatedRoute } from '@angular/router';
+import { GlobalConfig } from '../GlobalConfig';
 
 const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
 @Component({
     styleUrls: ['./post.list.component.css'],
+    providers: [ GlobalConfig ],
     template: `
         <div class="row">
             <div class="col-sm-9 col-lg-9">
@@ -15,7 +17,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                     <h3 class="text-center font-weight-bold border-bottom pb-2">{{postDetail.name}}</h3>
                     <div class="border-bottom pb-2"><i><small>版权声明：本文为博主原创文章，遵循 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a> 版权协议，转载请附上原文出处链接和本声明。</small></i></div>
                     <p [innerHTML]="postDetail.content"></p>
-                    <div class="text-right mt-2 border-top pt-2"><span class="info">Post by {{postDetail.author}} at {{postDetail.createdAt | date:'yyyy-MM-dd H:mm:ss'}}</span></div>
+                    <div class="text-right mt-2 border-top pt-2"><span class="info">Posted by {{postDetail.author}} at {{postDetail.createdAt | date: global.POST_DATE_FORMAT}}</span></div>
                 </div>
             </div>
             <div class="col-sm-3 col-lg-3">
@@ -46,6 +48,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                         <label for="username" class="col-sm-3 col-form-label col-form-label-sm">User Name: *</label>
                         <div class="col-sm-9">
                             <input type="text" id="username" class="form-control form-control-sm"
+                             placeholder="贵姓？"
                             [(ngModel)]="commentModel.username"
                             [ngModelOptions]="{standalone: true}"
                             [ngClass]="{'is-invalid': status.isInvalid_username}" required>
@@ -55,13 +58,14 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                         <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email: *</label>
                         <div class="col-sm-9">
                             <input type="email" id="email" class="form-control form-control-sm"
+                            placeholder="您的email"
                             [(ngModel)]="commentModel.email"
                             class="form-control form-control-sm"
                             [ngModelOptions]="{standalone: true}"
                             [ngClass]="{'is-invalid': status.isInvalid_email}" required>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-success btn-sm mb-2 mt-1" value="Submit" (click)="submitComment()">
+                    <input type="submit" class="btn btn-outline-primary btn-sm mb-2 mt-1" value="Submit" (click)="submitComment()">
                 </form>
             </div>
             <div class="col-sm-9 col-lg-9">
@@ -90,7 +94,7 @@ export class PostDetailComponent implements OnInit {
 
     commentList: PostComment[];
 
-    constructor(private mockHttp: MockServerSupport, private postService: PostService, private route: ActivatedRoute){
+    constructor(public global: GlobalConfig, private mockHttp: MockServerSupport, private postService: PostService, private route: ActivatedRoute){
         this.commentModel = {
             username: '',
             content: '',
@@ -124,7 +128,7 @@ export class PostDetailComponent implements OnInit {
         this.postService.get_post_by_id(id).subscribe(res => {
             console.log('--------------: res.data: ', res);
             const reg = new RegExp('<img', 'g');
-            res.data.content = res.data.content.replace(reg, '<img class = "img-fluid img-thumbnail"');
+            res.data.content = res.data.content.replace(reg, '<img class = "img-fluid"');
             this.postDetail = res.data;
         }, error => {
 

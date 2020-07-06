@@ -3,7 +3,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomUploadAdapterPlugin } from '../my-upload-adapter';
 // import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { PostService } from '../post/post.service';
-import {Post} from '../type.struct';
+import { Post } from '../type.struct';
+
 
 @Component({
     styleUrls: ['./authorize.component.css'],
@@ -27,7 +28,7 @@ import {Post} from '../type.struct';
                        class="custom-control-input" id="publicSwitch">
                 <label class="custom-control-label" for="publicSwitch"></label>
               </div>
-              <button class="btn btn-primary btn-sm" (click)="createPost()">Submit</button>
+              <button class="btn btn-outline-primary btn-sm" (click)="createPost()">Submit</button>
             </div>
         </div>
     `
