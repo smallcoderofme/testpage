@@ -43,14 +43,14 @@ export class PostService {
     return this.http.get<any>(environment.host + '/posts_preview/').pipe();
   }
 
-  update_post(post: Post): Observable<any> {
+  update_post(id: string, post: Post): Observable<any> {
     // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
     if (!token) {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/update_post/' + post._id, post).pipe();
+    return this.http.post<any>(environment.host + '/authorization/update_post/' + id, post, httpOptions).pipe();
   }
   delete_post(postId: string): Observable<any> {
     const token: string = this.userService.get_token();
