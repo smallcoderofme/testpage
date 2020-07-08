@@ -12,7 +12,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
     providers: [ GlobalConfig ],
     template: `
         <div class="row">
-            <div class="col-sm-9 col-lg-9">
+            <div class="col-sm-9 col-lx-9">
                 <div class="content">
                     <h3 class="text-center font-weight-bold border-bottom pb-2">{{postDetail.name}}</h3>
                     <div class="border-bottom pb-2"><i><small>版权声明：本文为博主原创文章，遵循 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a> 版权协议，转载请附上原文出处链接和本声明。</small></i></div>
@@ -32,7 +32,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9 col-lg-9">
+            <div class="col-sm-9 col-lx-9">
                 <form class="side">
                     <div class="form-group row">
                         <label for="comment" class="col-sm-3 col-form-label col-form-label-sm">Comment: *</label>
@@ -68,7 +68,7 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
                     <input type="submit" class="btn btn-outline-primary btn-sm mb-2 mt-1" value="Submit" (click)="submitComment()">
                 </form>
             </div>
-            <div class="col-sm-9 col-lg-9">
+            <div class="col-sm-9 col-lx-9">
                 <div class="side">
                     <div *ngFor="let comment of commentList; let i =  index;" class="border-bottom pb-1 mb-2">
                         <span class="text-muted">#{{i+1}}</span><span class="font-weight-bold"> {{ comment.username }}</span><span class="mr-3 font-weight-bold">:</span>

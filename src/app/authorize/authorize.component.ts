@@ -158,4 +158,10 @@ export class AuthorizeComponent implements OnInit {
         this.serie.name = ser.name;
         this.serie.publish = ser.publish;
     }
+
+    deletePost(id: string) {
+      this.postService.delete_post(id).subscribe(next => {
+
+      }, error => {}, () => {});
+    }
 }
