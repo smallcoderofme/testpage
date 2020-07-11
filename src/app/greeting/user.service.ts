@@ -13,7 +13,7 @@ const httpOptions = {
 
 const storageUser = 'S6I';
 const defaultCName = 'Authorizeation_s6i';
-const defultTName = 'token_id';
+// const defultTName = 'token_id';
 export class UserServiceConfig {
   userName = 'Traveler';
   verify = false;
@@ -53,7 +53,7 @@ export class UserService {
     // console.log('setUserInfo:', user, storage);
     this.userInfo = user;
     if ( storage ) {
-      this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
+      // this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
       this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 1);
     }
     // localStorage.setItem(strogeUser, username);
@@ -104,7 +104,7 @@ export class UserService {
   }
 
   public login(username: string, password: string): Observable<HttpResponse<any>> {
-    return this.http.post<any>(environment.host + '/authorization/login', JSON.stringify({ username: username, password: password }), httpOptions);
+    return this.http.post<any>(environment.host + '/authorization/login', JSON.stringify({ username: username, password: password }), httpOptions).pipe();
   }
 
   public register(username: string, password: string): Observable<HttpResponse<any>> {
@@ -113,21 +113,21 @@ export class UserService {
     return this.http.post<any>(environment.host + '/register', { username: username, password: password }, httpOptions);
   }
 
-  public get_user_id(): string {
-    const name = defultTName + '=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    for ( let c of ca ) {
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-          const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
-          return JSON.parse(bytes.toString(enc.Utf8)).token;
-        }
-      }
-    return null;
-  }
+  // public get_user_id(): string {
+  //   const name = defultTName + '=';
+  //   const decodedCookie = decodeURIComponent(document.cookie);
+  //   const ca = decodedCookie.split(';');
+  //   for ( let c of ca ) {
+  //       while (c.charAt(0) === ' ') {
+  //           c = c.substring(1);
+  //       }
+  //       if (c.indexOf(name) === 0) {
+  //         const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
+  //         return JSON.parse(bytes.toString(enc.Utf8)).token;
+  //       }
+  //     }
+  //   return null;
+  // }
 
   public set_token(token:string) {
     delete httpOptions['observe'];

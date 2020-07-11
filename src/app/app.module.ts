@@ -17,6 +17,7 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {GlobalConfig} from './GlobalConfig';
 
 @NgModule({
   imports: [
@@ -35,6 +36,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     AboutComponent,
     GreetingComponent,
+  ],
+  providers: [
+    GlobalConfig
   ],
   bootstrap: [AppComponent]
 })

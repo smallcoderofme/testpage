@@ -8,13 +8,12 @@ import { Observable } from 'rxjs/internal/Observable';
 export class LoginGuard implements CanActivate {
     constructor(private userService: UserService, private router: Router) {}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> | UrlTree {
-        
         if (this.userService.verifyCookie()) {
             return true;
         }
-        let tree: UrlTree = this.router.parseUrl('/auth/login');
+        const tree: UrlTree = this.router.parseUrl('/auth/login');
         return tree;
-        /** 
+        /**
         return new Observable((observer) => {
                 if (this.userService.verifyCookie()) {
                     observer.next(true);

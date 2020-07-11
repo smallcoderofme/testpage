@@ -1,17 +1,20 @@
 interface Post {
-    title: string;
-    cover: string;
+    name: string;
+    avatar: string;
     preview: string;
-    created_on: string;
-    updated_on: string;
-    author: string;
-    post_id: string;
-    public: boolean;
+    content: string;
+    createdAt?: string;
+    updatedAt?: string;
+    author?: string;
+    _id?: string;
+    labels?: string[];
+    disable?: boolean;
+    publish?: boolean;
 }
 
 interface Tag {
     name: string;
-    tag_id: string;
+    _id: string;
 }
 
 interface Series {
@@ -22,17 +25,12 @@ interface Series {
     publish: boolean;
 }
 
+
 interface PostComment {
-    username: string;
-    email: string;
-    content: string;
-    created_on: string;
+  username: string;
+  email: string;
+  content: string;
+  reply?: string;
 }
 
-interface LoginResponse {
-  userName: string;
-  userId: string;
-  jwt: string;
-}
-
-export { Post, Tag, Series, PostComment , LoginResponse};
+export { Post, Tag, Series , PostComment};

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MockServerSupport } from '../mock.server.support';
 import { Post, Tag, Series } from '../type.struct';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PostService } from '../post/post.service';
+import { TagsService } from './tags.service';
+import { GlobalConfig } from '../GlobalConfig';
 
 enum TOPIC {
     TAG = 1,
@@ -16,6 +19,7 @@ interface Topic {
 
 @Component({
     selector: 'app-authorize',
+    providers: [ GlobalConfig ],
     styleUrls: ['./authorize.component.css'],
     templateUrl: './authorize.component.html'
 })
@@ -33,8 +37,7 @@ export class AuthorizeComponent implements OnInit {
         name: '',
         publish: true
     };
-
-    constructor( private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
+    constructor(public global: GlobalConfig, private tagService: TagsService, private postService: PostService, private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
         config.backdrop = 'static';
         config.keyboard = false;
     }
@@ -43,10 +46,17 @@ export class AuthorizeComponent implements OnInit {
         this.topic = { status: true, currTopic: TOPIC.TAG };
         if (!this.tagList) {
             this.topic.status = false;
-            this.mockServer.getTags().subscribe(next => {
-                this.tagList = next;
-            }, complete => {
-                this.topic.status = true;
+            // this.mockServer.getTags().subscribe(next => {
+            //     this.tagList = next;
+            // }, complete => {
+            //     this.topic.status = true;
+            // });
+            this.tagService.get_tags_by_userId().subscribe(next => {
+              this.tagList = next.list;
+            }, error => {
+              console.log('---------- get tags by userId: error ', error);
+            }, () => {
+
             });
         }
     }
@@ -57,18 +67,17 @@ export class AuthorizeComponent implements OnInit {
 
     }
 
-    editPost(postId: string) {
-    }
-
     onChangeTopic(topicId: number) {
         switch (topicId) {
             case this.STATIC_TOPIC.POST:
                 if (!this.postList) {
                     this.topic.status = false;
-                    this.mockServer.getPosts().subscribe(next => {
-                        this.postList = next;
-                    }, complete => {
-                        this.topic.status = true;
+                    this.postService.get_posts_snapshots().subscribe(next => {
+                        this.postList = next.list;
+                    }, error => {
+
+                    }, () => {
+
                     });
                 }
                 break;
@@ -86,17 +95,31 @@ export class AuthorizeComponent implements OnInit {
         this.topic.currTopic = topicId;
     }
     addNewTag() {
-        this.tagList.push({name: this.tagName, tag_id: (9999999 * Math.random()).toString()});
-        this.tagName = '';
+        // this.tagList.push({name: this.tagName, _id: (9999999 * Math.random()).toString()});
+        this.tagService.createTag(this.tagName).subscribe(next => {
+          // console.log('create tag:', next);
+          this.tagList = next.list;
+        }, error => {
+
+        }, () => {
+          this.tagName = '';
+        });
     }
     removeTag(tagId: string) {
-        const len: number = this.tagList.length;
-        for (let index = 0; index < len; index++) {
-            const tag = this.tagList[index];
-            if ( tag.tag_id === tagId ) {
-                this.tagList.splice(index, 1);
-            }
-        }
+        // const len: number = this.tagList.length;
+        // for (let index = 0; index < len; index++) {
+        //     const tag = this.tagList[index];
+        //     if ( tag._id === tagId ) {
+        //         this.tagList.splice(index, 1);
+        //     }
+        // }
+      this.tagService.delete_tag(tagId).subscribe(next => {
+        this.tagList = next.list;
+      }, error => {
+        console.log('deleteTag error: ', error);
+      }, () => {
+
+      });
     }
     toggleSer(ser: Series) {
         ser.open = !ser.open;
@@ -134,5 +157,11 @@ export class AuthorizeComponent implements OnInit {
         this.currentSeries = ser;
         this.serie.name = ser.name;
         this.serie.publish = ser.publish;
+    }
+
+    deletePost(id: string) {
+      this.postService.delete_post(id).subscribe(next => {
+
+      }, error => {}, () => {});
     }
 }
