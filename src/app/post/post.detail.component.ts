@@ -72,6 +72,9 @@ export class PostDetailComponent implements OnInit {
     }
 
     submitComment() {
+      /**
+       * 暂无长度过滤长度，敏感词汇过滤
+       */
         if (this.commentModel.email.replace(/ /g, '').length === 0 ||
             !EMAIL_REG.test(this.commentModel.email)) {
             this.status.isInvalid_email = true;
@@ -101,7 +104,6 @@ export class PostDetailComponent implements OnInit {
     }
 
     replyComment(replyTo: string) {
-      console.log('will to comment to username: ', replyTo);
       this.commentModel.reply = replyTo;
       this.viewportScroller.scrollToAnchor('commentForm');
     }

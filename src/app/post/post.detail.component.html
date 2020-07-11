@@ -67,14 +67,23 @@
   <div class="col-sm-9 col-lx-9">
     <div class="side">
       <div *ngFor="let comment of commentList; let i =  index;" class="border-bottom pb-1 mb-2">
-        <span class="text-muted">#{{i+1}}</span>
-        <!--<div *ngIf="comment.reply">-->
-          <!--<span>Reply:{{comment.reply}}</span>-->
+        <div *ngIf="comment.reply" class="d-inline-block">
+          <span class="text-muted font-weight-bold">#{{i+1}}</span>
+          <span class="font-weight-bold"> Reply -> {{comment.reply}}</span><br>
+          <div class="ml-4">
+            <span class="font-weight-bold"> {{ comment.username }}</span>
+            <span class="mr-3 font-weight-bold">:</span>
+            <span>{{ comment.content }}</span>
+            <a href="javascript:;" class="ml-3" (click)="replyComment(comment.username)">Reply</a>
+          </div>
+        </div>
+        <div *ngIf="!comment.reply" class="d-inline-block">
+          <span class="text-muted">#{{i+1}}</span>
           <span class="font-weight-bold"> {{ comment.username }}</span>
           <span class="mr-3 font-weight-bold">:</span>
           <span>{{ comment.content }}</span>
           <a href="javascript:;" class="ml-3" (click)="replyComment(comment.username)">Reply</a>
-        <!--</div>-->
+        </div>
         <p class="text-right comment-p">Posted at {{ comment.createdAt | date: global.POST_DATE_FORMAT }}</p>
       </div>
     <div>
