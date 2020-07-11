@@ -28,7 +28,7 @@ export class TagsService {
   }
 
   get_tags(): Observable<any> {
-    return this.http.get<any>(environment.host + '/tags/');
+    return this.http.get<any>(environment.host + '/tags');
   }
 
   get_tags_by_userId() {
@@ -37,7 +37,7 @@ export class TagsService {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/authorization/tag/', {}, httpOptions).pipe();
+    return this.http.post<any>(environment.host + '/authorization/tag', {}, httpOptions).pipe();
   }
 
   delete_tag(tagId: string) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service';
-import { Post } from '../type.struct';
+import { Post, PostComment } from '../type.struct';
 import { GlobalConfig } from '../GlobalConfig';
 
 @Component({
@@ -12,7 +12,7 @@ import { GlobalConfig } from '../GlobalConfig';
             <ul>
                 <li *ngFor="let post of postList" class="content">
                     <h4 class="font-weight-bold mb-2">{{ post.name }}</h4>
-                    <img src="{{post.avatar}}" class="img-fluid">
+                    <img *ngIf="post.avatar" src="{{post.avatar}}" class="img-fluid">
                     <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/list/{{post._id}}">ReadMore</a></p>
                     <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt | date: global.POST_DATE_FORMAT}}</span>Author: <span>{{post.author}}</span></p>
                 </li>

@@ -25,17 +25,12 @@ interface Series {
     publish: boolean;
 }
 
+
 interface PostComment {
-    username: string;
-    email: string;
-    content: string;
-    createdAt: string;
+  username: string;
+  email: string;
+  content: string;
+  reply?: string;
 }
 
-interface LoginResponse {
-  userName: string;
-  userId: string;
-  jwt: string;
-}
-
-export { Post, Tag, Series, PostComment , LoginResponse};
+export { Post, Tag, Series , PostComment};

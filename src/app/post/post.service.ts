@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UserService } from '../greeting/user.service';
 import { NotAuthorization } from '../app-error';
-import { Post } from '../type.struct';
+import { Post, PostComment } from '../type.struct';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -58,10 +58,10 @@ export class PostService {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, null).pipe();
+    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, null, httpOptions).pipe();
   }
-  commit_comment(postId: string, comment: any): Observable < any > {
-    return this.http.post<any>(environment.host + '/post_comment/' + postId, comment, httpOptions).pipe();
+  submit_comment(postId: string, comment: PostComment): Observable < any > {
+    return this.http.post<any>(environment.host + '/post/' + postId + '/comment', comment).pipe();
   }
 
   create_post(post: Post): Observable<any> {
