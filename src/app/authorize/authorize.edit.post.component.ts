@@ -96,7 +96,7 @@ export class AuthorizeEditPostComponent implements OnInit {
         });
     }
     onClick(evt) {
-        this.post.publish = !this.post.publish;
+        // this.post.publish = !this.post.publish;
     }
     updatePost() {
       const review = this.post.content.substr(0, 256).replace(/<.*?>/g, '').replace(/&nbsp;/g, '')  + '... ...';

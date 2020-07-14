@@ -117,12 +117,11 @@ export class AuthorizeCreatePostComponent implements OnInit {
         // const reg = new RegExp('<img', 'g');
         // const detail = this.post.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
         const cover = avatar ? avatar[3] : '';
-        const labs: string[] = this.selected.map((label) => { return label.name; });
         const paramData: Post = {
             name: this.post.title,
             content: this.post.content,
             publish: this.post.publish,
-            labels: labs,
+            labels: this.selected,
             preview: review,
             avatar: cover
         };

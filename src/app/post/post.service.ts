@@ -58,7 +58,7 @@ export class PostService {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, null, httpOptions).pipe();
+    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, {}, httpOptions).pipe();
   }
   submit_comment(postId: string, comment: PostComment): Observable < any > {
     return this.http.post<any>(environment.host + '/post/' + postId + '/comment', comment).pipe();
