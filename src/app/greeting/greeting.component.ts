@@ -21,7 +21,7 @@ export class GreetingComponent {
   constructor(private userService: UserService, private router: Router) {
     this.userService.loginUser.subscribe( value => {
       this.user = value;
-      console.log('greeting: ', value);
+      // console.log('greeting: ', value);
     });
     this.randomWords(true);
   }

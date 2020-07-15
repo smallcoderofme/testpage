@@ -71,10 +71,10 @@
                             [ngModelOptions]="{standalone: true}"
                             [disabled]="post.disable"
                             (click)="onClick(post, $event);"
-                            (change)="onClick(post, $event);"
                             class="custom-control-input" id="customSwitch{{i}}">
                     <label class="custom-control-label" for="customSwitch{{i}}"></label>
                     </div>
+                  {{post.disable}}
                 </td>
                 <td>
                 <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" routerLink="/auth/edit_post/{{post._id}}" title="编辑此博客">

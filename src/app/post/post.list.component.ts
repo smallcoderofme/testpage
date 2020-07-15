@@ -56,12 +56,9 @@ export class PostListComponent implements OnInit {
         //     }
         // ];
         this.postService.get_posts().subscribe(res => {
-          console.log('success: ', res);
           this.postList = res.list;
         }, error => {
-          console.log('failed: ', error);
         }, () => {
-          console.log('complete! ');
         });
     }
 }
