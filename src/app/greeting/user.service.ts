@@ -13,7 +13,6 @@ const httpOptions = {
 
 const storageUser = 'S6I';
 const defaultCName = 'Authorizeation_s6i';
-// const defultTName = 'token_id';
 export class UserServiceConfig {
   userName = 'Traveler';
   verify = false;
@@ -33,7 +32,7 @@ export class UserService {
     const cookieUserName = this.getCookie(defaultCName);
     if (cookieUserName !== null) {
       this.userInfo =  JSON.parse(cookieUserName);
-      console.log('get cookie:', this.userInfo);
+      // console.log('get cookie:', this.userInfo);
       if (this.userInfo.userName !== 'Traveler') { this.cookieVerify = true; }
       else { this.cookieVerify = false; }
     }

@@ -37,7 +37,8 @@ export class AuthorizeComponent implements OnInit {
         name: '',
         publish: true
     };
-    constructor(public global: GlobalConfig, private tagService: TagsService, private postService: PostService, private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
+    constructor(public global: GlobalConfig, private tagService: TagsService, private postService: PostService,
+                private mockServer: MockServerSupport, config: NgbModalConfig, private modalService: NgbModal) {
         config.backdrop = 'static';
         config.keyboard = false;
     }
@@ -46,39 +47,41 @@ export class AuthorizeComponent implements OnInit {
         this.topic = { status: true, currTopic: TOPIC.TAG };
         if (!this.tagList) {
             this.topic.status = false;
-            // this.mockServer.getTags().subscribe(next => {
-            //     this.tagList = next;
-            // }, complete => {
-            //     this.topic.status = true;
-            // });
             this.tagService.get_tags_by_userId().subscribe(next => {
               this.tagList = next.list;
             }, error => {
-              console.log('---------- get tags by userId: error ', error);
             }, () => {
 
             });
         }
     }
-    onClick(post: Post, evt: Event) {
-
+    onClick(post: Post, e: Event) {
+      e.stopPropagation();
+      e.preventDefault();
+      post.disable = true;
+      const req: boolean = !post.publish;
+      this.postService.request_change_publish_status(post._id, req).subscribe(res => {
+        post.publish = req;
+      }, error1 => {
+      }, () => {
+        post.disable = false;
+      });
     }
-    customSwitch(index: number) {
+    private getPostsShapshots(): void {
+      this.postService.get_posts_snapshots().subscribe(next => {
+        this.postList = next.list;
+      }, error => {
 
+      }, () => {
+
+      });
     }
-
     onChangeTopic(topicId: number) {
         switch (topicId) {
             case this.STATIC_TOPIC.POST:
                 if (!this.postList) {
                     this.topic.status = false;
-                    this.postService.get_posts_snapshots().subscribe(next => {
-                        this.postList = next.list;
-                    }, error => {
-
-                    }, () => {
-
-                    });
+                    this.getPostsShapshots();
                 }
                 break;
             case this.STATIC_TOPIC.SERIES:
@@ -123,7 +126,7 @@ export class AuthorizeComponent implements OnInit {
     }
     toggleSer(ser: Series) {
         ser.open = !ser.open;
-        console.log(ser.name, ser.open);
+        // console.log(ser.name, ser.open);
     }
     saveNew() {
         console.log('------------- save', this.serie.name, this.serie.publish);
@@ -161,7 +164,7 @@ export class AuthorizeComponent implements OnInit {
 
     deletePost(id: string) {
       this.postService.delete_post(id).subscribe(next => {
-
+        this.getPostsShapshots();
       }, error => {}, () => {});
     }
 }

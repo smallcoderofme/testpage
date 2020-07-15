@@ -7,7 +7,7 @@ interface Post {
     updatedAt?: string;
     author?: string;
     _id?: string;
-    labels?: string[];
+    labels?: Tag[];
     disable?: boolean;
     publish?: boolean;
 }

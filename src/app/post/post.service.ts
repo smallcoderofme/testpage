@@ -58,17 +58,15 @@ export class PostService {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, null, httpOptions).pipe();
+    return this.http.post<any>(environment.host + '/authorization/delete_post/' + postId, {}, httpOptions).pipe();
   }
   submit_comment(postId: string, comment: PostComment): Observable < any > {
     return this.http.post<any>(environment.host + '/post/' + postId + '/comment', comment).pipe();
   }
 
   create_post(post: Post): Observable<any> {
-    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
     if (!token) {
-      console.log('Error: Not authorization.');
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
@@ -82,13 +80,12 @@ export class PostService {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
-    return this.http.post<any>(environment.host + '/request_change_public/', { publish : overt } ).pipe();
+    return this.http.post<any>(environment.host + '/authorization/request_change_pub/' + postId, { publish : overt }, httpOptions ).pipe();
   }
 
   setJwt(token) {
     if (!httpOptions.headers.has('Authorization')) {
-      // httpOptions.headers.append('Authorization', token);
-      httpOptions.headers = httpOptions.headers.set('Authorization', token);
+      httpOptions.headers = httpOptions.headers.append('Authorization', token);
     }
   }
 }
