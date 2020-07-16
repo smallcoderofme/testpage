@@ -53,7 +53,7 @@ export class UserService {
     this.userInfo = user;
     if ( storage ) {
       // this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
-      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 1);
+      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 0.25);
     }
     // localStorage.setItem(strogeUser, username);
   }
@@ -128,7 +128,7 @@ export class UserService {
   //   return null;
   // }
 
-  public set_token(token:string) {
+  private remove_header_response(token:string) {
     delete httpOptions['observe'];
   }
 }

@@ -56,16 +56,16 @@ export class AuthorizeComponent implements OnInit {
         }
     }
     onClick(post: Post, e: Event) {
-      e.stopPropagation();
-      e.preventDefault();
-      post.disable = true;
-      const req: boolean = !post.publish;
-      this.postService.request_change_publish_status(post._id, req).subscribe(res => {
-        post.publish = req;
-      }, error1 => {
-      }, () => {
-        post.disable = false;
-      });
+        e.stopPropagation();
+        e.preventDefault();
+        post.disable = true;
+        const req: boolean = !post.publish;
+        this.postService.request_change_publish_status(post._id, req).subscribe(res => {
+          post.publish = req;
+        }, error1 => {
+        }, () => {
+          post.disable = false;
+        });
     }
     private getPostsShapshots(): void {
       this.postService.get_posts_snapshots().subscribe(next => {
@@ -109,13 +109,6 @@ export class AuthorizeComponent implements OnInit {
         });
     }
     removeTag(tagId: string) {
-        // const len: number = this.tagList.length;
-        // for (let index = 0; index < len; index++) {
-        //     const tag = this.tagList[index];
-        //     if ( tag._id === tagId ) {
-        //         this.tagList.splice(index, 1);
-        //     }
-        // }
       this.tagService.delete_tag(tagId).subscribe(next => {
         this.tagList = next.list;
       }, error => {

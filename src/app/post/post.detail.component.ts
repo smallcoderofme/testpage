@@ -18,7 +18,7 @@ export class PostDetailComponent implements OnInit {
     postDetail: Post;
     postList: Post[];
     tagList: Tag[];
-    commentModel = { username: '', email: '', content: '', reply: null};
+    commentModel = { username: '', email: '', content: '', reply: undefined};
     status = {
         isInvalid_content: false,
         isInvalid_email: false,
@@ -26,7 +26,6 @@ export class PostDetailComponent implements OnInit {
     };
     commentList: any[];
     constructor(public global: GlobalConfig, private viewportScroller: ViewportScroller, private tagService: TagsService, private postService: PostService, private route: ActivatedRoute){
-
         this.commentList = [{
             username: 'Juggernaut',
             content: 'Hey guy!',
@@ -69,6 +68,10 @@ export class PostDetailComponent implements OnInit {
         }, () => {
 
         });
+      /**
+       * 相关推荐
+       */
+      // this.postService
     }
 
     submitComment() {
@@ -102,7 +105,16 @@ export class PostDetailComponent implements OnInit {
 
         });
     }
+    onClickTag(id: string) {
+      // console.log('---------------------------------- id:', id);
+      this.postService.getPostsByLabel(id).subscribe(res => {
+          
+      }, err => {
 
+      }, () => {
+
+      });
+    }
     replyComment(replyTo: string) {
       this.commentModel.reply = replyTo;
       this.viewportScroller.scrollToAnchor('commentForm');
