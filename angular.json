@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/testpage",
+            "outputPath": "dist/testpage/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,7 +29,7 @@
               "src/app/content-style.css"
             ],
             "scripts": [
-              "./node_modules/crypto-js/crypto-js.js"
+//              "./node_modules/crypto-js/crypto-js.js"
             ]
           },
           "configurations": {
@@ -123,6 +123,53 @@
             "production": {
               "devServerTarget": "testpage:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/testpage/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "testpage:build",
+            "serverTarget": "testpage:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "testpage:build:production",
+              "serverTarget": "testpage:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "testpage:build:production",
+            "serverTarget": "testpage:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

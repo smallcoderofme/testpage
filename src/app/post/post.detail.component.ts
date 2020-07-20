@@ -108,7 +108,7 @@ export class PostDetailComponent implements OnInit {
     onClickTag(id: string) {
       // console.log('---------------------------------- id:', id);
       this.postService.getPostsByLabel(id).subscribe(res => {
-          
+
       }, err => {
 
       }, () => {
