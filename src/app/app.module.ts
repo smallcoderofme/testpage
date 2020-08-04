@@ -18,10 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConfig } from './GlobalConfig';
-import { ServerModule } from '@angular/platform-server';
 @NgModule({
   imports: [
-    ServerModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     HttpClientXsrfModule.withOptions({

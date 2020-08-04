@@ -11,13 +11,7 @@ import { GlobalConfig } from '../GlobalConfig';
         <div class="col-sm-9 col-lx-9">
             <ul>
                 <li *ngFor="let post of postList" class="content">
-                    <div class="border-bottom pb-2">
-                      <span class="h3 font-weight-bold ">{{post.name}}</span>
-                      <span class="badge badge-secondary ml-4" *ngFor="let label of post.labels">{{label.name}}</span>
-                    </div>
-                    <img *ngIf="post.avatar" src="{{post.avatar}}" class="img-fluid">
-                    <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/list/{{post._id}}">ReadMore</a></p>
-                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt | date: global.POST_DATE_FORMAT}}</span>Author: <span>{{post.author}}</span></p>
+                    <app-post [post] = "post"></app-post>
                 </li>
             </ul>
         </div>
@@ -36,7 +30,7 @@ import { GlobalConfig } from '../GlobalConfig';
 })
 export class PostListComponent implements OnInit {
     postList: Post[];
-    constructor(private postService: PostService, public global: GlobalConfig){}
+    constructor(private postService: PostService){}
     ngOnInit() {
         this.postService.get_posts().subscribe(res => {
           this.postList = res.list;
