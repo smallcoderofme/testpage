@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { Post } from '../type.struct';
 import { GlobalConfig } from '../GlobalConfig';
 
@@ -20,6 +20,7 @@ import { GlobalConfig } from '../GlobalConfig';
 
 export class PostComponent implements OnInit {
 	@Input() post: Post;
+	// @HostBinding('attr.class') cssClass = 'test';
 	constructor(public global: GlobalConfig) {
 		// code...
 	}
