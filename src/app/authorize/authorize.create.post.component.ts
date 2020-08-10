@@ -12,7 +12,7 @@ import { TagsService } from './tags.service';
         <div class="row">
             <div class="col-sm-9 col-xl-9 mt-3">
                 <input type="text" class="form-control mb-2"
-                [(ngModel)]="post.title"
+                [(ngModel)]="post.name"
                 [ngModelOptions]="{standalone: true}">
                 <ckeditor [editor]="Editor" [(ngModel)]="post.content" [config]="config" data="<p>Hello, world!</p>"></ckeditor>
             </div>
@@ -40,7 +40,6 @@ import { TagsService } from './tags.service';
                        [ngModelOptions]="{standalone: true}"
                        [disabled]="post.disable"
                        (click)="onClick($event);"
-                       (change)="onClick($event);"
                        class="custom-control-input" id="publicSwitch">
                 <label class="custom-control-label" for="publicSwitch"></label>
               </div>
@@ -52,7 +51,7 @@ import { TagsService } from './tags.service';
 export class AuthorizeCreatePostComponent implements OnInit {
     public Editor = ClassicEditor;
     public config;
-    public post = { title: '', content: '', publish: true, disable: false };
+    public post = { name: '', content: '', publish: true, disable: false };
     public tags: Tag[];
     public selected: Tag[] = [];
     constructor(private postService: PostService, private tagsService: TagsService) {}
@@ -107,7 +106,8 @@ export class AuthorizeCreatePostComponent implements OnInit {
 
     private uploadContent() {}
 
-    public onClick(evt) {
+    public onClick(evt: Event) {
+      this.post.publish = !this.post.publish;
     }
 
     public createPost() {
@@ -118,7 +118,7 @@ export class AuthorizeCreatePostComponent implements OnInit {
         // const detail = this.post.content.replace(reg, '<img class = "img-fluid rounded img-thumbnail"');
         const cover = avatar ? avatar[3] : '';
         const paramData: Post = {
-            name: this.post.title,
+            name: this.post.name,
             content: this.post.content,
             publish: this.post.publish,
             labels: this.selected,
@@ -152,7 +152,7 @@ export class AuthorizeCreatePostComponent implements OnInit {
       }
     }
     resetPostModel() {
-      this.post.title = '';
+      this.post.name = '';
       this.post.content = '';
       this.post.publish = true;
       this.post.disable = false;

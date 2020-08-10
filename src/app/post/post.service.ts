@@ -33,18 +33,8 @@ export class PostService {
     this.setJwt(token);
     return this.http.post<any>(environment.host + '/authorization/posts/snapshot_list', {}, httpOptions).pipe();
   }
-  get_admin_posts(): Observable<any> {
-    // const userId: string = this.userService.get_user_id();
-    const token: string = this.userService.get_token();
-    if (!token) {
-      return NotAuthorization.getInstance();
-    }
-    this.setJwt(token);
-    return this.http.get<any>(environment.host + '/posts_preview/').pipe();
-  }
 
   update_post(id: string, post: Post): Observable<any> {
-    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
     if (!token) {
       return NotAuthorization.getInstance();
@@ -74,13 +64,16 @@ export class PostService {
   }
 
   request_change_publish_status(postId: string, overt: boolean): Observable<any> {
-    // const userId: string = this.userService.get_user_id();
     const token: string = this.userService.get_token();
     if (!token) {
       return NotAuthorization.getInstance();
     }
     this.setJwt(token);
     return this.http.post<any>(environment.host + '/authorization/request_change_pub/' + postId, { publish : overt }, httpOptions ).pipe();
+  }
+
+  getPostsByLabel(id: string): Observable<any> {
+    return this.http.get<any>(environment.host + '/tag/' + id + '/posts').pipe();
   }
 
   setJwt(token) {

@@ -17,11 +17,10 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {GlobalConfig} from './GlobalConfig';
-
+import { GlobalConfig } from './GlobalConfig';
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       headerName: 'Authorization'

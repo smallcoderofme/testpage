@@ -1,9 +1,10 @@
 import { Injectable, Optional } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AES, enc } from 'crypto-js';
+// import { AES, enc } from 'crypto-js';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { DOCUMENT } from '@angular/common';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -53,7 +54,7 @@ export class UserService {
     this.userInfo = user;
     if ( storage ) {
       // this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
-      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 1);
+      this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 0.25);
     }
     // localStorage.setItem(strogeUser, username);
   }
@@ -74,21 +75,21 @@ export class UserService {
   private setCookie(cName: string, cValue: string, days: number) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
-    document.cookie = cName + '=' + AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
+    // this.document.cookie = cName + '=' + AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
   }
   private getCookie(cName: string): string {
     const name = cName + '=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    for ( let c of ca ) {
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-          const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
-          return bytes.toString(enc.Utf8);
-        }
-      }
+    // const decodedCookie = decodeURIComponent(this.document.cookie);
+    // const ca = decodedCookie.split(';');
+    // for ( let c of ca ) {
+    //     while (c.charAt(0) === ' ') {
+    //         c = c.substring(1);
+    //     }
+    //     if (c.indexOf(name) === 0) {
+    //       const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
+    //       return bytes.toString(enc.Utf8);
+    //     }
+    //   }
     return null;
   }
   public get_token(): string {
@@ -114,7 +115,7 @@ export class UserService {
 
   // public get_user_id(): string {
   //   const name = defultTName + '=';
-  //   const decodedCookie = decodeURIComponent(document.cookie);
+  //   const decodedCookie = decodeURIComponent(this.document.cookie);
   //   const ca = decodedCookie.split(';');
   //   for ( let c of ca ) {
   //       while (c.charAt(0) === ' ') {
@@ -128,7 +129,7 @@ export class UserService {
   //   return null;
   // }
 
-  public set_token(token:string) {
+  private remove_header_response(token:string) {
     delete httpOptions['observe'];
   }
 }

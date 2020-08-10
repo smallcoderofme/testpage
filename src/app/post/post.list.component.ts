@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service';
-import { Post, PostComment } from '../type.struct';
+import { Post } from '../type.struct';
 import { GlobalConfig } from '../GlobalConfig';
 
 @Component({
@@ -11,10 +11,7 @@ import { GlobalConfig } from '../GlobalConfig';
         <div class="col-sm-9 col-lx-9">
             <ul>
                 <li *ngFor="let post of postList" class="content">
-                    <h4 class="font-weight-bold mb-2">{{ post.name }}</h4>
-                    <img *ngIf="post.avatar" src="{{post.avatar}}" class="img-fluid">
-                    <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/list/{{post._id}}">ReadMore</a></p>
-                    <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt | date: global.POST_DATE_FORMAT}}</span>Author: <span>{{post.author}}</span></p>
+                    <app-post [post] = "post"></app-post>
                 </li>
             </ul>
         </div>
@@ -33,28 +30,8 @@ import { GlobalConfig } from '../GlobalConfig';
 })
 export class PostListComponent implements OnInit {
     postList: Post[];
-    constructor(private postService: PostService, public global: GlobalConfig){}
+    constructor(private postService: PostService){}
     ngOnInit() {
-        // this.postList = [
-        //     {
-        //         title: '卡布·加塔自然公园',
-        //         cover: '',
-        //         preview: '位于西班牙南部的卡布·加塔自然公园拥有神秘的湿地、浪漫的海滩、壮观的火山和令人赞叹的高山悬崖。走过柔软沙滩，在湛蓝的大海中尽情游泳，人生最大的享受莫过于此。',
-        //         created_at: '2019-03-02',
-        //         author: 'Jugg',
-        //         post_id: '1234564564',
-        //         overt: true
-        //     },
-        //     {
-        //         title: '萨瑟兰瀑布和奎尔湖',
-        //         cover: '',
-        //         preview: '新西兰的萨瑟兰瀑布和奎尔湖 (© Michael Rathmayr/plainpicture)。',
-        //         created_at: '2019-03-03',
-        //         author: 'Troll',
-        //         post_id: '7987987444',
-        //         overt: true
-        //     }
-        // ];
         this.postService.get_posts().subscribe(res => {
           this.postList = res.list;
         }, error => {

@@ -33,4 +33,11 @@ interface PostComment {
   reply?: string;
 }
 
-export { Post, Tag, Series , PostComment};
+
+enum PopupType {
+    Danger = 'danger',
+    Warn = 'warn',
+    Success = 'success'
+}
+
+export { Post, Tag, Series , PostComment, PopupType};
