@@ -1,5 +1,5 @@
 {
-  "name": "mysite",
+  "name": "testpage",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,10 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run mysite:serve-ssr",
-    "serve:ssr": "node dist/mysite/server/main.js",
-    "build:ssr": "ng build --prod && ng run mysite:server:production",
-    "prerender": "ng run mysite:prerender"
+    "dev:ssr": "ng run testpage:serve-ssr",
+    "serve:ssr": "node dist/testpage/server/main.js",
+    "build:ssr": "ng build --prod && ng run testpage:server:production",
+    "prerender": "ng run testpage:prerender"
   },
   "private": true,
   "dependencies": {

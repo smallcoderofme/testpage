@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mysite": {
+    "testpage": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mysite/browser",
+            "outputPath": "dist/testpage/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mysite:build"
+            "browserTarget": "testpage:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mysite:build:production"
+              "browserTarget": "testpage:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mysite:build"
+            "browserTarget": "testpage:build"
           }
         },
         "test": {
@@ -112,18 +112,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mysite:serve"
+            "devServerTarget": "testpage:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mysite:serve:production"
+              "devServerTarget": "testpage:serve:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/mysite/server",
+            "outputPath": "dist/testpage/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json"
           },
@@ -144,21 +144,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "mysite:build",
-            "serverTarget": "mysite:server"
+            "browserTarget": "testpage:build",
+            "serverTarget": "testpage:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mysite:build:production",
-              "serverTarget": "mysite:server:production"
+              "browserTarget": "testpage:build:production",
+              "serverTarget": "testpage:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "mysite:build:production",
-            "serverTarget": "mysite:server:production",
+            "browserTarget": "testpage:build:production",
+            "serverTarget": "testpage:server:production",
             "routes": [
               "/"
             ]
@@ -170,7 +170,7 @@
       }
     }
   },
-  "defaultProject": "mysite",
+  "defaultProject": "testpage",
   "cli": {
     "analytics": false
   }
