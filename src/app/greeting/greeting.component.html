@@ -9,7 +9,7 @@
         <li><a href="javascript:;" (click)="signout();">logout</a></li>
       </ul>   
       <ul *ngIf="!user.verify">
-        <li><a routerLink = "/auth/login">login</a></li>
+        <li><a [routerLink] = "['/auth/login']">login</a></li>
       </ul>   
     </li>
   </ul>

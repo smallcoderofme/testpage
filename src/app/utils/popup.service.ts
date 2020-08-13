@@ -22,6 +22,7 @@ export class PopupService {
 			document.body.removeChild(this.popup);
 			this.applicationRef.detachView(this.popupComponentRef.hostView);
 		});
+		console.log("type", type);
 		this.popupComponentRef.instance.type = type;
 		this.popupComponentRef.instance.message = message;
 		document.body.appendChild(this.popup);

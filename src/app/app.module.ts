@@ -18,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConfig } from './GlobalConfig';
+
+import { PopupService } from './utils/popup.service';
+import { PopupComponent } from './utils/popup.component';
+
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -32,13 +36,16 @@ import { GlobalConfig } from './GlobalConfig';
     NgbModule
   ],
   declarations: [
+    PopupComponent,
     AppComponent,
     AboutComponent,
     GreetingComponent,
   ],
   providers: [
+    PopupService,
     GlobalConfig
   ],
+  entryComponents: [PopupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
