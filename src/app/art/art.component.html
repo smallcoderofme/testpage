@@ -1,8 +1,12 @@
-<div class="row">
-  <div class="col-sm-9 col-lg-9">
-      art component
-  </div>
-  <div class="col-sm-3 col-lg-3">
-     hi
+<div class="clearfix">
+  <div>
+    	<div class="mt-3 waterfall-container">
+			<div class="waterfall">
+			    <div class="pin" *ngFor="let waterfull of waterfull_list">
+					<app-waterfull [wf] = "waterfull">
+					</app-waterfull>
+				</div>
+			</div>
+		</div>
   </div>
 </div>

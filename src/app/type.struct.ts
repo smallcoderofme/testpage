@@ -40,4 +40,8 @@ enum PopupType {
     Success = 'success'
 }
 
-export { Post, Tag, Series , PostComment, PopupType};
+interface WaterFull {
+    img?: string;
+    content?: string;
+}
+export { Post, Tag, Series , PostComment, PopupType, WaterFull};
