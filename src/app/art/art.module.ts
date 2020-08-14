@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArtRoutingModule } from './art-routing.module';
 import { ArtComponent } from './art.component';
-import { WaterfullComponent } from './waterfull.component';
+import { WaterfallComponent } from './waterfall.component';
 
 
 
 @NgModule({
   declarations: [
-  	WaterfullComponent,
+  	WaterfallComponent,
     ArtComponent
   ],
   imports: [
