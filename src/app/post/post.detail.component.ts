@@ -121,19 +121,24 @@ export class PostDetailComponent implements OnInit {
     }
 
     onSubmit(): void {
-      // console.log('value:', this.myCommentForm.value);
-      const id: string = this.route.snapshot.paramMap.get('id');
-      this.postService.submit_comment(id, {
-        username: this.myCommentForm.get('username').value,
-        email: this.myCommentForm.get('email').value,
-        content: this.myCommentForm.get('comment').value,
-        reply: this.myCommentForm.get('replyTo').value
-      }).subscribe(next => {
-        this.commentList = next.comments;
-      }, error1 => {
-
-      }, () => {
-
-      });
+      console.log(this.username.valid, this.comment.valid, this.email.valid);
+      if (this.username.valid &&
+          this.comment.valid &&
+          this.email.valid) {
+          console.log('llllllllllllllog correct');
+          // const id: string = this.route.snapshot.paramMap.get('id');
+          // this.postService.submit_comment(id, {
+          //   username: this.myCommentForm.get('username').value,
+          //   email: this.myCommentForm.get('email').value,
+          //   content: this.myCommentForm.get('comment').value,
+          //   reply: this.myCommentForm.get('replyTo').value
+          // }).subscribe(next => {
+          //   this.commentList = next.comments;
+          // }, error1 => {
+    
+          // }, () => {
+    
+          // });
+      }
     }
 }
