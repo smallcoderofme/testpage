@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { GlobalConfig } from '../GlobalConfig';
 import { TagsService } from '../authorize/tags.service';
 import { ViewportScroller } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+
 
 const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 
@@ -15,17 +17,29 @@ const EMAIL_REG: RegExp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2
 })
 
 export class PostDetailComponent implements OnInit {
+    myCommentForm: FormGroup;
+    replyTo: AbstractControl;
+    email: AbstractControl;
+    comment: AbstractControl;
+    username: AbstractControl;
     postDetail: Post;
     postList: Post[];
     tagList: Tag[];
-    commentModel = { username: '', email: '', content: '', reply: undefined};
-    status = {
-        isInvalid_content: false,
-        isInvalid_email: false,
-        isInvalid_username: false
-    };
+    // commentModel = { username: '', email: '', content: '', reply: undefined};
+    // status = {
+    //     isInvalid_content: false,
+    //     isInvalid_email: false,
+    //     isInvalid_username: false
+    // };
     commentList: any[];
-    constructor(public global: GlobalConfig, private viewportScroller: ViewportScroller, private tagService: TagsService, private postService: PostService, private route: ActivatedRoute){
+    constructor(
+      private fb: FormBuilder,
+      public global: GlobalConfig,
+      private viewportScroller: ViewportScroller,
+      private tagService: TagsService,
+      private postService: PostService,
+      private route: ActivatedRoute){
+
         this.commentList = [{
             username: 'Juggernaut',
             content: 'Hey guy!',
@@ -37,8 +51,20 @@ export class PostDetailComponent implements OnInit {
             email: 'jugg@gmail.com',
             createdAt: '2020-02-04'
         }];
+
+        this.myCommentForm = this.fb.group({
+          replyTo : new FormControl({value: '', disabled: true}),
+          comment: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(512)]),
+          username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]),
+          email: new FormControl('', [Validators.email, Validators.required])
+        }, { updateOn: 'submit'});
+
+        this.replyTo = this.myCommentForm.controls.replyTo;
+        this.comment = this.myCommentForm.controls.comment;
+        this.username = this.myCommentForm.controls.username;
+        this.email = this.myCommentForm.controls.email;
     }
-    ngOnInit(){
+    ngOnInit(): void {
         this.postDetail = {
             name: '卡布·加塔自然公园',
             avatar: '',
@@ -73,39 +99,7 @@ export class PostDetailComponent implements OnInit {
        */
       // this.postService
     }
-
-    submitComment() {
-      /**
-       * 暂无长度过滤长度，敏感词汇过滤
-       */
-        if (this.commentModel.email.replace(/ /g, '').length === 0 ||
-            !EMAIL_REG.test(this.commentModel.email)) {
-            this.status.isInvalid_email = true;
-            return;
-        }
-        if (this.commentModel.username.replace(/ /g, '').length === 0 ||
-            this.commentModel.username.indexOf('.js') !== -1 ||
-            this.commentModel.username.indexOf('iframe') !== -1) {
-            this.status.isInvalid_username = true;
-            return;
-        }
-        if (this.commentModel.content.replace(/ /g, '').length === 0 ||
-            this.commentModel.content.indexOf('.js') !== -1 ||
-            this.commentModel.content.indexOf('iframe') !== -1) {
-            this.status.isInvalid_content = true;
-            return;
-        }
-        console.log(this.commentModel);
-        const id: string = this.route.snapshot.paramMap.get('id');
-        this.postService.submit_comment(id, this.commentModel).subscribe(next => {
-          this.commentList = next.comments;
-        }, error1 => {
-
-        }, () => {
-
-        });
-    }
-    onClickTag(id: string) {
+    onClickTag(id: string): void {
       // console.log('---------------------------------- id:', id);
       this.postService.getPostsByLabel(id).subscribe(res => {
 
@@ -115,12 +109,31 @@ export class PostDetailComponent implements OnInit {
 
       });
     }
-    replyComment(replyTo: string) {
-      this.commentModel.reply = replyTo;
+    replyComment(reply: string): void {
+    //   this.commentModel.reply = replyTo;
+      this.myCommentForm.setValue({ replyTo: reply });
       this.viewportScroller.scrollToAnchor('commentForm');
     }
 
-    closeReply() {
-      this.commentModel.reply = null;
+    closeReply(): void {
+    //   this.commentModel.reply = null;
+      this.myCommentForm.setValue({ replyTo: null });
+    }
+
+    onSubmit(): void {
+      // console.log('value:', this.myCommentForm.value);
+      const id: string = this.route.snapshot.paramMap.get('id');
+      this.postService.submit_comment(id, {
+        username: this.myCommentForm.get('username').value,
+        email: this.myCommentForm.get('email').value,
+        content: this.myCommentForm.get('comment').value,
+        reply: this.myCommentForm.get('replyTo').value
+      }).subscribe(next => {
+        this.commentList = next.comments;
+      }, error1 => {
+
+      }, () => {
+
+      });
     }
 }
