@@ -1,10 +1,13 @@
-import { Injectable, Optional } from '@angular/core';
+import {Inject, Injectable, Optional} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-// import { AES, enc } from 'crypto-js';
+import { AES, enc } from 'crypto-js';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { DOCUMENT } from '@angular/common';
+
+// import { PLATFORM_ID } from '@angular/core';
+// import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,7 +31,7 @@ export class UserService {
   private userInfo = new UserServiceConfig();
   public loginUser: BehaviorSubject<UserServiceConfig>;
   private cookieVerify = false;
-  constructor( private http: HttpClient, @Optional() config?: UserServiceConfig) { //
+  constructor(@Inject(DOCUMENT) private document, private http: HttpClient, @Optional() config?: UserServiceConfig) { //
     if (config) { this.userInfo.userName = config.userName; }
     const cookieUserName = this.getCookie(defaultCName);
     if (cookieUserName !== null) {
@@ -44,14 +47,15 @@ export class UserService {
     });
   }
 
-  getUserInfo() {
+  getUserInfo(): UserServiceConfig {
     // this.m_UserName = localStorage.getItem(strogeUser);
     return this.userInfo;
   }
 
-  setUserInfo(user: UserServiceConfig, storage = false) {
+  setUserInfo(user: UserServiceConfig, storage = false): void {
     // console.log('setUserInfo:', user, storage);
     this.userInfo = user;
+    console.log('setUserInfo', storage);
     if ( storage ) {
       // this.setCookie(defultTName, JSON.stringify({ token: user.userId }), 1)
       this.setCookie(defaultCName, JSON.stringify({userName: user.userName, verify: user.verify, authorization: user.authorization}), 0.25);
@@ -59,7 +63,7 @@ export class UserService {
     // localStorage.setItem(strogeUser, username);
   }
 
-  removeUserInfo() {
+  removeUserInfo(): void {
     this.cookieVerify = false;
     this.delCookie(defaultCName, this.getCookie(defaultCName));
     this.loginUser.next({ userName: 'Traveler', authorization: '', verify: false, userId: null });
@@ -72,24 +76,24 @@ export class UserService {
     }
     return false;
   }
-  private setCookie(cName: string, cValue: string, days: number) {
+  private setCookie(cName: string, cValue: string, days: number): void {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
-    // this.document.cookie = cName + '=' + AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
+    this.document.cookie = cName + '=' + AES.encrypt(cValue, storageUser).toString() + '; expires=' + date.toUTCString() + '; path=/';
   }
   private getCookie(cName: string): string {
     const name = cName + '=';
-    // const decodedCookie = decodeURIComponent(this.document.cookie);
-    // const ca = decodedCookie.split(';');
-    // for ( let c of ca ) {
-    //     while (c.charAt(0) === ' ') {
-    //         c = c.substring(1);
-    //     }
-    //     if (c.indexOf(name) === 0) {
-    //       const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
-    //       return bytes.toString(enc.Utf8);
-    //     }
-    //   }
+    const decodedCookie = decodeURIComponent(this.document.cookie);
+    const ca = decodedCookie.split(';');
+    for ( let c of ca ) {
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+          const bytes  = AES.decrypt(c.substring(name.length, c.length), storageUser);
+          return bytes.toString(enc.Utf8);
+        }
+      }
     return null;
   }
   public get_token(): string {
@@ -99,7 +103,7 @@ export class UserService {
     }
     return null;
   }
-  private delCookie(cName: string, cValue: string) {
+  private delCookie(cName: string, cValue: string): void {
     this.setCookie(cName, cValue, -1);
   }
 

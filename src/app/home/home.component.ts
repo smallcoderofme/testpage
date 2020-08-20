@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     template: `
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     postList: any[];
     constructor() {}
 
-    ngOnInit(){
+    ngOnInit(): void{
         this.postList = [
             {
                 title: '卡布·加塔自然公园',

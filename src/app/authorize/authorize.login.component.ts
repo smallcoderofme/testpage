@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../greeting/user.service';
 import { Router } from '@angular/router';
+import { PopupService } from '../utils/popup.service';
+import { PopupType } from '../type.struct';
 
 @Component({
     selector: 'app-login',
@@ -34,7 +36,7 @@ import { Router } from '@angular/router';
 })
 export class AuthorizeLoginComponent implements OnInit {
     loginForm = { username: '', password: '', remember: false };
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private userService: UserService, private router: Router, private popupSerive: PopupService) {}
     ngOnInit() {
         this.loginForm.username = '';
         this.loginForm.password = '';
@@ -50,7 +52,6 @@ export class AuthorizeLoginComponent implements OnInit {
     }
 
     signIn() {
-        console.log(this.loginForm);
         // if (this.loginForm.username !== 'sunshuai' || this.loginForm.password !== '010101') {
         //     return;
         // }
@@ -63,6 +64,7 @@ export class AuthorizeLoginComponent implements OnInit {
             // tslint:disable-next-line: max-line-length
             this.userService.loginUser.next({ userName: res['userName'], authorization: res['jwt'], verify: true, userId: res['userId'] });
             this.router.navigateByUrl('auth');
+            this.popupSerive.show("Login Success.", PopupType.Success);
             // this.userService
         }, error => {
             console.log('--------', error);

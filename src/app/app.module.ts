@@ -18,27 +18,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalConfig } from './GlobalConfig';
+
+import { PopupService } from './utils/popup.service';
+import { PopupComponent } from './utils/popup.component';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule, // .withServerTransition({ appId: 'serverApp' })
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       headerName: 'Authorization'
     }),
-    // HomeModule,
-    // GreetingModule.forRoot({userName: 'Jugg'}),
     AppRoutingModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     BrowserAnimationsModule,
     NgbModule
   ],
   declarations: [
+    PopupComponent,
     AppComponent,
     AboutComponent,
     GreetingComponent,
   ],
   providers: [
+    PopupService,
     GlobalConfig
   ],
+  entryComponents: [PopupComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

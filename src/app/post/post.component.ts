@@ -12,19 +12,20 @@ import { GlobalConfig } from '../GlobalConfig';
                 </div>
                 <img *ngIf="post.avatar" src="{{post.avatar}}" class="img-fluid">
                 <p>{{ post.preview }}...<a href="javascript:;" routerLink="/post/list/{{post._id}}">ReadMore</a></p>
-                <p class="border-top p-t">Date: 
-                	<span class="m-r-3">{{post.createdAt | date: global.POST_DATE_FORMAT}}</span>
+                <p class="border-top p-t">Date: <span class="m-r-3">{{post.createdAt | date: global.POST_DATE_FORMAT}}</span>
                 	Author: <span>{{post.author}}</span>
             	</p>`
 })
 
 export class PostComponent implements OnInit {
+
 	@Input() post: Post;
 	// @HostBinding('attr.class') cssClass = 'test';
+	
 	constructor(public global: GlobalConfig) {
 		// code...
 	}
-	ngOnInit() {
+	ngOnInit(): void {
 
 	}
 }
